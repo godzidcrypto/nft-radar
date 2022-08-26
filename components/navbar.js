@@ -12,7 +12,15 @@ export default function Navbar() {
       <Container>
         <div className="flex items-center ">
           <div className="flex items-center">
-            <Image src={logo} width={50} height={50} loader={myLoader} />
+            <Link href={"/"}>
+              <Image
+                src={logo}
+                width={50}
+                height={50}
+                loader={myLoader}
+                className="hover:cursor-pointer"
+              />
+            </Link>
             {/* <h3 className="text-[#8C50EE] text-4xl font-bold tracking-tighter">
               NFT Radar
             </h3> */}
