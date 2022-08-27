@@ -11,15 +11,15 @@ function NewsItem({ cryptoNews }) {
   return (
     <Layout>
       <Container>
-        <div className="max-w-2xl mx-auto py-8">
+        <div className="max-w-8xl mx-auto py-8">
+          <h1 className="text-8xl">{title}</h1>
+          <p className="text-2xl">{caption}</p>
+          <p>{chain}</p>
           <div>
             <CoverImage title={title} url={featuredImage.url} />
           </div>
-          <h1>{title}</h1>
-          <p>{caption}</p>
-          <p>{chain}</p>
-          <PostBody content={writeUp} />
         </div>
+        <PostBody content={writeUp} />
       </Container>
     </Layout>
   );
