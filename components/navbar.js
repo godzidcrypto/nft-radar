@@ -52,14 +52,14 @@ export default function Navbar() {
               href="https://twitter.com/solnftradar"
               target="_blank"
             >
-              <Twitter fill="#8C50EE" />
+              <Twitter fill="#8C50EE" width={24} />
             </a>
             <a
               className="mx-4 scale-125 hover:scale-150 duration-200"
               href="https://discord.gg/nftradar"
               target="_blank"
             >
-              <Discord fill="#8C50EE" />
+              <Discord fill="#8C50EE" width={24} />
             </a>
             <button className="text-black hover:text-[#8C50EE] bg-[#8C50EE] mx-2 px-4 py-2 rounded-md hover:bg-black border-[#8C50EE] border-2 duration-200 transition-colors">
               Login
