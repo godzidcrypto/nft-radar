@@ -1,23 +1,21 @@
 import Container from "./container";
 import Link from "next/link";
-import Image from "next/image";
 import logo from "../assets/images/logo.png";
+import ContentfulImage from "./contentful-image";
+import Discord from "./discord";
+import Twitter from "./twitter";
 
 export default function Navbar() {
-  const myLoader = ({ src }) => {
-    return `${src}`;
-  };
   return (
     <nav className="bg-[#000000] py-2">
       <Container>
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Link href={"/"}>
-              <Image
+              <ContentfulImage
                 src={logo}
                 width={50}
                 height={50}
-                loader={myLoader}
                 className="hover:cursor-pointer"
               />
             </Link>
@@ -48,22 +46,22 @@ export default function Navbar() {
               </Link>
             </div>
           </div>
-          <div className="text-[#8C50EE]">
+          <div className="flex items-center justify-center">
             <a
-              className="mx-4 hover:underline"
+              className="mx-4 hover:scale-125 duration-200"
               href="https://twitter.com/solnftradar"
               target="_blank"
             >
-              Twitter
+              <Twitter fill="#8C50EE" />
             </a>
             <a
-              className="mx-4 hover:underline"
+              className="mx-4 scale-125 hover:scale-150 duration-200"
               href="https://discord.gg/nftradar"
               target="_blank"
             >
-              Discord
+              <Discord fill="#8C50EE" />
             </a>
-            <button className="text-black hover:text-[#8C50EE] bg-[#8C50EE] px-4 py-2 rounded-md hover:bg-black border-[#8C50EE] border-2 duration-200 transition-colors">
+            <button className="text-black hover:text-[#8C50EE] bg-[#8C50EE] mx-2 px-4 py-2 rounded-md hover:bg-black border-[#8C50EE] border-2 duration-200 transition-colors">
               Login
             </button>
           </div>
