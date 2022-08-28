@@ -11,7 +11,7 @@ export default function CoverImage({ title, url, slug, route }) {
       // className={cn("sm:mx-0 rounded-lg border-2 border-black", {
       //   "hover:shadow-medium transition-shadow duration-200": slug,
       // })}
-      className="rounded-md -p-"
+      className="rounded-md"
       src={url}
     />
   );
