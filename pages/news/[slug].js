@@ -8,6 +8,7 @@ import Solana from "../../assets/images/solana.png";
 import Ethereum from "../../assets/images/ethereum.png";
 import ContentfulImage from "../../components/contentful-image";
 import Avatar from "../../components/avatar";
+import convertToSlug from "../../lib/convertToSlug";
 
 function NewsItem({ cryptoNews, allCryptoNews }) {
   const {
@@ -33,7 +34,7 @@ function NewsItem({ cryptoNews, allCryptoNews }) {
   });
   return (
     <Layout>
-      <div className="grid grid-cols-2 px-24 gap-8 pt-16">
+      <article className="grid grid-cols-2 px-24 gap-8 py-16">
         <div>
           <div className="mb-4 flex justify-between items-center">
             <Link href={"/news"}>
@@ -63,7 +64,7 @@ function NewsItem({ cryptoNews, allCryptoNews }) {
                     }}
                   >
                     {/* {". ".repeat(headingNumber)} */}
-                    {text}
+                    <a href={`#${convertToSlug(text)}`}>{text}</a>
                   </li>
                 );
               })}
@@ -108,8 +109,8 @@ function NewsItem({ cryptoNews, allCryptoNews }) {
           )}
         </div>
         <div className="bg-[#F9F9F9] p-6 rounded-md">
-          <h1 className="text-6xl font-black">{title}</h1>
-          <p className="text-sm">{caption}</p>
+          <h1 className="text-6xl font-bold">{title}</h1>
+          <p className="text-sm font-medium">{caption}</p>
           <div className="mt-4 flex items-center">
             {author && <Avatar name={author.name} picture={author.picture} />}
             <div className="ml-8">
@@ -129,7 +130,7 @@ function NewsItem({ cryptoNews, allCryptoNews }) {
           </div>
           <PostBody content={writeUp} />
         </div>
-      </div>
+      </article>
     </Layout>
   );
 }
