@@ -28,31 +28,6 @@ export default function Index({ preview, allPosts, allProjects }) {
             />
           )}
           {morePosts.length > 0 && <MoreStories posts={morePosts} />} */}
-          <div className="grid grid-cols-2">
-            {allProjects.map((project, index) => {
-              const { title, description, twitterLink, nftImage } = project;
-              const { firstPublishedAt: date } = project.sys;
-              return (
-                <div key={index}>
-                  <div>
-                    <CoverImage
-                      title={title}
-                      // slug={twitterLink}
-                      url={nftImage.url}
-                    />
-                  </div>
-                  <h3 className="text-3xl mb-3 leading-snug">{title}</h3>
-                  <p className="text-lg leading-relaxed mb-4">
-                    <DateComponent dateString={date} />
-                  </p>
-                  <p className="text-lg leading-relaxed mb-4">{description}</p>
-                  <a href={twitterLink} target="_blank">
-                    <p>Twitter Link</p>
-                  </a>
-                </div>
-              );
-            })}
-          </div>
         </Container>
       </Layout>
     </>

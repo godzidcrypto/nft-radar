@@ -1,6 +1,6 @@
 import Layout from "../../components/layout";
 import Link from "next/link";
-import { getAllCryptoNews, getSingleCryptoNews } from "../../lib/api";
+import { getAllProjects, getSingleProject } from "../../lib/api";
 import CoverImage from "../../components/cover-image";
 import PostBody from "../../components/post-body";
 import DateComponent from "../../components/date";
@@ -10,7 +10,7 @@ import ContentfulImage from "../../components/contentful-image";
 import Avatar from "../../components/avatar";
 import TableOfContents from "../../components/table-of-contents";
 
-function NewsItem({ cryptoNews, allCryptoNews }) {
+function ProjectItem({ project, allProjects }) {
   const {
     sys,
     title,
@@ -20,10 +20,10 @@ function NewsItem({ cryptoNews, allCryptoNews }) {
     videoLink,
     writeUp,
     author,
-  } = cryptoNews[0];
+  } = project[0];
 
-  const otherNews = allCryptoNews.filter((news) => {
-    return news.title !== cryptoNews[0].title;
+  const otherNews = allProjects.filter((news) => {
+    return news.title !== project[0].title;
   });
 
   const { firstPublishedAt: date } = sys;
@@ -37,9 +37,9 @@ function NewsItem({ cryptoNews, allCryptoNews }) {
       <article className="grid grid-cols-2 px-24 gap-8 py-16">
         <div>
           <div className="mb-4 flex justify-between items-center">
-            <Link href={"/news"}>
+            <Link href={"/projects"}>
               <p className="hover:underline hover:cursor-pointer">
-                &#8592; Other News
+                &#8592; Other Projects
               </p>
             </Link>
             <p>
@@ -53,7 +53,7 @@ function NewsItem({ cryptoNews, allCryptoNews }) {
           {otherNews.length > 0 && (
             <div className="mt-4">
               <span className="text-xl font-semibold">
-                Check Out Other News
+                Check Out Other Projects
               </span>
               {otherNews.slice(0, 5).map((news, index) => {
                 const { title, slug, caption, featuredImage, sys } = news;
@@ -63,7 +63,7 @@ function NewsItem({ cryptoNews, allCryptoNews }) {
                     key={index}
                     className="mb-4 grid grid-cols-2 p-4 border-b-2 items-center"
                   >
-                    <Link href={`/news/${slug}`}>
+                    <Link href={`/projects/${slug}`}>
                       <ContentfulImage
                         src={featuredImage.url}
                         width={250}
@@ -115,21 +115,21 @@ function NewsItem({ cryptoNews, allCryptoNews }) {
   );
 }
 
-export default NewsItem;
+export default ProjectItem;
 
 export async function getStaticPaths() {
-  const allCryptoNews = (await getAllCryptoNews()) ?? [];
+  const allProjects = (await getAllProjects()) ?? [];
 
-  const paths = allCryptoNews.map((news) => ({
-    params: { slug: news.slug },
+  const paths = allProjects.map((project) => ({
+    params: { slug: project.slug },
   }));
 
   return { paths, fallback: false };
 }
 
 export async function getStaticProps({ params }) {
-  const cryptoNews = (await getSingleCryptoNews(params.slug)) ?? [];
-  const allCryptoNews = (await getAllCryptoNews()) ?? [];
+  const project = (await getSingleProject(params.slug)) ?? [];
+  const allProjects = (await getAllProjects()) ?? [];
 
-  return { props: { cryptoNews, allCryptoNews } };
+  return { props: { project, allProjects } };
 }

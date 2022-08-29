@@ -1,9 +1,8 @@
 import Layout from "../../components/layout";
-import Container from "../../components/container";
-import { getAllCryptoNews } from "../../lib/api";
+import { getAllProjects } from "../../lib/api";
 import CoverImage from "../../components/cover-image";
 import Link from "next/link";
-import News from "../../assets/images/news.svg";
+import Projects from "../../assets/images/projects.svg";
 import DateComponent from "../../components/date";
 import Solana from "../../assets/images/solana.png";
 import Ethereum from "../../assets/images/ethereum.png";
@@ -11,15 +10,16 @@ import ContentfulImage from "../../components/contentful-image";
 import Avatar from "../../components/avatar";
 import Hero from "../../components/hero";
 
-function NewsCollection({ allCryptoNews }) {
+function NewsCollection({ allProjects }) {
   return (
     <Layout>
       <Hero
-        title={"NFT/Crypto News"}
+        title={"Projects"}
         description={
-          "Dolor ullamco velit id ullamco irure velit nostrud ullamco in aute pariatur. Laboris ullamco laborum eiusmod ut enim amet nulla nostrud. Dolore dolor officia esse quis commodo aliqua pariatur cupidatat officia pariatur eiusmod quis fugiat."
+          "Dolor enim ea cupidatat eu fugiat nostrud quis id labore. Consectetur ipsum consectetur laborum id consequat commodo."
         }
-        svg={News}
+        svg={Projects}
+        reverse={true}
       />
       <div
         style={{
@@ -29,9 +29,9 @@ function NewsCollection({ allCryptoNews }) {
       >
         {/* <div className="px-24 py-12 bg-red-600">Hello</div> */}
         <div className="grid grid-cols-3 gap-8 py-8 px-24">
-          {allCryptoNews.map((news, index) => {
+          {allProjects.map((project, index) => {
             const { title, slug, caption, chain, featuredImage, sys, author } =
-              news;
+              project;
             return (
               <div
                 key={index}
@@ -41,7 +41,7 @@ function NewsCollection({ allCryptoNews }) {
                   title={title}
                   url={featuredImage.url}
                   slug={slug}
-                  route={"news"}
+                  route={"projects"}
                 />
                 <h2 className="my-2">
                   <Link href={`/news/${slug}`}>
@@ -89,8 +89,8 @@ function NewsCollection({ allCryptoNews }) {
 export default NewsCollection;
 
 export async function getStaticProps() {
-  const allCryptoNews = (await getAllCryptoNews()) ?? [];
+  const allProjects = (await getAllProjects()) ?? [];
   return {
-    props: { allCryptoNews },
+    props: { allProjects },
   };
 }
