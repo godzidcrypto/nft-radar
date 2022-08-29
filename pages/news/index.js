@@ -49,7 +49,7 @@ function NewsCollection({ allCryptoNews }) {
                 />
                 <h2 className="my-2">
                   <Link href={`/news/${slug}`}>
-                    <a className="text-xl hover:underline hover:cursor-pointer">
+                    <a className="text-xl hover:underline hover:cursor-pointer font-semibold">
                       {title}
                     </a>
                   </Link>

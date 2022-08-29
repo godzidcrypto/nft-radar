@@ -1,4 +1,4 @@
-import ContentfulImage from './contentful-image'
+import ContentfulImage from "./contentful-image";
 
 export default function Avatar({ name, picture }) {
   return (
@@ -11,7 +11,7 @@ export default function Avatar({ name, picture }) {
           alt={name}
         />
       </div>
-      <div className="text-xl font-bold">{name}</div>
+      <div className="text-lg font-medium">{name}</div>
     </div>
-  )
+  );
 }
