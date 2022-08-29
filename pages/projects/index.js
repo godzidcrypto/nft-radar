@@ -21,12 +21,7 @@ function NewsCollection({ allProjects }) {
         svg={Projects}
         reverse={true}
       />
-      <div
-        style={{
-          backgroundImage: "radial-gradient(#d1d5db 1.15px, #faf5ff 1.15px)",
-          backgroundSize: "20px 20px",
-        }}
-      >
+      <div>
         {/* <div className="px-24 py-12 bg-red-600">Hello</div> */}
         <div className="grid grid-cols-3 gap-8 py-8 px-24">
           {allProjects.map((project, index) => {
