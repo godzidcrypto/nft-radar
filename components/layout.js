@@ -19,11 +19,11 @@ export default function Layout({ preview, children }) {
       </Head>
       <Navbar />
       <div
-        className="min-h-screen"
-        style={{
-          backgroundImage: "radial-gradient(#d1d5db 1.15px, #faf5ff 1.15px)",
-          backgroundSize: "20px 20px",
-        }}
+        className="min-h-screen bg-[#faf5ff]"
+        // style={{
+        //   backgroundImage: "radial-gradient(#d1d5db 1.15px, #faf5ff 1.15px)",
+        //   backgroundSize: "20px 20px",
+        // }}
       >
         {/* <Alert preview={preview} /> */}
         <main>{children}</main>

@@ -3,7 +3,13 @@ import { EXAMPLE_PATH } from "../lib/constants";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#8C50EE] text-black border-t-black border-t-2">
+    <footer
+      className="bg-[#8C50EE] text-black"
+      style={{
+        background:
+          "linear-gradient(90deg, rgba(188,153,255,1) 3%, rgba(132,83,230,1) 100%)",
+      }}
+    >
       <Container>
         <div className="py-28 flex flex-col lg:flex-row items-center">
           <h3 className="text-4xl lg:text-5xl font-bold tracking-tighter leading-tight text-center lg:text-left mb-10 lg:mb-0 lg:pr-4 lg:w-1/2">

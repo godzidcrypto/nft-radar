@@ -3,7 +3,7 @@ import ContentfulImage from "./contentful-image";
 function Hero({ title, description, svg, reverse }) {
   return (
     <div
-      className={`bg-[#8C50EE] text-black px-24 mx-auto flex items-center justify-between ${
+      className={`bg-[#8C50EE] text-black px-24 mx-auto flex items-center justify-evenly ${
         reverse && "flex-row-reverse"
       }`}
       // style={{
@@ -14,7 +14,7 @@ function Hero({ title, description, svg, reverse }) {
         <h1 className="text-4xl py-4">{title}</h1>
         <p className="max-w-xl text-justify pb-8">{description}</p>
       </div>
-      <ContentfulImage src={svg} width={500} height={500} />
+      <ContentfulImage src={svg} width={300} height={300} />
     </div>
   );
 }
