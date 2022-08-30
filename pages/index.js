@@ -1,43 +1,26 @@
-import Container from "../components/container";
-import MoreStories from "../components/more-stories";
-import HeroPost from "../components/hero-post";
-import Intro from "../components/intro";
 import Layout from "../components/layout";
-import { getAllPostsForHome, getAllProjects } from "../lib/api";
-import { CMS_NAME } from "../lib/constants";
-import CoverImage from "../components/cover-image";
-import DateComponent from "../components/date";
+// import { getAllPostsForHome, getAllProjects } from "../lib/api";
+import Hero from "../components/hero";
+import Space from "../assets/images/space.svg";
 
-export default function Index({ preview, allPosts, allProjects }) {
-  const heroPost = allPosts[0];
-  const morePosts = allPosts.slice(1);
-
+export default function Index({}) {
   return (
     <>
-      <Layout preview={preview}>
-        <Container>
-          {/* <Intro />
-          {heroPost && (
-            <HeroPost
-              title={heroPost.title}
-              coverImage={heroPost.coverImage}
-              date={heroPost.date}
-              author={heroPost.author}
-              slug={heroPost.slug}
-              excerpt={heroPost.excerpt}
-            />
-          )}
-          {morePosts.length > 0 && <MoreStories posts={morePosts} />} */}
-        </Container>
+      <Layout>
+        <Hero
+          title={"Welcome to NFT Radar"}
+          description={
+            "Exercitation duis adipisicing consequat mollit sunt id in consectetur. Laboris est eiusmod aute eu dolor in deserunt cupidatat dolor enim et incididunt ullamco eu dolore. Magna deserunt velit eiusmod irure cillum labore nisi commodo occaecat aute elit laborum."
+          }
+          svg={Space}
+        />
       </Layout>
     </>
   );
 }
 
-export async function getStaticProps({ preview = false }) {
-  const allPosts = (await getAllPostsForHome(preview)) ?? [];
-  const allProjects = (await getAllProjects(preview)) ?? [];
+export async function getStaticProps() {
   return {
-    props: { preview, allPosts, allProjects },
+    props: {},
   };
 }
