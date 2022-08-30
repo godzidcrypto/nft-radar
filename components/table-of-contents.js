@@ -4,7 +4,7 @@ function TableOfContents({ headings }) {
   return (
     <>
       {headings.length > 0 && (
-        <div className="mt-4 bg-[#F9F9F9] p-6 rounded-md">
+        <div className="mt-4 bg-[#16181C] p-6 rounded-md">
           <span className="text-xl font-semibold">Table of Contents</span>
           {headings.map((heading, index) => {
             const text = heading.content[0].value;

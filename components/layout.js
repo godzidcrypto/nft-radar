@@ -19,7 +19,7 @@ export default function Layout({ preview, children }) {
       </Head>
       <Navbar />
       <div
-        className="min-h-screen bg-[#faf5ff]"
+        className="min-h-screen bg-black text-[#E7E9EA]"
         // style={{
         //   backgroundImage: "radial-gradient(#d1d5db 1.15px, #faf5ff 1.15px)",
         //   backgroundSize: "20px 20px",

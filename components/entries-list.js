@@ -15,7 +15,7 @@ function EntriesList({ entries, route }) {
         return (
           <div
             key={index}
-            className="shadow-md p-4 rounded-lg relative bg-white hover:bg-[#111827] hover:text-white transition-colors duration-300"
+            className="shadow-md p-4 rounded-lg relative hover:bg-[#16181C] bg-[#111827] hover:text-white transition-colors duration-300"
           >
             <CoverImage
               title={title}
