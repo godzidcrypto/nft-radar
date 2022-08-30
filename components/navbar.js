@@ -6,8 +6,12 @@ import ContentfulImage from "./contentful-image";
 import Discord from "./discord";
 import Twitter from "./twitter";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 export default function Navbar() {
+  const router = useRouter();
+  console.log(router.pathname);
+
   const [color, setColor] = useState(false);
   const changeColor = () => {
     if (window.scrollY >= 40) {
@@ -20,6 +24,51 @@ export default function Navbar() {
   useEffect(() => {
     window.addEventListener("scroll", changeColor);
   }, []);
+
+  const routes = [
+    {
+      title: "News",
+      route: "/news",
+    },
+    {
+      title: "Projects",
+      route: "/projects",
+    },
+    {
+      title: "Artists",
+      route: "/artists",
+    },
+    {
+      title: "Education",
+      route: "/education",
+    },
+    {
+      title: "Analysis",
+      route: "/analysis",
+    },
+    {
+      title: "Opinions",
+      route: "/opinions",
+    },
+    {
+      title: "Interviews",
+      route: "/interviews",
+    },
+  ];
+
+  const Route = ({ route, title }) => {
+    return (
+      <Link href={route}>
+        <a
+          className={`${
+            router.pathname.includes(route) ? "underline font-bold" : ""
+          } mx-4 hover:underline`}
+        >
+          {title}
+        </a>
+      </Link>
+    );
+  };
 
   return (
     <nav
@@ -42,27 +91,11 @@ export default function Navbar() {
               NFT Radar
             </h3> */}
             <div>
-              <Link href={"/news"}>
-                <a className="mx-4 hover:underline">News</a>
-              </Link>
-              <Link href={"/projects"}>
-                <a className="mx-4 hover:underline">Projects</a>
-              </Link>
-              <Link href={"/projects"}>
-                <a className="mx-4 hover:underline">Artists</a>
-              </Link>
-              <Link href={"/projects"}>
-                <a className="mx-4 hover:underline">Education</a>
-              </Link>
-              <Link href={"/projects"}>
-                <a className="mx-4 hover:underline">Analysis</a>
-              </Link>
-              <Link href={"/projects"}>
-                <a className="mx-4 hover:underline">Opinions</a>
-              </Link>
-              <Link href={"/projects"}>
-                <a className="mx-4 hover:underline">Interviews</a>
-              </Link>
+              {routes.map((route, index) => {
+                return (
+                  <Route key={index} route={route.route} title={route.title} />
+                );
+              })}
             </div>
           </div>
           <div className="flex items-center justify-center">
