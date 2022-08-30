@@ -10,7 +10,7 @@ import ContentfulImage from "../../components/contentful-image";
 import Avatar from "../../components/avatar";
 import Hero from "../../components/hero";
 
-function NewsCollection({ allProjects }) {
+function ProjectsCollection({ allProjects }) {
   return (
     <Layout>
       <Hero
@@ -39,7 +39,7 @@ function NewsCollection({ allProjects }) {
                   route={"projects"}
                 />
                 <h2 className="my-2">
-                  <Link href={`/news/${slug}`}>
+                  <Link href={`/projects/${slug}`}>
                     <a className="text-xl hover:underline hover:cursor-pointer font-semibold">
                       {title}
                     </a>
@@ -81,7 +81,7 @@ function NewsCollection({ allProjects }) {
   );
 }
 
-export default NewsCollection;
+export default ProjectsCollection;
 
 export async function getStaticProps() {
   const allProjects = (await getAllProjects()) ?? [];
