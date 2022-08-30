@@ -3,12 +3,12 @@ import ContentfulImage from "./contentful-image";
 function Hero({ title, description, svg, reverse }) {
   return (
     <div
-      className={`bg-[#8C50EE] text-black px-24 mx-auto flex items-center justify-evenly ${
+      className={`bg-[#8C50EE] px-24 mx-auto flex items-center justify-evenly ${
         reverse && "flex-row-reverse"
       }`}
-      // style={{
-      //   backgroundImage: "linear-gradient(#8C50EE, #9558A6)",
-      // }}
+      style={{
+        background: "linear-gradient(to bottom, #8C50EE, transparent)",
+      }}
     >
       <div>
         <h1 className="text-4xl py-4">{title}</h1>
