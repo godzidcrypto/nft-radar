@@ -1,6 +1,6 @@
 import Layout from "../../components/layout";
 import Link from "next/link";
-import { getAllCryptoNews, getSingleCryptoNews } from "../../lib/api";
+import { getAllAnalysis, getSingleAnalysis } from "../../lib/api";
 import CoverImage from "../../components/cover-image";
 import DateComponent from "../../components/date";
 import TableOfContents from "../../components/table-of-contents";
@@ -8,7 +8,7 @@ import OtherEntries from "../../components/other-entries";
 import EntryContent from "../../components/entry-content";
 import Container from "../../components/container";
 
-function NewsItem({ cryptoNews, allCryptoNews }) {
+function AnalysisItem({ analysis, allAnalysis }) {
   const {
     sys,
     title,
@@ -18,10 +18,10 @@ function NewsItem({ cryptoNews, allCryptoNews }) {
     videoLink,
     writeUp,
     author,
-  } = cryptoNews[0];
+  } = analysis[0];
 
-  const otherNews = allCryptoNews.filter((news) => {
-    return news.title !== cryptoNews[0].title;
+  const otherAnalysis = allAnalysis.filter((analysisObject) => {
+    return analysisObject.title !== analysis[0].title;
   });
 
   const { firstPublishedAt: date } = sys;
@@ -37,9 +37,9 @@ function NewsItem({ cryptoNews, allCryptoNews }) {
         <article className="grid lg:grid-cols-[1fr_2fr] gap-8 py-16">
           <div>
             <div className="mb-4 flex justify-between items-center">
-              <Link href={"/news"}>
+              <Link href={"/analysis"}>
                 <p className="hover:underline hover:cursor-pointer">
-                  &#8592; Other News
+                  &#8592; Other Analyses
                 </p>
               </Link>
               <p>
@@ -51,7 +51,7 @@ function NewsItem({ cryptoNews, allCryptoNews }) {
             </div>
             <TableOfContents headings={headings} />
             <div className="hidden lg:block">
-              <OtherEntries otherEntries={otherNews} route={"news"} />
+              <OtherEntries otherEntries={otherAnalysis} route={"analysis"} />
             </div>
           </div>
           <EntryContent
@@ -62,7 +62,7 @@ function NewsItem({ cryptoNews, allCryptoNews }) {
             writeUp={writeUp}
           />
           <div className="block lg:hidden">
-            <OtherEntries otherEntries={otherNews} route={"news"} />
+            <OtherEntries otherEntries={otherAnalysis} route={"analysis"} />
           </div>
         </article>
       </Container>
@@ -70,21 +70,21 @@ function NewsItem({ cryptoNews, allCryptoNews }) {
   );
 }
 
-export default NewsItem;
+export default AnalysisItem;
 
 export async function getStaticPaths() {
-  const allCryptoNews = (await getAllCryptoNews()) ?? [];
+  const allAnalysis = (await getAllAnalysis()) ?? [];
 
-  const paths = allCryptoNews.map((news) => ({
-    params: { slug: news.slug },
+  const paths = allAnalysis.map((analysis) => ({
+    params: { slug: analysis.slug },
   }));
 
   return { paths, fallback: false };
 }
 
 export async function getStaticProps({ params }) {
-  const cryptoNews = (await getSingleCryptoNews(params.slug)) ?? [];
-  const allCryptoNews = (await getAllCryptoNews()) ?? [];
+  const analysis = (await getSingleAnalysis(params.slug)) ?? [];
+  const allAnalysis = (await getAllAnalysis()) ?? [];
 
-  return { props: { cryptoNews, allCryptoNews } };
+  return { props: { analysis, allAnalysis } };
 }

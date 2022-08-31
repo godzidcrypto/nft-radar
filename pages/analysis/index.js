@@ -1,11 +1,11 @@
 import Layout from "../../components/layout";
-import { getAllCryptoNews } from "../../lib/api";
+import { getAllAnalysis } from "../../lib/api";
 import Analysis from "../../assets/images/analysis.svg";
 import Hero from "../../components/hero";
 import EntriesList from "../../components/entries-list";
 import Container from "../../components/container";
 
-function AnalysisCollection({ allCryptoNews }) {
+function AnalysisCollection({ allAnalysis }) {
   return (
     <Layout>
       <Container>
@@ -18,7 +18,7 @@ function AnalysisCollection({ allCryptoNews }) {
         />
         <div>
           {/* <div className="px-24 py-12 bg-red-600">Hello</div> */}
-          <EntriesList entries={allCryptoNews} route={"news"} />
+          <EntriesList entries={allAnalysis} route={"analysis"} />
         </div>
       </Container>
     </Layout>
@@ -28,8 +28,8 @@ function AnalysisCollection({ allCryptoNews }) {
 export default AnalysisCollection;
 
 export async function getStaticProps() {
-  const allCryptoNews = (await getAllCryptoNews()) ?? [];
+  const allAnalysis = (await getAllAnalysis()) ?? [];
   return {
-    props: { allCryptoNews },
+    props: { allAnalysis },
   };
 }
