@@ -65,12 +65,14 @@ export default function Navbar() {
             router.pathname.includes(route)
               ? `underline font-bold lg:border-none border-2 ${
                   color
-                    ? "!bg-black !border-[#8C50EE] text-[#8C50EE]"
-                    : "bg-white border-black text-black"
+                    ? "bg-black !border-[#8C50EE] text-[#8C50EE]"
+                    : "bg-white border-black text-black lg:text-white"
                 } `
-              : ""
-          } ${
-            color ? "bg-[#8C50EE] text-black" : "bg-black"
+              : `${
+                  color
+                    ? "bg-[#8C50EE] text-black lg:text-[#8C50EE]"
+                    : "text-white"
+                }`
           } lg:mx-4 hover:underline my-2 p-4 bg-black rounded-md lg:rounded-none lg:bg-transparent lg:p-0 lg:my-0`}
         >
           {title}
