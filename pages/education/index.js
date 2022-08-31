@@ -1,11 +1,11 @@
 import Layout from "../../components/layout";
-import { getAllCryptoNews } from "../../lib/api";
+import { getAllEducationalContent } from "../../lib/api";
 import Education from "../../assets/images/education.svg";
 import Hero from "../../components/hero";
 import EntriesList from "../../components/entries-list";
 import Container from "../../components/container";
 
-function EducationCollection({ allCryptoNews }) {
+function EducationCollection({ allEducationalContent }) {
   return (
     <Layout>
       <Container>
@@ -19,7 +19,7 @@ function EducationCollection({ allCryptoNews }) {
         />
         <div>
           {/* <div className="px-24 py-12 bg-red-600">Hello</div> */}
-          <EntriesList entries={allCryptoNews} route={"news"} />
+          <EntriesList entries={allEducationalContent} route={"education"} />
         </div>
       </Container>
     </Layout>
@@ -29,8 +29,8 @@ function EducationCollection({ allCryptoNews }) {
 export default EducationCollection;
 
 export async function getStaticProps() {
-  const allCryptoNews = (await getAllCryptoNews()) ?? [];
+  const allEducationalContent = (await getAllEducationalContent()) ?? [];
   return {
-    props: { allCryptoNews },
+    props: { allEducationalContent },
   };
 }
