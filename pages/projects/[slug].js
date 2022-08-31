@@ -6,6 +6,7 @@ import DateComponent from "../../components/date";
 import TableOfContents from "../../components/table-of-contents";
 import EntryContent from "../../components/entry-content";
 import OtherEntries from "../../components/other-entries";
+import Container from "../../components/container";
 
 function ProjectItem({ project, allProjects }) {
   const {
@@ -31,32 +32,34 @@ function ProjectItem({ project, allProjects }) {
   });
   return (
     <Layout>
-      <article className="grid grid-cols-[1fr_2fr] px-24 gap-8 py-16">
-        <div>
-          <div className="mb-4 flex justify-between items-center">
-            <Link href={"/projects"}>
-              <p className="hover:underline hover:cursor-pointer">
-                &#8592; Other Projects
-              </p>
-            </Link>
-            <p>
-              <DateComponent dateString={date} />
-            </p>
-          </div>
+      <Container>
+        <article className="grid grid-cols-[1fr_2fr] gap-8 py-16">
           <div>
-            <CoverImage title={title} url={featuredImage.url} />
+            <div className="mb-4 flex justify-between items-center">
+              <Link href={"/projects"}>
+                <p className="hover:underline hover:cursor-pointer">
+                  &#8592; Other Projects
+                </p>
+              </Link>
+              <p>
+                <DateComponent dateString={date} />
+              </p>
+            </div>
+            <div>
+              <CoverImage title={title} url={featuredImage.url} />
+            </div>
+            <TableOfContents headings={headings} />
+            <OtherEntries otherEntries={otherProjects} route={"projects"} />
           </div>
-          <TableOfContents headings={headings} />
-          <OtherEntries otherEntries={otherProjects} route={"projects"} />
-        </div>
-        <EntryContent
-          title={title}
-          caption={caption}
-          author={author}
-          chain={chain}
-          writeUp={writeUp}
-        />
-      </article>
+          <EntryContent
+            title={title}
+            caption={caption}
+            author={author}
+            chain={chain}
+            writeUp={writeUp}
+          />
+        </article>
+      </Container>
     </Layout>
   );
 }
