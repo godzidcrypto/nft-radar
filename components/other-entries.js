@@ -6,7 +6,7 @@ function OtherEntries({ otherEntries, route }) {
   return (
     <div>
       {otherEntries.length > 0 && (
-        <div className="mt-4">
+        <div>
           <span className="text-xl font-semibold">Check Out Other News</span>
           {otherEntries.slice(0, 5).map((entry, index) => {
             const { title, slug, caption, featuredImage, sys } = entry;
@@ -14,7 +14,7 @@ function OtherEntries({ otherEntries, route }) {
             return (
               <div
                 key={index}
-                className="mb-4 grid grid-cols-2 p-4 border-b-2 border-b-[#E7E9EA] items-center"
+                className="grid grid-cols-[1fr_2fr] lg:grid-cols-2 py-4 border-b-2 border-b-[#E7E9EA] items-center last:border-b-0"
               >
                 <Link href={`/${route}/${slug}`}>
                   <ContentfulImage
@@ -25,7 +25,7 @@ function OtherEntries({ otherEntries, route }) {
                   />
                 </Link>
                 <div className="ml-4">
-                  <div className="font-light text-sm">
+                  <div className="font-extralight text-xs">
                     <DateComponent dateString={sys.firstPublishedAt} />
                   </div>
                   <Link href={`/${route}/${slug}`}>
@@ -33,7 +33,7 @@ function OtherEntries({ otherEntries, route }) {
                       {title}
                     </p>
                   </Link>
-                  <p className="">{caption}</p>
+                  <p className="text-xs lg:text-sm">{caption}</p>
                 </div>
               </div>
             );

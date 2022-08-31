@@ -8,7 +8,7 @@ import Link from "next/link";
 
 function EntriesList({ entries, route }) {
   return (
-    <div className="grid grid-cols-2 gap-8 py-8 px-24">
+    <div className="grid lg:grid-cols-2 gap-8 py-8">
       {entries.map((entry, index) => {
         const { title, slug, caption, chain, featuredImage, sys, author } =
           entry;
@@ -36,8 +36,8 @@ function EntriesList({ entries, route }) {
                   </a>
                 </Link>
               </h2>
-              <p className="text-sm my-2">{caption}</p>
-              <div className="flex justify-between mt-4 items-center">
+              <p className="md:text-sm my-2 text-xs">{caption}</p>
+              <div className="md:flex justify-between mt-4 items-center hidden">
                 {author && (
                   <Avatar name={author.name} picture={author.picture} />
                 )}
