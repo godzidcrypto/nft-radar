@@ -1,11 +1,11 @@
 import Layout from "../../components/layout";
-import { getAllCryptoNews } from "../../lib/api";
+import { getAllOpinionPieces } from "../../lib/api";
 import Opinions from "../../assets/images/opinions.svg";
 import Hero from "../../components/hero";
 import EntriesList from "../../components/entries-list";
 import Container from "../../components/container";
 
-function OpinionsCollection({ allCryptoNews }) {
+function OpinionsCollection({ allOpinionPieces }) {
   return (
     <Layout>
       <Container>
@@ -19,7 +19,7 @@ function OpinionsCollection({ allCryptoNews }) {
         />
         <div>
           {/* <div className="px-24 py-12 bg-red-600">Hello</div> */}
-          <EntriesList entries={allCryptoNews} route={"news"} />
+          <EntriesList entries={allOpinionPieces} route={"opinions"} />
         </div>
       </Container>
     </Layout>
@@ -29,8 +29,8 @@ function OpinionsCollection({ allCryptoNews }) {
 export default OpinionsCollection;
 
 export async function getStaticProps() {
-  const allCryptoNews = (await getAllCryptoNews()) ?? [];
+  const allOpinionPieces = (await getAllOpinionPieces()) ?? [];
   return {
-    props: { allCryptoNews },
+    props: { allOpinionPieces },
   };
 }
