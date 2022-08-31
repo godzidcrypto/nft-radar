@@ -1,11 +1,11 @@
 import Layout from "../../components/layout";
-import { getAllCryptoNews } from "../../lib/api";
+import { getAllArtistFeatures } from "../../lib/api";
 import Artists from "../../assets/images/artists.svg";
 import Hero from "../../components/hero";
 import EntriesList from "../../components/entries-list";
 import Container from "../../components/container";
 
-function ArtistsCollection({ allCryptoNews }) {
+function ArtistsCollection({ allArtistFeatures }) {
   return (
     <Layout>
       <Container>
@@ -18,7 +18,7 @@ function ArtistsCollection({ allCryptoNews }) {
         />
         <div>
           {/* <div className="px-24 py-12 bg-red-600">Hello</div> */}
-          <EntriesList entries={allCryptoNews} route={"news"} />
+          <EntriesList entries={allArtistFeatures} route={"artists"} />
         </div>
       </Container>
     </Layout>
@@ -28,8 +28,8 @@ function ArtistsCollection({ allCryptoNews }) {
 export default ArtistsCollection;
 
 export async function getStaticProps() {
-  const allCryptoNews = (await getAllCryptoNews()) ?? [];
+  const allArtistFeatures = (await getAllArtistFeatures()) ?? [];
   return {
-    props: { allCryptoNews },
+    props: { allArtistFeatures },
   };
 }

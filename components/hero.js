@@ -11,8 +11,10 @@ function Hero({ title, description, svg, reverse }) {
       }}
     >
       <div>
-        <h1 className="text-2xl md:text-4xl py-4">{title}</h1>
-        <p className="lg:max-w-xl text-justify pb-8">{description}</p>
+        <h1 className="text-2xl md:text-4xl py-4 font-bold">{title}</h1>
+        <p className="lg:max-w-xl text-justify pb-8 font-normal">
+          {description}
+        </p>
       </div>
       <div className="lg:block hidden">
         <ContentfulImage src={svg} width={300} height={300} />
