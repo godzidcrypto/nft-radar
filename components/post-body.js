@@ -25,23 +25,63 @@ const customMarkdownOptions = (content) => ({
     },
     [BLOCKS.HEADING_2]: (node) => {
       const text = node.content[0].value;
-      return <h2 id={convertToSlug(text)}>{text}</h2>;
+      return (
+        <h2 className={`relative`}>
+          <span
+            id={convertToSlug(text)}
+            className={`top-[-100px] absolute`}
+          ></span>
+          {text}
+        </h2>
+      );
     },
     [BLOCKS.HEADING_3]: (node) => {
       const text = node.content[0].value;
-      return <h3 id={convertToSlug(text)}>{text}</h3>;
+      return (
+        <h3 className={`relative`}>
+          <span
+            id={convertToSlug(text)}
+            className={`top-[-100px] absolute`}
+          ></span>
+          {text}
+        </h3>
+      );
     },
     [BLOCKS.HEADING_4]: (node) => {
       const text = node.content[0].value;
-      return <h4 id={convertToSlug(text)}>{text}</h4>;
+      return (
+        <h4 className={`relative`}>
+          <span
+            id={convertToSlug(text)}
+            className={`top-[-100px] absolute`}
+          ></span>
+          {text}
+        </h4>
+      );
     },
     [BLOCKS.HEADING_5]: (node) => {
       const text = node.content[0].value;
-      return <h5 id={convertToSlug(text)}>{text}</h5>;
+      return (
+        <h5 className={`relative`}>
+          <span
+            id={convertToSlug(text)}
+            className={`top-[-100px] absolute`}
+          ></span>
+          {text}
+        </h5>
+      );
     },
     [BLOCKS.HEADING_6]: (node) => {
       const text = node.content[0].value;
-      return <h6 id={convertToSlug(text)}>{text}</h6>;
+      return (
+        <h6 className={`relative`}>
+          <span
+            id={convertToSlug(text)}
+            className={`top-[-100px] absolute`}
+          ></span>
+          {text}
+        </h6>
+      );
     },
   },
 });
