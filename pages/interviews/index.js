@@ -1,11 +1,11 @@
 import Layout from "../../components/layout";
-import { getAllCryptoNews } from "../../lib/api";
+import { getAllInterviews } from "../../lib/api";
 import Interviews from "../../assets/images/interviews.svg";
 import Hero from "../../components/hero";
 import EntriesList from "../../components/entries-list";
 import Container from "../../components/container";
 
-function InterviewsCollection({ allCryptoNews }) {
+function InterviewsCollection({ allInterviews }) {
   return (
     <Layout>
       <Container>
@@ -18,7 +18,7 @@ function InterviewsCollection({ allCryptoNews }) {
         />
         <div>
           {/* <div className="px-24 py-12 bg-red-600">Hello</div> */}
-          <EntriesList entries={allCryptoNews} route={"news"} />
+          <EntriesList entries={allInterviews} route={"interviews"} />
         </div>
       </Container>
     </Layout>
@@ -28,8 +28,8 @@ function InterviewsCollection({ allCryptoNews }) {
 export default InterviewsCollection;
 
 export async function getStaticProps() {
-  const allCryptoNews = (await getAllCryptoNews()) ?? [];
+  const allInterviews = (await getAllInterviews()) ?? [];
   return {
-    props: { allCryptoNews },
+    props: { allInterviews },
   };
 }
