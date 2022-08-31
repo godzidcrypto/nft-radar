@@ -6,7 +6,7 @@ import Ethereum from "../assets/images/ethereum.png";
 
 function EntryContent({ title, caption, author, chain, writeUp }) {
   return (
-    <div className="bg-[#16181C] py-6 px-12 rounded-md">
+    <div className="bg-[#16181C] py-6 px-6 lg:px-12 rounded-md">
       <h1 className="text-6xl font-bold">{title}</h1>
       <p className="text-sm font-medium">{caption}</p>
       <div className="mt-4 flex items-center">
