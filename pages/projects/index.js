@@ -10,7 +10,7 @@ function ProjectsCollection({ allProjects }) {
     <Layout>
       <Container>
         <Hero
-          title={"Projects"}
+          title={"Project Write-Up"}
           description={
             "Dolor enim ea cupidatat eu fugiat nostrud quis id labore. Consectetur ipsum consectetur laborum id consequat commodo."
           }

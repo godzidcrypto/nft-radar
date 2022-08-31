@@ -1,20 +1,20 @@
 import Layout from "../../components/layout";
 import { getAllCryptoNews } from "../../lib/api";
-import News from "../../assets/images/news.svg";
+import Interviews from "../../assets/images/interviews.svg";
 import Hero from "../../components/hero";
 import EntriesList from "../../components/entries-list";
 import Container from "../../components/container";
 
-function NewsCollection({ allCryptoNews }) {
+function InterviewsCollection({ allCryptoNews }) {
   return (
     <Layout>
       <Container>
         <Hero
-          title={"NFT/Crypto News"}
+          title={"Interview/AMA"}
           description={
-            "Dolor ullamco velit id ullamco irure velit nostrud ullamco in aute pariatur. Laboris ullamco laborum eiusmod ut enim amet nulla nostrud. Dolore dolor officia esse quis commodo aliqua pariatur cupidatat officia pariatur eiusmod quis fugiat."
+            "Do sint irure laboris eu occaecat cillum nostrud sint incididunt. Nostrud ipsum Lorem irure non eiusmod. Reprehenderit eu consectetur mollit excepteur occaecat minim mollit et ut."
           }
-          svg={News}
+          svg={Interviews}
         />
         <div>
           {/* <div className="px-24 py-12 bg-red-600">Hello</div> */}
@@ -25,7 +25,7 @@ function NewsCollection({ allCryptoNews }) {
   );
 }
 
-export default NewsCollection;
+export default InterviewsCollection;
 
 export async function getStaticProps() {
   const allCryptoNews = (await getAllCryptoNews()) ?? [];
