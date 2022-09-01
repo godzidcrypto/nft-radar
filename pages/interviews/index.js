@@ -11,14 +11,16 @@ function InterviewsCollection({ allInterviews }) {
       <Container>
         <Hero
           title={"Interview/AMA"}
-          description={
-            "Do sint irure laboris eu occaecat cillum nostrud sint incididunt. Nostrud ipsum Lorem irure non eiusmod. Reprehenderit eu consectetur mollit excepteur occaecat minim mollit et ut."
-          }
+          description={"Do velit exercitation id amet dolore officia."}
           svg={Interviews}
         />
         <div>
           {/* <div className="px-24 py-12 bg-red-600">Hello</div> */}
-          <EntriesList entries={allInterviews} route={"interviews"} />
+          <EntriesList
+            featured={allInterviews[0]}
+            entries={allInterviews.slice(1)}
+            route={"interviews"}
+          />
         </div>
       </Container>
     </Layout>

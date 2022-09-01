@@ -12,13 +12,17 @@ function NewsCollection({ allCryptoNews }) {
         <Hero
           title={"NFT/Crypto News"}
           description={
-            "Dolor ullamco velit id ullamco irure velit nostrud ullamco in aute pariatur. Laboris ullamco laborum eiusmod ut enim amet nulla nostrud. Dolore dolor officia esse quis commodo aliqua pariatur cupidatat officia pariatur eiusmod quis fugiat."
+            "Labore fugiat sint velit cillum quis nostrud dolor commodo exercitation voluptate."
           }
           svg={News}
         />
         <div>
           {/* <div className="px-24 py-12 bg-red-600">Hello</div> */}
-          <EntriesList entries={allCryptoNews} route={"news"} />
+          <EntriesList
+            featured={allCryptoNews[0]}
+            entries={allCryptoNews.slice(1)}
+            route={"news"}
+          />
         </div>
       </Container>
     </Layout>

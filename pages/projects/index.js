@@ -11,15 +11,17 @@ function ProjectsCollection({ allProjects }) {
       <Container>
         <Hero
           title={"Project Write-Up"}
-          description={
-            "Dolor enim ea cupidatat eu fugiat nostrud quis id labore. Consectetur ipsum consectetur laborum id consequat commodo."
-          }
+          description={"Eiusmod ad qui qui cillum."}
           svg={Projects}
           reverse={true}
         />
         <div>
           {/* <div className="px-24 py-12 bg-red-600">Hello</div> */}
-          <EntriesList entries={allProjects} route={"projects"} />
+          <EntriesList
+            featured={allProjects[0]}
+            entries={allProjects.slice(1)}
+            route={"projects"}
+          />
         </div>
       </Container>
     </Layout>

@@ -12,14 +12,18 @@ function EducationCollection({ allEducationalContent }) {
         <Hero
           title={"Educational Content"}
           description={
-            "Eiusmod reprehenderit in aliquip duis culpa id mollit sit elit commodo ea sit incididunt sit. Eu Lorem esse proident. Qui ipsum id officia minim voluptate occaecat reprehenderit qui nulla ad aliqua sint."
+            "Officia et ea quis pariatur pariatur nulla adipisicing nisi nisi ipsum est exercitation cillum tempor."
           }
           svg={Education}
           reverse={true}
         />
         <div>
           {/* <div className="px-24 py-12 bg-red-600">Hello</div> */}
-          <EntriesList entries={allEducationalContent} route={"education"} />
+          <EntriesList
+            featured={allEducationalContent[0]}
+            entries={allEducationalContent.slice(1)}
+            route={"education"}
+          />
         </div>
       </Container>
     </Layout>

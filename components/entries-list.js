@@ -6,38 +6,84 @@ import Solana from "../assets/images/solana.png";
 import Ethereum from "../assets/images/ethereum.png";
 import Link from "next/link";
 
-function EntriesList({ entries, route }) {
+function EntriesList({ entries, route, featured }) {
+  const { title, slug, caption, chain, featuredImage, sys, author } = featured;
   return (
-    <div className="grid lg:grid-cols-2 gap-8 py-8">
-      {entries.map((entry, index) => {
-        const { title, slug, caption, chain, featuredImage, sys, author } =
-          entry;
-        return (
-          <div className="relative">
+    <>
+      <div className="grid grid-cols-[1fr_2fr] items-center">
+        <div
+          className="text-white bg-black w-full"
+          style={{
+            background:
+              "linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent)",
+          }}
+        >
+          <p className="font-extralight my-2">
+            <DateComponent dateString={sys.firstPublishedAt} />
+          </p>
+          <h2>
+            <Link href={`/${route}/${slug}`}>
+              <a className="text-4xl hover:text-[#8C50EE] hover:cursor-pointer font-semibold duration-200">
+                {title}
+              </a>
+            </Link>
+          </h2>
+          <p className="md:text-sm my-2 text-xs">{caption}</p>
+          <Link href={`/${route}/${slug}`}>
+            <a className="font-light uppercase hover:text-[#8C50EE] duration-200 text-xs">
+              Read More &#8594;
+            </a>
+          </Link>
+        </div>
+        <div>
+          <CoverImage
+            title={title}
+            url={featuredImage.url}
+            slug={slug}
+            route={route}
+            height={"500"}
+          />
+        </div>
+      </div>
+      <div className="grid lg:grid-cols-3 gap-8 py-8">
+        {entries.map((entry, index) => {
+          const { title, slug, caption, chain, featuredImage, sys, author } =
+            entry;
+          return (
             <div>
-              <CoverImage
-                title={title}
-                url={featuredImage.url}
-                slug={slug}
-                route={route}
-              />
-            </div>
-            <div
-              className="absolute bottom-0 text-white bg-black w-full p-4"
-              style={{
-                background:
-                  "linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent)",
-              }}
-            >
-              <h2 className="my-2">
+              <div>
+                <CoverImage
+                  title={title}
+                  url={featuredImage.url}
+                  slug={slug}
+                  route={route}
+                  height={"250"}
+                />
+              </div>
+              <div
+                className="text-white bg-black w-full"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent)",
+                }}
+              >
+                <p className="font-extralight my-2">
+                  <DateComponent dateString={sys.firstPublishedAt} />
+                </p>
+                <h2>
+                  <Link href={`/${route}/${slug}`}>
+                    <a className="text-xl hover:text-[#8C50EE] hover:cursor-pointer font-semibold duration-200">
+                      {title}
+                    </a>
+                  </Link>
+                </h2>
+                <p className="md:text-sm my-2 text-xs">{caption}</p>
                 <Link href={`/${route}/${slug}`}>
-                  <a className="text-xl hover:underline hover:cursor-pointer font-semibold">
-                    {title}
+                  <a className="font-light uppercase hover:text-[#8C50EE] duration-200 text-xs">
+                    Read More &#8594;
                   </a>
                 </Link>
-              </h2>
-              <p className="md:text-sm my-2 text-xs">{caption}</p>
-              <div className="md:flex justify-between mt-4 items-center hidden">
+                {/* <div className="md:flex justify-between mt-4 items-center hidden">
                 {author && (
                   <Avatar name={author.name} picture={author.picture} />
                 )}
@@ -58,12 +104,13 @@ function EntriesList({ entries, route }) {
                 <p>
                   <DateComponent dateString={sys.firstPublishedAt} />
                 </p>
+              </div> */}
               </div>
             </div>
-          </div>
-        );
-      })}
-    </div>
+          );
+        })}
+      </div>
+    </>
   );
 }
 

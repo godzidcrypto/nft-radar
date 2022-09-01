@@ -8,14 +8,14 @@ export default function Index({}) {
     <>
       <Layout>
         <Container>
-          <Hero
+          {/* <Hero
             title={"Welcome to NFT Radar"}
             description={
-              "Exercitation duis adipisicing consequat mollit sunt id in consectetur. Laboris est eiusmod aute eu dolor in deserunt cupidatat dolor enim et incididunt ullamco eu dolore. Magna deserunt velit eiusmod irure cillum labore nisi commodo occaecat aute elit laborum."
+              "Fugiat ea amet minim pariatur sint do adipisicing laborum nisi."
             }
             svg={Space}
             reverse={true}
-          />
+          /> */}
         </Container>
       </Layout>
     </>

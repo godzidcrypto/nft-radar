@@ -1,6 +1,7 @@
 import Link from "next/link";
 import DateComponent from "./date";
 import ContentfulImage from "./contentful-image";
+import CoverImage from "./cover-image";
 
 function OtherEntries({ otherEntries, route }) {
   return (
@@ -16,14 +17,14 @@ function OtherEntries({ otherEntries, route }) {
                 key={index}
                 className="grid grid-cols-[1fr_2fr] lg:grid-cols-2 py-4 border-b-2 border-b-[#E7E9EA] items-center last:border-b-0"
               >
-                <Link href={`/${route}/${slug}`}>
-                  <ContentfulImage
-                    src={featuredImage.url}
-                    width={250}
-                    height={150}
-                    className="rounded-sm hover:cursor-pointer"
-                  />
-                </Link>
+                <CoverImage
+                  url={featuredImage.url}
+                  title={title}
+                  height={"150"}
+                  route={route}
+                  slug={slug}
+                  // className="rounded-sm hover:cursor-pointer"
+                />
                 <div className="ml-4">
                   <div className="font-extralight text-xs">
                     <DateComponent dateString={sys.firstPublishedAt} />

@@ -11,14 +11,16 @@ function AnalysisCollection({ allAnalysis }) {
       <Container>
         <Hero
           title={"Analysis"}
-          description={
-            "Excepteur dolore culpa sunt in proident laborum adipisicing irure anim consequat consequat officia proident dolore. Anim ea incididunt occaecat laboris mollit irure anim non ut ad cupidatat aute laboris."
-          }
+          description={"Dolore nisi anim culpa cillum ullamco cillum."}
           svg={Analysis}
         />
         <div>
           {/* <div className="px-24 py-12 bg-red-600">Hello</div> */}
-          <EntriesList entries={allAnalysis} route={"analysis"} />
+          <EntriesList
+            featured={allAnalysis[0]}
+            entries={allAnalysis.slice(1)}
+            route={"analysis"}
+          />
         </div>
       </Container>
     </Layout>

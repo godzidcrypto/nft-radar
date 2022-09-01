@@ -18,7 +18,11 @@ function ArtistsCollection({ allArtistFeatures }) {
         />
         <div>
           {/* <div className="px-24 py-12 bg-red-600">Hello</div> */}
-          <EntriesList entries={allArtistFeatures} route={"artists"} />
+          <EntriesList
+            featured={allArtistFeatures[0]}
+            entries={allArtistFeatures.slice(1)}
+            route={"artists"}
+          />
         </div>
       </Container>
     </Layout>

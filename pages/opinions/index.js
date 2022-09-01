@@ -12,14 +12,18 @@ function OpinionsCollection({ allOpinionPieces }) {
         <Hero
           title={"Opinion Piece"}
           description={
-            "Adipisicing proident enim mollit fugiat nostrud quis est nostrud adipisicing laboris ut laborum minim tempor. Mollit cillum minim aliquip nulla anim consequat irure et nisi ut minim est ad."
+            "Ea aliquip veniam deserunt culpa dolore excepteur dolor culpa veniam eu quis nisi amet."
           }
           svg={Opinions}
           reverse={true}
         />
         <div>
           {/* <div className="px-24 py-12 bg-red-600">Hello</div> */}
-          <EntriesList entries={allOpinionPieces} route={"opinions"} />
+          <EntriesList
+            featured={allOpinionPieces[0]}
+            entries={allOpinionPieces.slice(1)}
+            route={"opinions"}
+          />
         </div>
       </Container>
     </Layout>
