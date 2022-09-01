@@ -7,6 +7,10 @@ import TableOfContents from "../../components/table-of-contents";
 import OtherEntries from "../../components/other-entries";
 import EntryContent from "../../components/entry-content";
 import Container from "../../components/container";
+import Avatar from "../../components/avatar";
+import ContentfulImage from "../../components/contentful-image";
+import Solana from "../../assets/images/solana.png";
+import Ethereum from "../../assets/images/ethereum.png";
 
 function NewsItem({ cryptoNews, allCryptoNews }) {
   const {
@@ -33,7 +37,7 @@ function NewsItem({ cryptoNews, allCryptoNews }) {
 
   return (
     <Layout>
-      <Container>
+      {/* <Container>
         <article className="grid lg:grid-cols-[1fr_2fr] gap-8 py-16">
           <div>
             <div className="mb-4 flex justify-between items-center">
@@ -65,6 +69,24 @@ function NewsItem({ cryptoNews, allCryptoNews }) {
             <OtherEntries otherEntries={otherNews} route={"news"} />
           </div>
         </article>
+      </Container> */}
+      <Container>
+        <h1 className="text-center py-12 text-4xl font-bold">{title}</h1>
+        <div className="relative">
+          <CoverImage title={title} url={featuredImage.url} height={"550"} />
+          <div className="mx-48 py-24 -mt-48 relative z-10">
+            <EntryContent
+              title={title}
+              caption={caption}
+              author={author}
+              chain={chain}
+              writeUp={writeUp}
+              date={date}
+              headings={headings}
+            />
+          </div>
+        </div>
+        <OtherEntries otherEntries={otherNews} route={"news"} />
       </Container>
     </Layout>
   );

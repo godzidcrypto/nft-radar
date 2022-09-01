@@ -9,8 +9,8 @@ import Link from "next/link";
 function EntriesList({ entries, route, featured }) {
   const { title, slug, caption, chain, featuredImage, sys, author } = featured;
   return (
-    <>
-      <div className="grid grid-cols-[1fr_2fr] items-center">
+    <div className="py-8">
+      <div className="grid grid-cols-[1fr_2fr] gap-4 items-center">
         <div
           className="text-white bg-black w-full"
           style={{
@@ -21,14 +21,14 @@ function EntriesList({ entries, route, featured }) {
           <p className="font-extralight my-2">
             <DateComponent dateString={sys.firstPublishedAt} />
           </p>
-          <h2>
+          <h2 className="py-4">
             <Link href={`/${route}/${slug}`}>
               <a className="text-4xl hover:text-[#8C50EE] hover:cursor-pointer font-semibold duration-200">
                 {title}
               </a>
             </Link>
           </h2>
-          <p className="md:text-sm my-2 text-xs">{caption}</p>
+          <p className="md:text-sm py-2 text-xs">{caption}</p>
           <Link href={`/${route}/${slug}`}>
             <a className="font-light uppercase hover:text-[#8C50EE] duration-200 text-xs">
               Read More &#8594;
@@ -110,7 +110,7 @@ function EntriesList({ entries, route, featured }) {
           );
         })}
       </div>
-    </>
+    </div>
   );
 }
 

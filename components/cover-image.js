@@ -20,7 +20,7 @@ export default function CoverImage({ title, url, slug, route, height = 250 }) {
 
   return (
     <div
-      className="sm:mx-0 relative border-2 border-[#16181C] rounded-lg"
+      className="sm:mx-0 relative border-2 border-[#16181C] rounded-3xl"
       style={{
         height: `${height}px`,
       }}
