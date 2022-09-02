@@ -146,7 +146,7 @@ export default function Navbar() {
       <nav
         className={`${
           color ? "bg-[#000000] text-[#8C50EE]" : "bg-[#8C50EE] text-white"
-        } py-2 fixed z-10 w-full duration-300 lg:hidden block`}
+        } py-2 fixed z-50 w-full duration-300 lg:hidden block`}
       >
         <div className="flex items-center justify-between h-20 md:px-12 px-6">
           <Link href={"/"}>
