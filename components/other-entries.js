@@ -45,7 +45,7 @@ function OtherEntries({ otherEntries, route }) {
       {otherEntries.length > 0 && (
         <div className="grid grid-cols-3 gap-8 py-4">
           {otherEntries.slice(0, 3).map((entry, index) => {
-            const { title, slug, caption, featuredImage, sys } = entry;
+            const { title, slug, caption, featuredImage, sys, author } = entry;
 
             return (
               <div
@@ -68,8 +68,10 @@ function OtherEntries({ otherEntries, route }) {
                       "linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent)",
                   }}
                 >
-                  <p className="font-extralight my-2">
+                  <p className="font-extralight my-2 flex">
                     <DateComponent dateString={sys.firstPublishedAt} />
+                    <span className="mx-4 font-extrabold">&#183;</span>
+                    <p>{author.name}</p>
                   </p>
                   <h2>
                     <Link href={`/${route}/${slug}`}>

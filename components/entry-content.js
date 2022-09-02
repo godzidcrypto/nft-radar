@@ -14,6 +14,7 @@ function EntryContent({
   writeUp,
   date,
   headings,
+  children,
 }) {
   return (
     <div className="bg-[#16181C] py-6 px-6 lg:px-12 rounded-xl">
@@ -37,6 +38,7 @@ function EntryContent({
           <DateComponent dateString={date} />
         </p>
       </div>
+      <div>{children}</div>
       <TableOfContents headings={headings} />
       <PostBody content={writeUp} />
     </div>
