@@ -1,12 +1,7 @@
 import Layout from "../../components/layout";
-import Link from "next/link";
 import { getAllInterviews, getSingleInterview } from "../../lib/api";
-import CoverImage from "../../components/cover-image";
-import DateComponent from "../../components/date";
-import TableOfContents from "../../components/table-of-contents";
-import OtherEntries from "../../components/other-entries";
-import EntryContent from "../../components/entry-content";
 import Container from "../../components/container";
+import EntryView from "../../components/entry-view";
 
 function InterviewItem({ interview, allInterviews }) {
   const {
@@ -34,40 +29,17 @@ function InterviewItem({ interview, allInterviews }) {
   return (
     <Layout>
       <Container>
-        <article className="grid lg:grid-cols-[1fr_2fr] gap-8 py-16">
-          <div>
-            <div className="mb-4 flex justify-between items-center">
-              <Link href={"/interviews"}>
-                <p className="hover:underline hover:cursor-pointer">
-                  &#8592; Other Interviews
-                </p>
-              </Link>
-              <p>
-                <DateComponent dateString={date} />
-              </p>
-            </div>
-            <div>
-              <CoverImage title={title} url={featuredImage.url} />
-            </div>
-            <TableOfContents headings={headings} />
-            <div className="hidden lg:block">
-              <OtherEntries
-                otherEntries={otherInterviews}
-                route={"interviews"}
-              />
-            </div>
-          </div>
-          <EntryContent
-            title={title}
-            caption={caption}
-            author={author}
-            chain={chain}
-            writeUp={writeUp}
-          />
-          <div className="block lg:hidden">
-            <OtherEntries otherEntries={otherInterviews} route={"interviews"} />
-          </div>
-        </article>
+        <EntryView
+          title={title}
+          featuredImage={featuredImage}
+          author={author}
+          chain={chain}
+          writeUp={writeUp}
+          date={date}
+          headings={headings}
+          otherEntries={otherInterviews}
+          route={"interviews"}
+        ></EntryView>
       </Container>
     </Layout>
   );

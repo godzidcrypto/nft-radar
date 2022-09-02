@@ -1,12 +1,7 @@
 import Layout from "../../components/layout";
-import Link from "next/link";
 import { getAllProjects, getSingleProject } from "../../lib/api";
-import CoverImage from "../../components/cover-image";
-import DateComponent from "../../components/date";
-import TableOfContents from "../../components/table-of-contents";
-import EntryContent from "../../components/entry-content";
-import OtherEntries from "../../components/other-entries";
 import Container from "../../components/container";
+import EntryView from "../../components/entry-view";
 
 function ProjectItem({ project, allProjects }) {
   const {
@@ -33,32 +28,17 @@ function ProjectItem({ project, allProjects }) {
   return (
     <Layout>
       <Container>
-        <article className="grid grid-cols-[1fr_2fr] gap-8 py-16">
-          <div>
-            <div className="mb-4 flex justify-between items-center">
-              <Link href={"/projects"}>
-                <p className="hover:underline hover:cursor-pointer">
-                  &#8592; Other Projects
-                </p>
-              </Link>
-              <p>
-                <DateComponent dateString={date} />
-              </p>
-            </div>
-            <div>
-              <CoverImage title={title} url={featuredImage.url} />
-            </div>
-            <TableOfContents headings={headings} />
-            <OtherEntries otherEntries={otherProjects} route={"projects"} />
-          </div>
-          <EntryContent
-            title={title}
-            caption={caption}
-            author={author}
-            chain={chain}
-            writeUp={writeUp}
-          />
-        </article>
+        <EntryView
+          title={title}
+          featuredImage={featuredImage}
+          author={author}
+          chain={chain}
+          writeUp={writeUp}
+          date={date}
+          headings={headings}
+          otherEntries={otherProjects}
+          route={"projects"}
+        ></EntryView>
       </Container>
     </Layout>
   );

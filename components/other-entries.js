@@ -41,7 +41,9 @@ function OtherEntries({ otherEntries, route }) {
           })}
         </div>
       )} */}
-      <span className="text-xl font-semibold">Check Out Other Content</span>
+      {otherEntries.length > 0 && (
+        <span className="text-xl font-semibold">Check Out Other Content</span>
+      )}
       {otherEntries.length > 0 && (
         <div className="grid grid-cols-3 gap-8 py-4">
           {otherEntries.slice(0, 3).map((entry, index) => {
