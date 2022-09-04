@@ -10,7 +10,7 @@ function EntriesList({ entries, route, featured }) {
   const { title, slug, caption, chain, featuredImage, sys, author } = featured;
   return (
     <div className="py-8">
-      <div className="grid grid-cols-[1fr_2fr] gap-4 items-center">
+      <div className="grid grid-cols-[1fr_2fr] gap-8 items-center">
         <div
           className="text-white bg-black w-full"
           style={{
@@ -43,16 +43,16 @@ function EntriesList({ entries, route, featured }) {
             url={featuredImage.url}
             slug={slug}
             route={route}
-            height={"500"}
+            height={"400"}
           />
         </div>
       </div>
-      <div className="grid lg:grid-cols-3 gap-8 py-8">
+      <div className="grid lg:grid-cols-3 gap-16 py-16">
         {entries.map((entry, index) => {
           const { title, slug, caption, chain, featuredImage, sys, author } =
             entry;
           return (
-            <div>
+            <div key={index}>
               <div>
                 <CoverImage
                   title={title}
