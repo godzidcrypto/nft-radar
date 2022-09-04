@@ -10,6 +10,7 @@ import Twitter from "../components/twitter";
 import Solana from "../assets/images/solana.png";
 import Ethereum from "../assets/images/ethereum.png";
 import ContentfulImage from "../components/contentful-image";
+import Carousel from "../components/swiper";
 
 export default function Index({ allContent }) {
   const {
@@ -98,10 +99,62 @@ export default function Index({ allContent }) {
             }
             reverse={true}
           />
-          <div className="grid grid-cols-[2fr_1fr] gap-8 py-12 relative">
-            {/* <div className="bg-white h-fit sticky top-32">
-              <p>twitter most recent tweets</p>
-            </div> */}
+          <div className="grid grid-cols-[1fr_2fr_1fr] gap-8 py-12 relative">
+            <div className="h-fit sticky top-32 rounded-xl">
+              <h2 className="uppercase font-extralight pb-4">
+                Daily Mints (pagination if more than 4)
+              </h2>
+              <div className="grid gap-2">
+                <div className="bg-[#16181C] p-8 rounded-xl text-center grid items-center">
+                  project
+                  <div>
+                    <p className="text-xs font-thin">18 upvotes</p>
+                    <p className="text-xs font-thin">6 downvotes</p>
+                  </div>
+                </div>
+                <div className="bg-[#16181C] p-8 rounded-xl text-center grid items-center">
+                  project
+                  <div>
+                    <p className="text-xs font-thin">18 upvotes</p>
+                    <p className="text-xs font-thin">6 downvotes</p>
+                  </div>
+                </div>
+                <div className="bg-[#16181C] p-8 rounded-xl text-center grid items-center">
+                  project
+                  <div>
+                    <p className="text-xs font-thin">18 upvotes</p>
+                    <p className="text-xs font-thin">6 downvotes</p>
+                  </div>
+                </div>
+                <div className="bg-[#16181C] p-8 rounded-xl text-center grid items-center">
+                  project
+                  <div>
+                    <p className="text-xs font-thin">18 upvotes</p>
+                    <p className="text-xs font-thin">6 downvotes</p>
+                  </div>
+                </div>
+              </div>
+              <h2 className="uppercase font-extralight my-4">
+                Top 5 Collections by 24H Volume
+              </h2>
+              <div className="grid gap-4">
+                <div className="bg-[#16181C] rounded-xl grid p-6">
+                  <span>Degen Fat Cats</span>
+                </div>
+                <div className="bg-[#16181C] rounded-xl grid p-6">
+                  <span>Degen Fat Cats</span>
+                </div>
+                <div className="bg-[#16181C] rounded-xl grid p-6">
+                  <span>Degen Fat Cats</span>
+                </div>
+                <div className="bg-[#16181C] rounded-xl grid p-6">
+                  <span>Degen Fat Cats</span>
+                </div>
+                <div className="bg-[#16181C] rounded-xl grid p-6">
+                  <span>Degen Fat Cats</span>
+                </div>
+              </div>
+            </div>
             <div>
               <div className="pb-4">
                 <div className="grid grid-cols-2 gap-4">
@@ -201,7 +254,7 @@ export default function Index({ allContent }) {
               </div>
             </div>
             <div className="grid gap-4 h-fit sticky top-32">
-              <div className="bg-[#16181C] p-6 rounded-xl">
+              {/* <div className="bg-[#16181C] p-6 rounded-xl">
                 <h2 className="uppercase font-extralight pb-4">
                   Upcoming Projects
                 </h2>
@@ -281,24 +334,63 @@ export default function Index({ allContent }) {
                     );
                   })}
                 </div>
-              </div>
-              <div className="bg-[#16181C] p-6 rounded-xl">
-                <h2 className="uppercase font-extralight pb-4">
-                  Featured Projects
-                </h2>
+              </div> */}
+              <h2 className="uppercase font-extralight">Featured Projects</h2>
+              {/* <div className="bg-[#16181C] p-6 rounded-xl">
                 <div>
                   {projectWriteUpCollection.items.map((news, index) => {
                     return <div key={index}>{news.title}</div>;
                   })}
                 </div>
-              </div>
-              <div className="bg-[#16181C] p-6 rounded-xl">
-                <h2 className="uppercase font-extralight pb-4">
-                  Featured Artists
-                </h2>
+              </div> */}
+              <Carousel items={projectWriteUpCollection.items} />
+              <h2 className="uppercase font-extralight">Featured Artist</h2>
+              <div>
                 <div>
                   {artistFeatureCollection.items.map((news, index) => {
-                    return <div key={index}>{news.title}</div>;
+                    const {
+                      title,
+                      featuredImage,
+                      slug,
+                      caption,
+                      artistTwitter,
+                      artistWebsite,
+                      artistMarketplace,
+                      previousWorks,
+                    } = news;
+                    return (
+                      <div
+                        key={index}
+                        className="grid grid-cols-2 items-center"
+                      >
+                        <CoverImage
+                          title={title}
+                          url={featuredImage.url}
+                          slug={slug}
+                          route={"artists"}
+                          height={"200"}
+                        />
+                        <div className="pl-4">
+                          <div className="flex items-center">
+                            <h3>
+                              <Link href={`/projects/${slug}`}>
+                                <a className="text-md hover:underline hover:cursor-pointer font-semibold">
+                                  {title}
+                                </a>
+                              </Link>
+                            </h3>
+                            <a
+                              className="mx-2 hover:scale-125 duration-200"
+                              href={artistTwitter}
+                              target="_blank"
+                            >
+                              <Twitter fill={"#ffffff"} width={12} />
+                            </a>
+                          </div>
+                          <p className="text-xs font-extralight">{caption}</p>
+                        </div>
+                      </div>
+                    );
                   })}
                 </div>
               </div>
@@ -348,7 +440,55 @@ export default function Index({ allContent }) {
                       </a>
                     </Link>
                   </h3>
-                  <div className="grid grid-cols-[2fr_1fr] py-8 gap-8">
+                  <div className="grid grid-cols-[1fr_2fr_1fr] py-8 gap-8">
+                    <div>
+                      <div className="grid gap-8">
+                        {categories[1].items
+                          .slice(1, 3)
+                          .map((category, index) => {
+                            const {
+                              title,
+                              featuredImage,
+                              slug,
+                              caption,
+                              author,
+                              sys,
+                            } = category;
+                            return (
+                              <div
+                                key={index}
+                                className="grid grid-cols-2 items-center gap-4"
+                              >
+                                <CoverImage
+                                  title={title}
+                                  url={featuredImage.url}
+                                  slug={slug}
+                                  route={route}
+                                  height={`150`}
+                                />
+                                <div>
+                                  <h3 className="my-2">
+                                    <Link href={`/${route}/${slug}`}>
+                                      <a className="text-2xl hover:text-[#8C50EE] hover:cursor-pointer font-semibold">
+                                        {title}
+                                      </a>
+                                    </Link>
+                                  </h3>
+                                  <p className="text-xs font-extralight flex">
+                                    <DateComponent
+                                      dateString={sys.firstPublishedAt}
+                                    />
+                                    <span className="mx-2 font-extrabold">
+                                      &#183;
+                                    </span>
+                                    <p>{author.name}</p>
+                                  </p>
+                                </div>
+                              </div>
+                            );
+                          })}
+                      </div>
+                    </div>
                     <div>
                       <div>
                         {categories[1].items
@@ -398,7 +538,7 @@ export default function Index({ allContent }) {
                     <div>
                       <div className="grid gap-8">
                         {categories[1].items
-                          .slice(1, 4)
+                          .slice(3, 5)
                           .map((category, index) => {
                             const {
                               title,
