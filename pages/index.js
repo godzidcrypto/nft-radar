@@ -33,14 +33,7 @@ export default function Index({ allContent }) {
   console.log(merged);
 
   // converts allContent object variable into multiple arrays segmented by category
-  const result = Object.keys(allContent).map((key) => [
-    Number(key),
-    allContent[key],
-  ]);
-  console.log("result", result);
-  result.map((item) => {
-    console.log("ITEMS", item[1].items);
-  });
+  const result = Object.keys(allContent).map((key) => [key, allContent[key]]);
 
   // filters out all objects that have mintdates
   const upcomingProjects = projectWriteUpCollection.items.filter((project) => {
@@ -87,6 +80,12 @@ export default function Index({ allContent }) {
     });
     return route;
   };
+
+  console.log("result", result);
+  result.map((item) => {
+    console.log("CATEGORY", item[0]);
+    console.log("ITEMS", item[1].items);
+  });
 
   return (
     <>
@@ -188,7 +187,7 @@ export default function Index({ allContent }) {
                           </p>
                           <h3 className="my-2">
                             <Link href={`/${route}/${slug}`}>
-                              <a className="text-xl hover:underline hover:cursor-pointer font-semibold">
+                              <a className="hover:text-[#8C50EE] text-xl hover:cursor-pointer font-semibold">
                                 {title}
                               </a>
                             </Link>
@@ -305,12 +304,150 @@ export default function Index({ allContent }) {
               </div>
             </div>
           </div>
-          {/* <div>
-            <div className="grid grid-cols-[3fr_1fr]">
-              <div>hello</div>
-              <p>hi</p>
-            </div>
-          </div> */}
+          <div>
+            {result.map((categories, index) => {
+              let categoryTitle;
+              let route;
+              switch (index) {
+                case 0:
+                  categoryTitle = "news";
+                  route = "news";
+                  break;
+                case 1:
+                  categoryTitle = "projects";
+                  route = "projects";
+                  break;
+                case 2:
+                  categoryTitle = "artists";
+                  route = "artists";
+                  break;
+                case 3:
+                  categoryTitle = "education";
+                  route = "education";
+                  break;
+                case 4:
+                  categoryTitle = "analysis";
+                  route = "analysis";
+                  break;
+                case 5:
+                  categoryTitle = "opinions";
+                  route = "opinions";
+                  break;
+                case 6:
+                  categoryTitle = "interviews";
+                  route = "interviews";
+                  break;
+              }
+              return (
+                <>
+                  {/* <h2 className=" hover:cursor-pointer"> */}
+                  <h3 className="mt-4 uppercase font-extrabold border-b-2">
+                    <Link href={`/${route}`}>
+                      <a className="text-6xl hover:text-[#8C50EE] hover:cursor-pointer font-semibold">
+                        {categoryTitle}
+                      </a>
+                    </Link>
+                  </h3>
+                  <div className="grid grid-cols-[2fr_1fr] my-8 gap-8">
+                    <div>
+                      <div>
+                        {categories[1].items
+                          .slice(0, 1)
+                          .map((category, index) => {
+                            const {
+                              title,
+                              featuredImage,
+                              slug,
+                              caption,
+                              author,
+                              sys,
+                            } = category;
+                            return (
+                              <div key={index}>
+                                <CoverImage
+                                  title={title}
+                                  url={featuredImage.url}
+                                  slug={slug}
+                                  route={route}
+                                  height={`450`}
+                                />
+                                <div>
+                                  <h3 className="mt-4">
+                                    <Link href={`/${route}/${slug}`}>
+                                      <a className="text-2xl hover:text-[#8C50EE] hover:cursor-pointer font-semibold">
+                                        {title}
+                                      </a>
+                                    </Link>
+                                  </h3>
+                                  <p>{caption}</p>
+                                  <p className="text-sm font-extralight flex">
+                                    <DateComponent
+                                      dateString={sys.firstPublishedAt}
+                                    />
+                                    <span className="mx-2 font-extrabold">
+                                      &#183;
+                                    </span>
+                                    <p>{author.name}</p>
+                                  </p>
+                                </div>
+                              </div>
+                            );
+                          })}
+                      </div>
+                    </div>
+                    <div>
+                      <div className="grid gap-8">
+                        {categories[1].items
+                          .slice(1, 4)
+                          .map((category, index) => {
+                            const {
+                              title,
+                              featuredImage,
+                              slug,
+                              caption,
+                              author,
+                              sys,
+                            } = category;
+                            return (
+                              <div
+                                key={index}
+                                className="grid grid-cols-2 items-center gap-4"
+                              >
+                                <CoverImage
+                                  title={title}
+                                  url={featuredImage.url}
+                                  slug={slug}
+                                  route={route}
+                                  height={`150`}
+                                />
+                                <div>
+                                  <h3 className="my-2">
+                                    <Link href={`/${route}/${slug}`}>
+                                      <a className="text-2xl hover:text-[#8C50EE] hover:cursor-pointer font-semibold">
+                                        {title}
+                                      </a>
+                                    </Link>
+                                  </h3>
+                                  <p className="text-xs font-extralight flex">
+                                    <DateComponent
+                                      dateString={sys.firstPublishedAt}
+                                    />
+                                    <span className="mx-2 font-extrabold">
+                                      &#183;
+                                    </span>
+                                    <p>{author.name}</p>
+                                  </p>
+                                </div>
+                              </div>
+                            );
+                          })}
+                      </div>
+                    </div>
+                  </div>
+                </>
+              );
+            })}
+          </div>
         </Container>
       </Layout>
     </>
