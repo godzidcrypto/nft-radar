@@ -348,7 +348,7 @@ export default function Index({ allContent }) {
                       </a>
                     </Link>
                   </h3>
-                  <div className="grid grid-cols-[2fr_1fr] my-8 gap-8">
+                  <div className="grid grid-cols-[2fr_1fr] py-8 gap-8">
                     <div>
                       <div>
                         {categories[1].items
