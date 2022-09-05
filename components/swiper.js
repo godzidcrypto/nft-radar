@@ -1,7 +1,7 @@
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 // import required modules
-import { Pagination, Navigation } from "swiper";
+import SwiperCore, { Pagination, Navigation, Autoplay } from "swiper";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -13,11 +13,17 @@ import Twitter from "./twitter";
 import Discord from "./discord";
 
 const Carousel = ({ items }) => {
+  SwiperCore.use([Autoplay]);
+
   return (
     <Swiper
       pagination={{ clickable: true }}
       modules={[Pagination, Navigation]}
       navigation={true}
+      autoplay={{
+        delay: 3000,
+        disableOnInteraction: false,
+      }}
       style={{
         "--swiper-navigation-color": "#8C50EE",
         "--swiper-pagination-color": "#8C50EE",
