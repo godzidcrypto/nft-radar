@@ -4,7 +4,7 @@ import Meta from "../components/meta";
 import Head from "next/head";
 import Navbar from "./navbar";
 
-export default function Layout({ preview, children }) {
+export default function Layout({ hide = false, children }) {
   return (
     <>
       <Meta />
@@ -17,9 +17,11 @@ export default function Layout({ preview, children }) {
           rel="stylesheet"
         />
       </Head>
-      <Navbar />
+      {!hide && <Navbar />}
       <div
-        className="min-h-screen bg-black text-[#E7E9EA] pt-24"
+        className={`min-h-screen bg-black text-[#E7E9EA] ${
+          hide ? "" : "pt-24"
+        }`}
         // style={{
         //   backgroundImage: "radial-gradient(#d1d5db 1.15px, #faf5ff 1.15px)",
         //   backgroundSize: "20px 20px",
@@ -28,7 +30,7 @@ export default function Layout({ preview, children }) {
         {/* <Alert preview={preview} /> */}
         <main>{children}</main>
       </div>
-      <Footer />
+      {!hide && <Footer />}
     </>
   );
 }

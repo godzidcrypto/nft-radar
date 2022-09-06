@@ -7,10 +7,16 @@ import Discord from "./discord";
 import Twitter from "./twitter";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { useSession, signOut } from "next-auth/react";
+import Avatar from "./avatar";
 
 export default function Navbar() {
   const router = useRouter();
-  console.log(router.pathname);
+
+  const { data: session } = useSession();
+  const user = session?.user;
+
+  console.log("IMAGE", user?.image);
 
   const [open, setOpen] = useState(false);
   const [color, setColor] = useState(false);
@@ -54,6 +60,10 @@ export default function Navbar() {
     {
       title: "Interviews",
       route: "/interviews",
+    },
+    {
+      title: "Polls",
+      route: "/polls",
     },
   ];
 
@@ -115,29 +125,56 @@ export default function Navbar() {
               </div>
             </div>
             <div className="flex items-center justify-center">
-              <a
-                className="mx-4 hover:scale-125 duration-200"
-                href="https://twitter.com/solnftradar"
-                target="_blank"
-              >
-                <Twitter fill={`${color ? "#8C50EE" : "#ffffff"}`} width={24} />
-              </a>
-              <a
-                className="mx-4 scale-125 hover:scale-150 duration-200"
-                href="https://discord.gg/nftradar"
-                target="_blank"
-              >
-                <Discord fill={`${color ? "#8C50EE" : "#ffffff"}`} width={24} />
-              </a>
-              <button
-                className={`${
-                  color
-                    ? "text-black hover:text-[#8C50EE] bg-[#8C50EE] hover:bg-black border-[#8C50EE]"
-                    : "text-black bg-white border-white hover:bg-[#8C50EE] hover:text-white hover:border-white"
-                } ml-2 px-4 py-2 rounded-md border-2 duration-200 transition-colors`}
-              >
-                Login
-              </button>
+              {!user && (
+                <>
+                  <a
+                    className="mx-4 hover:scale-125 duration-200"
+                    href="https://twitter.com/solnftradar"
+                    target="_blank"
+                  >
+                    <Twitter
+                      fill={`${color ? "#8C50EE" : "#ffffff"}`}
+                      width={24}
+                    />
+                  </a>
+                  <a
+                    className="mx-4 scale-125 hover:scale-150 duration-200"
+                    href="https://discord.gg/nftradar"
+                    target="_blank"
+                  >
+                    <Discord
+                      fill={`${color ? "#8C50EE" : "#ffffff"}`}
+                      width={24}
+                    />
+                  </a>
+                  <Link href={`/auth/signIn`}>
+                    <button
+                      className={`${
+                        color
+                          ? "text-black hover:text-[#8C50EE] bg-[#8C50EE] hover:bg-black border-[#8C50EE]"
+                          : "text-black bg-white border-white hover:bg-[#8C50EE] hover:text-white hover:border-white"
+                      } ml-2 px-4 py-2 rounded-md border-2 duration-200 transition-colors`}
+                    >
+                      Login
+                    </button>
+                  </Link>
+                </>
+              )}
+              {user && (
+                <div className="flex">
+                  <Avatar name={user.name} picture={{ url: user.image }} />
+                  <button
+                    className={`${
+                      color
+                        ? "text-black hover:text-[#8C50EE] bg-[#8C50EE] hover:bg-black border-[#8C50EE]"
+                        : "text-black bg-white border-white hover:bg-[#8C50EE] hover:text-white hover:border-white"
+                    } ml-4 px-4 py-2 rounded-md border-2 duration-200 transition-colors`}
+                    onClick={() => signOut()}
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </Container>
