@@ -134,7 +134,7 @@ export default function Navbar() {
                   color
                     ? "text-black hover:text-[#8C50EE] bg-[#8C50EE] hover:bg-black border-[#8C50EE]"
                     : "text-black bg-white border-white hover:bg-[#8C50EE] hover:text-white hover:border-white"
-                } mx-2 px-4 py-2 rounded-md border-2 duration-200 transition-colors`}
+                } ml-2 px-4 py-2 rounded-md border-2 duration-200 transition-colors`}
               >
                 Login
               </button>
