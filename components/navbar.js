@@ -160,7 +160,7 @@ export default function Navbar() {
           <div
             className={`${open ? "block" : "hidden"} ${
               color ? "bg-black" : "bg-[#8C50EE]"
-            } flex flex-col absolute top-0 mt-24 -mx-6 px-6 md:-mx-12 md:px-12 w-full h-view py-8`}
+            } flex flex-col absolute top-0 mt-24 -mx-6 px-6 md:-mx-12 md:px-12 w-full h-view pb-4 duration-300`}
           >
             {routes.map((route, index) => {
               return (
