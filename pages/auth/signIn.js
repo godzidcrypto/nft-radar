@@ -5,7 +5,8 @@ import Space from "../../assets/images/space.svg";
 import ContentfulImage from "../../components/contentful-image";
 import Link from "next/link";
 
-function SignIn({ providers }) {
+function SignIn({ providers, previousLink }) {
+  console.log("HERE!!! ", previousLink);
   return (
     <Layout hide={true}>
       <div className="h-screen text-white grid grid-cols-2">
@@ -25,10 +26,10 @@ function SignIn({ providers }) {
             <div key={provider.name}>
               <button
                 type="button"
-                class="text-white bg-[#5B65EA] hover:bg-[#3b5998]/90 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#3b5998]/55 mr-2 mb-2"
+                className="text-white bg-[#5B65EA] hover:bg-[#3b5998]/90 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#3b5998]/55 mr-2 mb-2"
                 onClick={() =>
                   signIn(provider.id, {
-                    callbackUrl: `${window.location.origin}`,
+                    callbackUrl: `${previousLink}`,
                   })
                 }
               >
@@ -47,7 +48,8 @@ export default SignIn;
 
 export async function getServerSideProps(context) {
   const providers = await getProviders();
+  const previousLink = context.req.headers.referer;
   return {
-    props: { providers },
+    props: { providers, previousLink },
   };
 }
