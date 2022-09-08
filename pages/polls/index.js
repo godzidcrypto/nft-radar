@@ -1,12 +1,32 @@
 import Layout from "../../components/layout";
 import Container from "../../components/container";
 import DateComponent from "../../components/date";
-import { useSession, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
+import useSWR, { SWRConfig } from "swr";
+
+const fetcher = (url) => fetch(url).then((res) => res.json());
+const API = "http://localhost:4000/api/polls";
+
+// export async function getServerSideProps() {
+//   const repoInfo = await fetcher(API);
+//   return {
+//     props: {
+//       fallback: {
+//         [API]: repoInfo,
+//       },
+//     },
+//   };
+// }
 
 function Polls({ data }) {
-  console.log("DATA", data);
   const { data: session } = useSession();
   const user = session?.user;
+
+  const { data: swrData } = useSWR(API, fetcher, {
+    refreshInterval: 1000,
+  });
+
+  console.log("SWR", swrData);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,7 +55,7 @@ function Polls({ data }) {
     <Layout>
       <Container>
         <div className={`py-12`}>
-          {data.map((item, index) => {
+          {swrData?.map((item, index) => {
             console.log(item);
             const { _id: mint_id, date, mints } = item;
             return (
@@ -45,7 +65,7 @@ function Polls({ data }) {
                   {mints.map((mint, index) => {
                     const { _id: project_id, project, yes, no, voters } = mint;
                     console.log("HERE", voters);
-                    const test = voters.filter((voter) => {
+                    const findVoters = voters.filter((voter) => {
                       return voter.email === user?.email;
                     });
 
@@ -60,7 +80,7 @@ function Polls({ data }) {
                           <p className="text-green-300">{yes}</p>
                           <p className="text-red-400">{no}</p>
                           <div className="absolute left-1/2 bottom-4">
-                            {test.length === 0 ? (
+                            {findVoters.length === 0 ? (
                               <form
                                 onSubmit={handleSubmit}
                                 className="grid grid-cols-3 items-center"
@@ -99,13 +119,28 @@ function Polls({ data }) {
   );
 }
 
-export default Polls;
+export default function PollsPage({ fallback }) {
+  return (
+    <SWRConfig value={{ fallback }}>
+      <Polls />
+    </SWRConfig>
+  );
+}
 
 export async function getServerSideProps() {
   // Fetch data from external API
   const res = await fetch(`http://localhost:4000/api/polls`);
   const data = await res.json();
 
+  const swrData = await fetcher(API);
+
   // Pass data to the page via props
-  return { props: { data } };
+  return {
+    props: {
+      data,
+      fallback: {
+        [API]: swrData,
+      },
+    },
+  };
 }
