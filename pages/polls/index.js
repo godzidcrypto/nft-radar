@@ -1,7 +1,7 @@
 import Layout from "../../components/layout";
 import Container from "../../components/container";
 import { useSession } from "next-auth/react";
-import useSWR, { useSWRConfig, SWRConfig } from "swr";
+import useSWR, { SWRConfig } from "swr";
 import Twitter from "../../components/twitter";
 import Discord from "../../components/discord";
 import AddPoll from "../../components/add-poll";
@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 const fetcher = (url) => fetch(url).then((res) => res.json());
 const API = `/api/polls`;
 
-function Polls({}) {
+function Polls() {
   const { data: session } = useSession();
   const user = session?.user;
 
@@ -229,13 +229,14 @@ export default function PollsPage({ fallback }) {
 
 export async function getServerSideProps() {
   // Fetch data from external API
-  const swrData = await fetcher(API);
+  const res = await fetch(`http://localhost:4000/api/polls`);
+  const data = await res.json();
 
   // Pass data to the page via props
   return {
     props: {
       fallback: {
-        [API]: swrData,
+        [API]: data,
       },
     },
   };
