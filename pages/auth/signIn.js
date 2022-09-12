@@ -21,7 +21,7 @@ function SignIn({ providers, headers }) {
           </div>
         </div>
         <div className="flex flex-col items-center justify-center bg-black">
-          {Object.values(providers).map((provider) => (
+          {/* {Object.values(providers).map((provider) => (
             <div key={provider.name}>
               <button
                 type="button"
@@ -36,7 +36,18 @@ function SignIn({ providers, headers }) {
                 Sign in with {provider.name}
               </button>
             </div>
-          ))}
+          ))} */}
+          <div>
+            <a href={`${process.env.NEXT_PUBLIC_DISCORD_OAUTH2_URL}`}>
+              <button
+                type="button"
+                className="text-white bg-[#5B65EA] hover:bg-[#3b5998]/90 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#3b5998]/55 mr-2 mb-2"
+              >
+                <Discord fill={`#ffffff`} width={24} className={"mr-4"} />
+                Sign in with Discord
+              </button>
+            </a>
+          </div>
         </div>
       </div>
     </Layout>

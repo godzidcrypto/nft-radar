@@ -11,6 +11,9 @@ function AddPoll({}) {
   const [mintPrice, setMintPrice] = useState("");
   const [wlMintPrice, setWlMintPrice] = useState("");
   const [quantity, setQuantity] = useState("");
+  const [lauren, setLauren] = useState(false);
+  const [hotsauce, setHotsauce] = useState(false);
+  const [dagzen, setDagzen] = useState(false);
 
   const handleSubmitPoll = async (e) => {
     e.preventDefault();
@@ -26,6 +29,9 @@ function AddPoll({}) {
       mintPrice,
       wlMintPrice,
       quantity,
+      lauren,
+      hotsauce,
+      dagzen,
     };
 
     console.log(newPoll);
@@ -38,168 +44,36 @@ function AddPoll({}) {
       },
     });
 
+    if (res.ok) {
+      setDate("");
+      setTime("");
+      setWlTime("");
+      setName("");
+      setTwitter("");
+      setDiscord("");
+      setWebsite("");
+      setMintPrice("");
+      setWlMintPrice("");
+      setQuantity("");
+      setLauren(false);
+      setHotsauce(false);
+      setDagzen(false);
+    }
+
     return res;
   };
 
   return (
     <div className="px-4 py-16 mx-auto max-w-screen-xl sm:px-6 lg:px-8">
-      {/* <div className="max-w-lg mx-auto">
-        <form
-          onSubmit={handleSubmitPoll}
-          className="p-8 mt-6 mb-0 rounded-lg shadow-2xl space-y-4 text-gray-500"
-        >
-          <div>
-            <label for="email" className="text-sm font-medium">
-              Mint Date
-            </label>
-            <div className="relative mt-1">
-              <input
-                type="date"
-                onChange={(e) => setDate(e.target.value)}
-                // value={poll}
-                className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label for="password" className="text-sm font-medium">
-              Project Name
-            </label>
-            <div className="relative mt-1">
-              <input
-                type="text"
-                onChange={(e) => setName(e.target.value)}
-                value={name}
-                className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
-                placeholder="Enter Project Name"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label for="password" className="text-sm font-medium">
-              Time
-            </label>
-            <div className="relative mt-1">
-              <input
-                type="text"
-                onChange={(e) => setName(e.target.value)}
-                value={name}
-                className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
-                placeholder="Enter Project Name"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label for="password" className="text-sm font-medium">
-              Twitter
-            </label>
-            <div className="relative mt-1">
-              <input
-                type="text"
-                onChange={(e) => setName(e.target.value)}
-                value={name}
-                className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
-                placeholder="Enter Project Name"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label for="password" className="text-sm font-medium">
-              Discord
-            </label>
-            <div className="relative mt-1">
-              <input
-                type="text"
-                onChange={(e) => setName(e.target.value)}
-                value={name}
-                className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
-                placeholder="Enter Project Name"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label for="password" className="text-sm font-medium">
-              Website
-            </label>
-            <div className="relative mt-1">
-              <input
-                type="text"
-                onChange={(e) => setName(e.target.value)}
-                value={name}
-                className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
-                placeholder="Enter Project Name"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label for="password" className="text-sm font-medium">
-              Mint Price
-            </label>
-            <div className="relative mt-1">
-              <input
-                type="text"
-                onChange={(e) => setName(e.target.value)}
-                value={name}
-                className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
-                placeholder="Enter Project Name"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label for="password" className="text-sm font-medium">
-              Quantity
-            </label>
-            <div className="relative mt-1">
-              <input
-                type="text"
-                onChange={(e) => setName(e.target.value)}
-                value={name}
-                className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
-                placeholder="Enter Project Name"
-              />
-            </div>
-          </div>
-
-          <button className="block w-full px-5 py-3 text-sm font-medium text-white bg-[#8C50EE] rounded-lg">
-            Submit
-          </button>
-        </form>
-      </div> */}
-
       <section>
         <div className="mx-auto max-w-screen-xl sm:px-6 lg:px-8 text-black">
           <div className="grid grid-cols-1 gap-y-8 lg:grid-cols-5">
-            {/* <div className="lg:py-12 lg:col-span-2 text-white">
-              <p className="max-w-xl text-lg">
-                At the same time, the fact that we are wholly owned and totally
-                independent from manufacturer and other group control gives you
-                confidence that we will only recommend what is right for you.
-              </p>
-
-              <div className="mt-8">
-                <a href="" className="text-2xl font-bold text-pink-600">
-                  {" "}
-                  0151 475 4450{" "}
-                </a>
-
-                <address className="mt-2 not-italic">
-                  282 Kevin Brook, Imogeneborough, CA 58517
-                </address>
-              </div>
-            </div> */}
-
             <div className="p-8 rounded-lg shadow-lg lg:p-12 lg:col-span-5">
               <form onSubmit={handleSubmitPoll} className="space-y-4">
                 <div>
                   <input
                     type="date"
+                    value={date}
                     onChange={(e) => setDate(e.target.value)}
                     className="w-full p-3 text-sm border-gray-200 rounded-lg"
                   />
@@ -211,6 +85,7 @@ function AddPoll({}) {
                     placeholder="Name"
                     type="text"
                     onChange={(e) => setName(e.target.value)}
+                    value={name}
                   />
                 </div>
 
@@ -221,6 +96,7 @@ function AddPoll({}) {
                       placeholder="Time (UTC)"
                       type="text"
                       onChange={(e) => setTime(e.target.value)}
+                      value={time}
                     />
                   </div>
 
@@ -230,6 +106,7 @@ function AddPoll({}) {
                       placeholder="WL Time (UTC)"
                       type="text"
                       onChange={(e) => setWlTime(e.target.value)}
+                      value={wlTime}
                     />
                   </div>
                 </div>
@@ -241,6 +118,7 @@ function AddPoll({}) {
                       placeholder="Mint Price"
                       type="text"
                       onChange={(e) => setMintPrice(e.target.value)}
+                      value={mintPrice}
                     />
                   </div>
 
@@ -250,6 +128,7 @@ function AddPoll({}) {
                       placeholder="WL Mint Price"
                       type="text"
                       onChange={(e) => setWlMintPrice(e.target.value)}
+                      value={wlMintPrice}
                     />
                   </div>
                 </div>
@@ -261,6 +140,7 @@ function AddPoll({}) {
                       placeholder="Twitter"
                       type="text"
                       onChange={(e) => setTwitter(e.target.value)}
+                      value={twitter}
                     />
                   </div>
 
@@ -270,6 +150,7 @@ function AddPoll({}) {
                       placeholder="Discord"
                       type="text"
                       onChange={(e) => setDiscord(e.target.value)}
+                      value={discord}
                     />
                   </div>
 
@@ -279,6 +160,7 @@ function AddPoll({}) {
                       placeholder="Website"
                       type="text"
                       onChange={(e) => setWebsite(e.target.value)}
+                      value={website}
                     />
                   </div>
                 </div>
@@ -289,6 +171,7 @@ function AddPoll({}) {
                     placeholder="Quantity"
                     type="text"
                     onChange={(e) => setQuantity(e.target.value)}
+                    value={quantity}
                   />
                 </div>
 
@@ -297,8 +180,13 @@ function AddPoll({}) {
                     <input className="sr-only" type="radio" tabindex="-1" />
                     <label
                       for="option1"
-                      className="block w-full p-3 border border-gray-200 rounded-lg hover:text-black hover:bg-white duration-300 hover:cursor-pointer"
+                      className={`block w-full p-3 border rounded-lg ${
+                        lauren
+                          ? "text-black bg-white border-gray-200"
+                          : "border-gray-200 hover:text-black hover:bg-white"
+                      } duration-300 hover:cursor-pointer`}
                       tabindex="0"
+                      onClick={() => setLauren(!lauren)}
                     >
                       <span className="text-sm font-medium"> Lauren </span>
                     </label>
@@ -308,8 +196,13 @@ function AddPoll({}) {
                     <input className="sr-only" type="radio" tabindex="-1" />
                     <label
                       for="option2"
-                      className="block w-full p-3 border border-gray-200 rounded-lg hover:text-black hover:bg-white duration-300 hover:cursor-pointer"
+                      className={`block w-full p-3 border rounded-lg ${
+                        hotsauce
+                          ? "text-black bg-white border-gray-200"
+                          : "border-gray-200 hover:text-black hover:bg-white"
+                      } duration-300 hover:cursor-pointer`}
                       tabindex="0"
+                      onClick={() => setHotsauce(!hotsauce)}
                     >
                       <span className="text-sm font-medium"> HotSauce </span>
                     </label>
@@ -319,8 +212,13 @@ function AddPoll({}) {
                     <input className="sr-only" type="radio" tabindex="-1" />
                     <label
                       for="option3"
-                      className="block w-full p-3 border border-gray-200 rounded-lg hover:text-black hover:bg-white duration-300 hover:cursor-pointer"
+                      className={`block w-full p-3 border rounded-lg ${
+                        dagzen
+                          ? "text-black bg-white border-gray-200"
+                          : "border-gray-200 hover:text-black hover:bg-white"
+                      } duration-300 hover:cursor-pointer`}
                       tabindex="0"
+                      onClick={() => setDagzen(!dagzen)}
                     >
                       <span className="text-sm font-medium"> Dagzen </span>
                     </label>
