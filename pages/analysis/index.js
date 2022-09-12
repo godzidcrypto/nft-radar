@@ -7,7 +7,7 @@ import Container from "../../components/container";
 
 function AnalysisCollection({ allAnalysis }) {
   return (
-    <Layout>
+    <Layout title={"NFT Radar | Analysis"}>
       <Container>
         <Hero
           title={"Analysis"}

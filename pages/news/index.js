@@ -7,7 +7,7 @@ import Container from "../../components/container";
 
 function NewsCollection({ allCryptoNews }) {
   return (
-    <Layout>
+    <Layout title={"NFT Radar | Crypto News"}>
       <Container>
         <Hero
           title={"NFT/Crypto News"}

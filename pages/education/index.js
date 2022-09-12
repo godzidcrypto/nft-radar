@@ -7,7 +7,7 @@ import Container from "../../components/container";
 
 function EducationCollection({ allEducationalContent }) {
   return (
-    <Layout>
+    <Layout title={"NFT Radar | Educational Content"}>
       <Container>
         <Hero
           title={"Educational Content"}

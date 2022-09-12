@@ -32,7 +32,7 @@ function EducationalContentItem({ educationalContent, allEducationalContent }) {
   });
 
   return (
-    <Layout>
+    <Layout title={title}>
       <Container>
         <EntryView
           title={title}

@@ -27,7 +27,7 @@ function ArtistFeatureItem({ artistFeature, allAristFeatures }) {
   });
 
   return (
-    <Layout>
+    <Layout title={title}>
       <Container>
         <EntryView
           title={title}

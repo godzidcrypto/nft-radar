@@ -7,7 +7,7 @@ import Container from "../../components/container";
 
 function ProjectsCollection({ allProjects }) {
   return (
-    <Layout>
+    <Layout title={"NFT Radar | Project Write-Ups"}>
       <Container>
         <Hero
           title={"Project Write-Up"}

@@ -7,7 +7,7 @@ import Container from "../../components/container";
 
 function ArtistsCollection({ allArtistFeatures }) {
   return (
-    <Layout>
+    <Layout title={"NFT Radar | Artist Features"}>
       <Container>
         <Hero
           title={"1/1 Artist Feature"}

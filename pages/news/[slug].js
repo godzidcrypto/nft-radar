@@ -19,7 +19,7 @@ function NewsItem({ cryptoNews, allCryptoNews }) {
   });
 
   return (
-    <Layout>
+    <Layout title={title}>
       <Container>
         <EntryView
           title={title}

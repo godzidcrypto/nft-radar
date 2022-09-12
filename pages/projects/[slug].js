@@ -26,7 +26,7 @@ function ProjectItem({ project, allProjects }) {
     return content.nodeType.includes("heading");
   });
   return (
-    <Layout>
+    <Layout title={title}>
       <Container>
         <EntryView
           title={title}

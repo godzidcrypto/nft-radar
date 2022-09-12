@@ -27,7 +27,7 @@ function AnalysisItem({ analysis, allAnalysis }) {
   });
 
   return (
-    <Layout>
+    <Layout title={title}>
       <Container>
         <EntryView
           title={title}

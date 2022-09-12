@@ -7,7 +7,7 @@ import Container from "../../components/container";
 
 function InterviewsCollection({ allInterviews }) {
   return (
-    <Layout>
+    <Layout title={"NFT Radar | Interviews"}>
       <Container>
         <Hero
           title={"Interview/AMA"}

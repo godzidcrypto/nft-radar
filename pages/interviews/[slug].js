@@ -27,7 +27,7 @@ function InterviewItem({ interview, allInterviews }) {
   });
 
   return (
-    <Layout>
+    <Layout title={title}>
       <Container>
         <EntryView
           title={title}
