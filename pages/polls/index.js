@@ -24,6 +24,8 @@ function Polls() {
   const [loading, setLoading] = useState(false);
 
   const [guilds, setGuilds] = useState([]);
+  const [isMember, setIsMember] = useState(false);
+
   const getGuilds = async () => {
     if (session) {
       const guildRes = await fetch("https://discord.com/api/users/@me/guilds", {
@@ -34,16 +36,15 @@ function Polls() {
         return res.json();
       });
 
+      const member = guildRes?.filter((guild) => {
+        return guild.name === "NFT Radar";
+      });
+
+      setIsMember(member);
       setGuilds(guildRes);
       return guildRes;
     }
   };
-
-  const isMember = guilds?.filter((guild) => {
-    return guild.name === "NFT Radar";
-  });
-
-  console.log(isMember);
 
   useEffect(() => {
     getGuilds();
