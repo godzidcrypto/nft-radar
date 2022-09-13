@@ -144,7 +144,6 @@ function Polls() {
         />
         <div className={`py-12`}>
           {guildRoles?.includes(moderatorRole) && <AddPoll />}
-          <AddPoll />
           <p>
             {loading ? "LOADING" : "NOT LOADING"} |{" "}
             {/* {isMember.length === 1 ? "NFT Radar Member" : "Not a Member"} */}
