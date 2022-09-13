@@ -13,7 +13,7 @@ function AddPoll({}) {
   const [quantity, setQuantity] = useState("");
   const [lauren, setLauren] = useState(false);
   const [hotsauce, setHotsauce] = useState(false);
-  // const [dagzen, setDagzen] = useState(false);
+  const [dagzen, setDagzen] = useState(false);
 
   const handleSubmitPoll = async (e) => {
     e.preventDefault();
