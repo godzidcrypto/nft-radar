@@ -102,6 +102,8 @@ function Polls() {
     return data.date.substring(0, 10) === today.substring(0, 10);
   });
 
+  mintsToday.sort((a, b) => parseFloat(b.yes) - parseFloat(a.yes));
+
   // filter swrdata to only show mints for today
   const admins = ["nozid16@gmail.com"];
 
