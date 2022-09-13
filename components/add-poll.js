@@ -114,7 +114,7 @@ function AddPoll({}) {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
                   <div>
                     <input
                       className="w-full p-3 text-sm border-gray-200 rounded-lg"
@@ -137,6 +137,19 @@ function AddPoll({}) {
                       min={0}
                       onChange={(e) => setWlMintPrice(e.target.value)}
                       value={wlMintPrice}
+                    />
+                  </div>
+
+                  <div>
+                    <input
+                      className="w-full p-3 text-sm border-gray-200 rounded-lg"
+                      placeholder="Quantity"
+                      type="number"
+                      onChange={(e) => setQuantity(e.target.value)}
+                      value={quantity}
+                      min={0}
+                      step={1}
+                      required
                     />
                   </div>
                 </div>
@@ -173,19 +186,6 @@ function AddPoll({}) {
                       value={website}
                     />
                   </div>
-                </div>
-
-                <div>
-                  <input
-                    className="w-full p-3 text-sm border-gray-200 rounded-lg"
-                    placeholder="Quantity"
-                    type="number"
-                    onChange={(e) => setQuantity(e.target.value)}
-                    value={quantity}
-                    min={0}
-                    step={1}
-                    required
-                  />
                 </div>
 
                 {/* <div className="text-center grid gap-4 grid-cols-2 text-white">

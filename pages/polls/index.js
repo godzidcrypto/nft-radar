@@ -229,6 +229,35 @@ function Polls() {
                     <dl class="grid gap-4 grid-cols-3">
                       <div class="flex flex-col py-2 text-center border border-gray-100 rounded-lg">
                         <dt class="order-last text-xs font-medium text-gray-500">
+                          WL Mint Price
+                        </dt>
+
+                        <dd class="text-md font-extrabold text-gray-300">
+                          {wlMintPrice}
+                        </dd>
+                      </div>
+                      <div class="flex flex-col py-2 text-center border border-gray-100 rounded-lg">
+                        <dt class="order-last text-xs font-medium text-gray-500">
+                          WL Mint Time
+                        </dt>
+
+                        <dd class="text-md font-extrabold text-gray-300">
+                          {wlTime}
+                        </dd>
+                      </div>
+
+                      <div class="row-span-2 justify-center flex flex-col py-2 text-center border border-gray-100 rounded-lg">
+                        <dt class="order-last text-xs font-medium text-gray-500">
+                          Quantity
+                        </dt>
+
+                        <dd class="text-md font-extrabold text-gray-300">
+                          {quantity}
+                        </dd>
+                      </div>
+
+                      <div class="flex flex-col py-2 text-center border border-gray-100 rounded-lg">
+                        <dt class="order-last text-xs font-medium text-gray-500">
                           Mint Price
                         </dt>
 
@@ -244,34 +273,6 @@ function Polls() {
 
                         <dd class="text-md font-extrabold text-gray-300">
                           {time}
-                        </dd>
-                      </div>
-
-                      <div class="row-span-2 justify-center flex flex-col py-2 text-center border border-gray-100 rounded-lg">
-                        <dt class="order-last text-xs font-medium text-gray-500">
-                          Quantity
-                        </dt>
-
-                        <dd class="text-md font-extrabold text-gray-300">
-                          {quantity}
-                        </dd>
-                      </div>
-                      <div class="flex flex-col py-2 text-center border border-gray-100 rounded-lg">
-                        <dt class="order-last text-xs font-medium text-gray-500">
-                          WL Mint Price
-                        </dt>
-
-                        <dd class="text-md font-extrabold text-gray-300">
-                          {wlMintPrice}
-                        </dd>
-                      </div>
-                      <div class="flex flex-col py-2 text-center border border-gray-100 rounded-lg">
-                        <dt class="order-last text-xs font-medium text-gray-500">
-                          WL Mint Time
-                        </dt>
-
-                        <dd class="text-md font-extrabold text-gray-300">
-                          {wlTime}
                         </dd>
                       </div>
                     </dl>
@@ -293,7 +294,7 @@ function Polls() {
                               : "border-red-800 text-red-800 bg-red-100"
                           } border px-4 rounded-full`}
                         >
-                          HotSauce
+                          HoTsAuCe
                         </p>
                         {/* <p
                           className={`${
