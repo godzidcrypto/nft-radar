@@ -97,6 +97,7 @@ function Polls() {
   }, [swrData]);
 
   // filter swrdata to only show mints for today
+  const admins = ["nozid16@gmail.com"];
 
   return (
     <Layout title={"NFT Radar | Daily Mint Polls"}>
@@ -106,7 +107,7 @@ function Polls() {
           description={"Dolore nisi anim culpa cillum ullamco cillum."}
         />
         <div className={`py-12`}>
-          <AddPoll />
+          {admins.includes(user?.email) && <AddPoll />}
           <p>
             {loading ? "LOADING" : "NOT LOADING"} |{" "}
             {isMember.length === 1 ? "NFT Radar Member" : "Not a Member"}
@@ -140,7 +141,7 @@ function Polls() {
                   {/* <div className="flex justify-between">
                   <DateComponent dateString={date} />
                 </div> */}
-                  <div className="grid grid-rows-3 grid-cols-1 justify-between bg-[#16181C] p-8 rounded-xl my-4 relative">
+                  <div className="grid grid-rows-3 grid-cols-1 justify-between bg-[#16181C] p-8 rounded-xl relative">
                     <div className="flex items-center justify-between w-full relative">
                       <div className="flex gap-4 text-xs font-extralight absolute top-3 text-gray-400 items-center">
                         <p>
@@ -236,7 +237,7 @@ function Polls() {
                             lauren
                               ? "border-green-800 text-green-800 bg-green-100"
                               : "border-red-800 text-red-800 bg-red-100"
-                          } border px-5 py-1.5 rounded-full`}
+                          } border px-4 rounded-full`}
                         >
                           Lauren
                         </p>
@@ -245,7 +246,7 @@ function Polls() {
                             hotsauce
                               ? "border-green-800 text-green-800 bg-green-100"
                               : "border-red-800 text-red-800 bg-red-100"
-                          } border px-5 py-1.5 rounded-full`}
+                          } border px-4 rounded-full`}
                         >
                           HotSauce
                         </p>
@@ -254,34 +255,36 @@ function Polls() {
                             dagzen
                               ? "border-green-800 text-green-800 bg-green-100"
                               : "border-red-800 text-red-800 bg-red-100"
-                          } border px-5 py-1.5 rounded-full`}
+                          } border px-4 rounded-full`}
                         >
                           Dagzen
                         </p>
                       </div>
-                      <div>
-                        {findVoters.length === 0 ? (
-                          <form onSubmit={handleSubmit}>
-                            <input type="hidden" value={_id} />
-                            <button
-                              disabled={loading ? true : false}
-                              className="bg-gray-800 py-4 px-6 rounded-md disabled:opacity-50"
-                            >
-                              Will Mint
-                            </button>
-                          </form>
-                        ) : (
-                          <form onSubmit={handleUnvote}>
-                            <input type="hidden" value={_id} />
-                            <button
-                              disabled={loading ? true : false}
-                              className="bg-gray-800 py-4 px-6 rounded-md disabled:opacity-50"
-                            >
-                              Will Not Mint
-                            </button>
-                          </form>
-                        )}
-                      </div>
+                      {user && (
+                        <div>
+                          {findVoters.length === 0 ? (
+                            <form onSubmit={handleSubmit}>
+                              <input type="hidden" value={_id} />
+                              <button
+                                disabled={loading ? true : false}
+                                className="bg-gray-800 py-4 px-6 rounded-md disabled:opacity-50"
+                              >
+                                Will Mint
+                              </button>
+                            </form>
+                          ) : (
+                            <form onSubmit={handleUnvote}>
+                              <input type="hidden" value={_id} />
+                              <button
+                                disabled={loading ? true : false}
+                                className="bg-gray-800 py-4 px-6 rounded-md disabled:opacity-50"
+                              >
+                                Will Not Mint
+                              </button>
+                            </form>
+                          )}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
