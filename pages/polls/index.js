@@ -30,9 +30,9 @@ function Polls() {
   const guildId = "892235360501923850"; // NFT Radar
   // const guildId = "923082086372483183"; // DFC
   const moderatorRole = "892237845828341760"; // NFT Radar
-  // const voterRole = "916065396916899871"; // NFT Radar
+  const voterRole = "916065396916899871"; // NFT Radar
   // const moderatorRole = "933010814942720093";
-  const voterRole = "933010814942720093";
+  // const voterRole = "933010814942720093";
 
   const getGuilds = async () => {
     if (session) {
@@ -182,7 +182,6 @@ function Polls() {
               const findHotsauce = voters.filter((voter) => {
                 return voter.discordId === "449623048505786369";
               });
-              console.log("VOTERS", findLauren, findHotsauce);
               return (
                 <div key={index}>
                   {/* <div className="flex justify-between">
@@ -307,7 +306,7 @@ function Polls() {
                           Dagzen
                         </p> */}
                       </div>
-                      {user && (
+                      {guildRoles?.includes(voterRole) && (
                         <div>
                           {findVoters.length === 0 ? (
                             <form onSubmit={handleSubmit}>
