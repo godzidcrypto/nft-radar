@@ -76,6 +76,7 @@ function AddPoll({}) {
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
                     className="w-full p-3 text-sm border-gray-200 rounded-lg"
+                    required
                   />
                 </div>
 
@@ -86,6 +87,7 @@ function AddPoll({}) {
                     type="text"
                     onChange={(e) => setName(e.target.value)}
                     value={name}
+                    required
                   />
                 </div>
 
@@ -94,9 +96,10 @@ function AddPoll({}) {
                     <input
                       className="w-full p-3 text-sm border-gray-200 rounded-lg"
                       placeholder="Time (UTC)"
-                      type="text"
+                      type="time"
                       onChange={(e) => setTime(e.target.value)}
                       value={time}
+                      required
                     />
                   </div>
 
@@ -104,7 +107,7 @@ function AddPoll({}) {
                     <input
                       className="w-full p-3 text-sm border-gray-200 rounded-lg"
                       placeholder="WL Time (UTC)"
-                      type="text"
+                      type="time"
                       onChange={(e) => setWlTime(e.target.value)}
                       value={wlTime}
                     />
@@ -116,9 +119,12 @@ function AddPoll({}) {
                     <input
                       className="w-full p-3 text-sm border-gray-200 rounded-lg"
                       placeholder="Mint Price"
-                      type="text"
+                      type="number"
+                      step={1}
+                      min={0}
                       onChange={(e) => setMintPrice(e.target.value)}
                       value={mintPrice}
+                      required
                     />
                   </div>
 
@@ -126,7 +132,9 @@ function AddPoll({}) {
                     <input
                       className="w-full p-3 text-sm border-gray-200 rounded-lg"
                       placeholder="WL Mint Price"
-                      type="text"
+                      type="number"
+                      step={1}
+                      min={0}
                       onChange={(e) => setWlMintPrice(e.target.value)}
                       value={wlMintPrice}
                     />
@@ -138,9 +146,10 @@ function AddPoll({}) {
                     <input
                       className="w-full p-3 text-sm border-gray-200 rounded-lg"
                       placeholder="Twitter"
-                      type="text"
+                      type="url"
                       onChange={(e) => setTwitter(e.target.value)}
                       value={twitter}
+                      required
                     />
                   </div>
 
@@ -148,9 +157,10 @@ function AddPoll({}) {
                     <input
                       className="w-full p-3 text-sm border-gray-200 rounded-lg"
                       placeholder="Discord"
-                      type="text"
+                      type="url"
                       onChange={(e) => setDiscord(e.target.value)}
                       value={discord}
+                      required
                     />
                   </div>
 
@@ -158,7 +168,7 @@ function AddPoll({}) {
                     <input
                       className="w-full p-3 text-sm border-gray-200 rounded-lg"
                       placeholder="Website"
-                      type="text"
+                      type="url"
                       onChange={(e) => setWebsite(e.target.value)}
                       value={website}
                     />
@@ -169,9 +179,12 @@ function AddPoll({}) {
                   <input
                     className="w-full p-3 text-sm border-gray-200 rounded-lg"
                     placeholder="Quantity"
-                    type="text"
+                    type="number"
                     onChange={(e) => setQuantity(e.target.value)}
                     value={quantity}
+                    min={0}
+                    step={1}
+                    required
                   />
                 </div>
 
