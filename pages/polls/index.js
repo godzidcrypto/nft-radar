@@ -96,6 +96,12 @@ function Polls() {
     setLoading(false);
   }, [swrData]);
 
+  let today = new Date().toISOString();
+
+  const mintsToday = swrData.filter((data) => {
+    return data.date.substring(0, 10) === today.substring(0, 10);
+  });
+
   // filter swrdata to only show mints for today
   const admins = ["nozid16@gmail.com"];
 
@@ -113,7 +119,7 @@ function Polls() {
             {isMember.length === 1 ? "NFT Radar Member" : "Not a Member"}
           </p>
           <div className="grid grid-cols-2 gap-4">
-            {swrData?.map((item, index) => {
+            {mintsToday?.map((item, index) => {
               const {
                 _id,
                 date,
