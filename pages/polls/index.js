@@ -134,11 +134,11 @@ function Polls() {
           description={"Dolore nisi anim culpa cillum ullamco cillum."}
         />
         <div className={`py-12`}>
-          {guildRoles.includes(moderatorRole) && <AddPoll />}
+          {guildRoles?.includes(moderatorRole) && <AddPoll />}
           <p>
             {loading ? "LOADING" : "NOT LOADING"} |{" "}
             {/* {isMember.length === 1 ? "NFT Radar Member" : "Not a Member"} */}
-            {guildRoles.includes(voterRole)
+            {guildRoles?.includes(voterRole)
               ? "Verified Voter"
               : "Not Eligible to Vote"}
           </p>
@@ -290,7 +290,7 @@ function Polls() {
                           Dagzen
                         </p>
                       </div>
-                      {user && (
+                      {guildRoles?.includes(voterRole) && (
                         <div>
                           {findVoters.length === 0 ? (
                             <form onSubmit={handleSubmit}>
