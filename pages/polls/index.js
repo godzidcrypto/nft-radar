@@ -280,7 +280,7 @@ function Polls() {
                         >
                           HotSauce
                         </p>
-                        <p
+                        {/* <p
                           className={`${
                             dagzen
                               ? "border-green-800 text-green-800 bg-green-100"
@@ -288,7 +288,7 @@ function Polls() {
                           } border px-4 rounded-full`}
                         >
                           Dagzen
-                        </p>
+                        </p> */}
                       </div>
                       {guildRoles?.includes(voterRole) && (
                         <div>
