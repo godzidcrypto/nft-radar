@@ -188,7 +188,7 @@ function AddPoll({}) {
                   />
                 </div>
 
-                <div className="text-center grid gap-4 grid-cols-2 text-white">
+                {/* <div className="text-center grid gap-4 grid-cols-2 text-white">
                   <div>
                     <input className="sr-only" type="radio" tabindex="-1" />
                     <label
@@ -221,7 +221,7 @@ function AddPoll({}) {
                     </label>
                   </div>
 
-                  {/* <div>
+                  <div>
                     <input className="sr-only" type="radio" tabindex="-1" />
                     <label
                       for="option3"
@@ -235,8 +235,8 @@ function AddPoll({}) {
                     >
                       <span className="text-sm font-medium"> Dagzen </span>
                     </label>
-                  </div> */}
-                </div>
+                  </div>
+                </div> */}
 
                 <div className="mt-4 flex justify-end">
                   <button

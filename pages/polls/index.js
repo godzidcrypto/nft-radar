@@ -23,19 +23,28 @@ function Polls() {
 
   const [loading, setLoading] = useState(false);
 
-  const [guilds, setGuilds] = useState([]);
-  const [isMember, setIsMember] = useState(false);
+  // const [guilds, setGuilds] = useState([]);
+  // const [isMember, setIsMember] = useState(false);
+  const [userInfo, setUserInfo] = useState("");
   const [guildRoles, setGuildRoles] = useState([]);
   const guildId = "892235360501923850"; // NFT Radar
   // const guildId = "923082086372483183"; // DFC
   const moderatorRole = "892237845828341760"; // NFT Radar
-  const voterRole = "916065396916899871"; // NFT Radar
+  // const voterRole = "916065396916899871"; // NFT Radar
   // const moderatorRole = "933010814942720093";
-  // const voterRole = "933010814942720093";
+  const voterRole = "933010814942720093";
 
   const getGuilds = async () => {
     if (session) {
-      const guildRes = await fetch("https://discord.com/api/users/@me/guilds", {
+      // const guildRes = await fetch("https://discord.com/api/users/@me/guilds", {
+      //   headers: {
+      //     Authorization: "Bearer " + session.accessToken,
+      //   },
+      // }).then((res) => {
+      //   return res.json();
+      // });
+
+      const userRes = await fetch("https://discord.com/api/users/@me", {
         headers: {
           Authorization: "Bearer " + session.accessToken,
         },
@@ -54,14 +63,14 @@ function Polls() {
         return res.json();
       });
 
-      const member = guildRes?.filter((guild) => {
-        return guild.name === "Degen Fat Cats & Coin Flip";
-      });
+      // const member = guildRes?.filter((guild) => {
+      //   return guild.name === "Degen Fat Cats & Coin Flip";
+      // });
 
-      setIsMember(member);
-      setGuilds(guildRes);
+      // setIsMember(member);
+      // setGuilds(guildRes);
+      setUserInfo(userRes);
       setGuildRoles(guildRolesRes.roles);
-      return guildRes;
     }
   };
 
@@ -75,9 +84,9 @@ function Polls() {
 
     const id = e.target[0].value;
     const vote = true;
-    const email = user.email;
+    const discordId = userInfo.id;
 
-    const newVote = { id, vote, email };
+    const newVote = { id, vote, discordId };
 
     const res = await fetch(`/api/polls/${id}`, {
       method: "PATCH",
@@ -96,9 +105,9 @@ function Polls() {
 
     const id = e.target[0].value;
     const vote = false;
-    const email = user.email;
+    const discordId = userInfo.id;
 
-    const newVote = { id, vote, email };
+    const newVote = { id, vote, discordId };
 
     const res = await fetch(`/api/polls/${id}`, {
       method: "PATCH",
@@ -135,6 +144,7 @@ function Polls() {
         />
         <div className={`py-12`}>
           {guildRoles?.includes(moderatorRole) && <AddPoll />}
+          <AddPoll />
           <p>
             {loading ? "LOADING" : "NOT LOADING"} |{" "}
             {/* {isMember.length === 1 ? "NFT Radar Member" : "Not a Member"} */}
@@ -164,8 +174,15 @@ function Polls() {
                 voters,
               } = item;
               const findVoters = voters.filter((voter) => {
-                return voter.email === user?.email;
+                return voter.discordId === userInfo.id;
               });
+              const findLauren = voters.filter((voter) => {
+                return voter.discordId === "778658118854115418";
+              });
+              const findHotsauce = voters.filter((voter) => {
+                return voter.discordId === "449623048505786369";
+              });
+              console.log("VOTERS", findLauren, findHotsauce);
               return (
                 <div key={index}>
                   {/* <div className="flex justify-between">
@@ -264,7 +281,7 @@ function Polls() {
                       <div className="flex gap-2">
                         <p
                           className={`${
-                            lauren
+                            findLauren.length !== 0
                               ? "border-green-800 text-green-800 bg-green-100"
                               : "border-red-800 text-red-800 bg-red-100"
                           } border px-4 rounded-full`}
@@ -273,7 +290,7 @@ function Polls() {
                         </p>
                         <p
                           className={`${
-                            hotsauce
+                            findHotsauce.length !== 0
                               ? "border-green-800 text-green-800 bg-green-100"
                               : "border-red-800 text-red-800 bg-red-100"
                           } border px-4 rounded-full`}
@@ -290,7 +307,7 @@ function Polls() {
                           Dagzen
                         </p> */}
                       </div>
-                      {guildRoles?.includes(voterRole) && (
+                      {user && (
                         <div>
                           {findVoters.length === 0 ? (
                             <form onSubmit={handleSubmit}>
