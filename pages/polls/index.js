@@ -25,6 +25,13 @@ function Polls() {
 
   const [guilds, setGuilds] = useState([]);
   const [isMember, setIsMember] = useState(false);
+  const [guildRoles, setGuildRoles] = useState([]);
+  const guildId = "892235360501923850"; // NFT Radar
+  // const guildId = "923082086372483183"; // DFC
+  const moderatorRole = "892237845828341760"; // NFT Radar
+  const voterRole = "916065396916899871"; // NFT Radar
+  // const moderatorRole = "933010814942720093";
+  // const voterRole = "933010814942720093";
 
   const getGuilds = async () => {
     if (session) {
@@ -36,12 +43,24 @@ function Polls() {
         return res.json();
       });
 
+      const guildRolesRes = await fetch(
+        `https://discord.com/api/users/@me/guilds/${guildId}/member`,
+        {
+          headers: {
+            Authorization: "Bearer " + session.accessToken,
+          },
+        }
+      ).then((res) => {
+        return res.json();
+      });
+
       const member = guildRes?.filter((guild) => {
-        return guild.name === "NFT Radar";
+        return guild.name === "Degen Fat Cats & Coin Flip";
       });
 
       setIsMember(member);
       setGuilds(guildRes);
+      setGuildRoles(guildRolesRes.roles);
       return guildRes;
     }
   };
@@ -105,7 +124,7 @@ function Polls() {
   mintsToday.sort((a, b) => parseFloat(b.yes) - parseFloat(a.yes));
 
   // filter swrdata to only show mints for today
-  const admins = ["nozid16@gmail.com"];
+  // const admins = ["nozid16@gmail.com"];
 
   return (
     <Layout title={"NFT Radar | Daily Mint Polls"}>
@@ -115,10 +134,13 @@ function Polls() {
           description={"Dolore nisi anim culpa cillum ullamco cillum."}
         />
         <div className={`py-12`}>
-          {admins.includes(user?.email) && <AddPoll />}
+          {guildRoles.includes(moderatorRole) && <AddPoll />}
           <p>
             {loading ? "LOADING" : "NOT LOADING"} |{" "}
-            {isMember.length === 1 ? "NFT Radar Member" : "Not a Member"}
+            {/* {isMember.length === 1 ? "NFT Radar Member" : "Not a Member"} */}
+            {guildRoles.includes(voterRole)
+              ? "Verified Voter"
+              : "Not Eligible to Vote"}
           </p>
           <div className="grid grid-cols-2 gap-4">
             {mintsToday?.map((item, index) => {
