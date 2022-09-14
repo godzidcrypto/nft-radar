@@ -1,18 +1,31 @@
 import Layout from "../components/layout";
 import Hero from "../components/hero";
-import { getAllContentForHome } from "../lib/api";
+import { getAllContentForHome, getMintPollDate } from "../lib/api";
 import Container from "../components/container";
 import CoverImage from "../components/cover-image";
 import DateComponent from "../components/date";
 import Link from "next/link";
-import Discord from "../components/discord";
 import Twitter from "../components/twitter";
-import Solana from "../assets/images/solana.png";
-import Ethereum from "../assets/images/ethereum.png";
-import ContentfulImage from "../components/contentful-image";
 import Carousel from "../components/swiper";
+import useSWR, { SWRConfig } from "swr";
 
-export default function Index({ allContent }) {
+const fetcher = (url) => fetch(url).then((res) => res.json());
+const API = `/api/polls`;
+
+function Index({ allContent, selectedDate }) {
+  const { data: swrData } = useSWR(API, fetcher, {
+    refreshInterval: 1000,
+  });
+
+  const mintsToday = swrData.filter((data) => {
+    return (
+      data.date.substring(0, 10) ===
+      selectedDate[0].selectedDate.substring(0, 10)
+    );
+  });
+
+  mintsToday.sort((a, b) => parseFloat(b.yes) - parseFloat(a.yes));
+
   const {
     cryptoNewsCollection,
     projectWriteUpCollection,
@@ -82,12 +95,6 @@ export default function Index({ allContent }) {
     return route;
   };
 
-  console.log("result", result);
-  result.map((item) => {
-    console.log("CATEGORY", item[0]);
-    console.log("ITEMS", item[1].items);
-  });
-
   return (
     <>
       <Layout>
@@ -102,10 +109,35 @@ export default function Index({ allContent }) {
           <div className="grid grid-cols-[1fr_2fr_1fr] gap-8 py-12 relative">
             <div className="h-fit sticky top-32 rounded-xl">
               <h2 className="uppercase font-extralight pb-4">
-                Daily Mints (pagination if more than 4)
+                Daily Mints Poll
               </h2>
               <div className="grid gap-2">
-                <div className="bg-[#16181C] p-8 rounded-xl text-center grid items-center">
+                {mintsToday.map((item, index) => {
+                  const {
+                    _id,
+                    date,
+                    name,
+                    twitter,
+                    discord,
+                    website,
+                    mintPrice,
+                    quantity,
+                    yes,
+                  } = item;
+                  // Project Name - Supply | Price - # Votes
+                  return (
+                    <div className="bg-[#16181C] p-8 rounded-xl text-center grid items-center">
+                      {name} - {quantity}
+                      <div>
+                        <p className="text-xs font-thin">
+                          Mint Price: {mintPrice}
+                        </p>
+                        <p className="text-xs font-thin">Minting: {yes}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+                {/* <div className="bg-[#16181C] p-8 rounded-xl text-center grid items-center">
                   project
                   <div>
                     <p className="text-xs font-thin">18 upvotes</p>
@@ -132,7 +164,7 @@ export default function Index({ allContent }) {
                     <p className="text-xs font-thin">18 upvotes</p>
                     <p className="text-xs font-thin">6 downvotes</p>
                   </div>
-                </div>
+                </div> */}
               </div>
               <h2 className="uppercase font-extralight my-4">
                 Top 5 Collections by 24H Volume
@@ -594,9 +626,27 @@ export default function Index({ allContent }) {
   );
 }
 
-export async function getStaticProps() {
+export default function IndexPage({ allContent, selectedDate, fallback }) {
+  return (
+    <SWRConfig value={{ fallback }}>
+      <Index allContent={allContent} selectedDate={selectedDate} />
+    </SWRConfig>
+  );
+}
+
+export async function getServerSideProps() {
+  const res = await fetch(`${process.env.BACKEND_SERVER}/api/polls`);
+  const data = await res.json();
+  const selectedDate = (await getMintPollDate()) ?? [];
+
   const allContent = (await getAllContentForHome()) ?? [];
   return {
-    props: { allContent },
+    props: {
+      allContent,
+      selectedDate,
+      fallback: {
+        [API]: data,
+      },
+    },
   };
 }
