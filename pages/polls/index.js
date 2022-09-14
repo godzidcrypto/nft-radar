@@ -9,13 +9,16 @@ import Website from "../../components/website";
 import AddPoll from "../../components/add-poll";
 import { useEffect, useState } from "react";
 import DateComponent from "../../components/date";
+import { getMintPollDate } from "../../lib/api";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 const API = `/api/polls`;
 
-function Polls() {
+function Polls({ selectedDate }) {
   const { data: session } = useSession();
   const user = session?.user;
+
+  console.log("SELECTED", selectedDate[0].selectedDate);
 
   const { data: swrData } = useSWR(API, fetcher, {
     refreshInterval: 1000,
@@ -23,27 +26,14 @@ function Polls() {
 
   const [loading, setLoading] = useState(false);
 
-  // const [guilds, setGuilds] = useState([]);
-  // const [isMember, setIsMember] = useState(false);
   const [userInfo, setUserInfo] = useState("");
   const [guildRoles, setGuildRoles] = useState([]);
   const guildId = "892235360501923850"; // NFT Radar
-  // const guildId = "923082086372483183"; // DFC
   const moderatorRole = "892237845828341760"; // NFT Radar
   const voterRole = "916065396916899871"; // NFT Radar
-  // const moderatorRole = "933010814942720093";
-  // const voterRole = "933010814942720093";
 
   const getGuilds = async () => {
     if (session) {
-      // const guildRes = await fetch("https://discord.com/api/users/@me/guilds", {
-      //   headers: {
-      //     Authorization: "Bearer " + session.accessToken,
-      //   },
-      // }).then((res) => {
-      //   return res.json();
-      // });
-
       const userRes = await fetch("https://discord.com/api/users/@me", {
         headers: {
           Authorization: "Bearer " + session.accessToken,
@@ -124,10 +114,13 @@ function Polls() {
     setLoading(false);
   }, [swrData]);
 
-  let today = new Date().toISOString();
+  // let today = new Date().toISOString();
 
   const mintsToday = swrData.filter((data) => {
-    return data.date.substring(0, 10) === today.substring(0, 10);
+    return (
+      data.date.substring(0, 10) ===
+      selectedDate[0].selectedDate.substring(0, 10)
+    );
   });
 
   mintsToday.sort((a, b) => parseFloat(b.yes) - parseFloat(a.yes));
@@ -343,10 +336,10 @@ function Polls() {
   );
 }
 
-export default function PollsPage({ fallback }) {
+export default function PollsPage({ selectedDate, fallback }) {
   return (
     <SWRConfig value={{ fallback }}>
-      <Polls />
+      <Polls selectedDate={selectedDate} />
     </SWRConfig>
   );
 }
@@ -355,10 +348,12 @@ export async function getServerSideProps() {
   // Fetch data from external API
   const res = await fetch(`${process.env.BACKEND_SERVER}/api/polls`);
   const data = await res.json();
+  const selectedDate = (await getMintPollDate()) ?? [];
 
   // Pass data to the page via props
   return {
     props: {
+      selectedDate,
       fallback: {
         [API]: data,
       },
