@@ -10,6 +10,7 @@ import AddPoll from "../../components/add-poll";
 import { useEffect, useState } from "react";
 import DateComponent from "../../components/date";
 import { getMintPollDate } from "../../lib/api";
+import ContentfulImage from "../../components/contentful-image";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 const API = `/api/polls`;
@@ -17,8 +18,6 @@ const API = `/api/polls`;
 function Polls({ selectedDate }) {
   const { data: session } = useSession();
   const user = session?.user;
-
-  console.log("SELECTED", selectedDate[0].selectedDate);
 
   const { data: swrData } = useSWR(API, fetcher, {
     refreshInterval: 1000,
@@ -137,6 +136,7 @@ function Polls({ selectedDate }) {
         />
         <div className={`py-12`}>
           {guildRoles?.includes(moderatorRole) && <AddPoll />}
+          <AddPoll></AddPoll>
           <p>
             {loading ? "LOADING" : "NOT LOADING"} |{" "}
             {/* {isMember.length === 1 ? "NFT Radar Member" : "Not a Member"} */}
@@ -164,6 +164,7 @@ function Polls({ selectedDate }) {
                 yes,
                 no,
                 voters,
+                imageUrl,
               } = item;
               const findVoters = voters.filter((voter) => {
                 return voter.discordId === userInfo.id;
@@ -218,6 +219,13 @@ function Polls({ selectedDate }) {
                         </div>
                       </div>
                       <p className="text-green-300">Minting: {yes}</p>
+                      <div>
+                        <ContentfulImage
+                          src={imageUrl}
+                          width={35}
+                          height={35}
+                        />
+                      </div>
                     </div>
                     <dl class="grid gap-4 grid-cols-3">
                       <div class="flex flex-col py-2 text-center border border-gray-100 rounded-lg">

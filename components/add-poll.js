@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 function AddPoll({}) {
   const [date, setDate] = useState(new Date().toISOString().substring(0, 10));
@@ -14,9 +14,36 @@ function AddPoll({}) {
   const [lauren, setLauren] = useState(false);
   const [hotsauce, setHotsauce] = useState(false);
   const [dagzen, setDagzen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState();
+
+  const imageRef = useRef();
+  const resetImage = () => {
+    imageRef.current.value = "";
+  };
+
+  const handleFileChange = (event) => {
+    setSelectedImage(event.target.files[0]);
+    console.log(event.target.files[0]);
+  };
 
   const handleSubmitPoll = async (e) => {
     e.preventDefault();
+
+    const imageData = new FormData();
+    imageData.append("file", selectedImage);
+    imageData.append("upload_preset", "u7vljuld");
+
+    const imageRes = await fetch(
+      `https://api.cloudinary.com/v1_1/${`dsljry28v`}/image/upload`,
+      {
+        method: "POST",
+        body: imageData,
+      }
+    ).then((res) => {
+      return res.json();
+    });
+
+    const imageUrl = imageRes.secure_url;
 
     const newPoll = {
       date,
@@ -32,6 +59,7 @@ function AddPoll({}) {
       lauren,
       hotsauce,
       dagzen,
+      imageUrl,
     };
 
     console.log(newPoll);
@@ -45,7 +73,7 @@ function AddPoll({}) {
     });
 
     if (res.ok) {
-      setDate("");
+      setDate(new Date().toISOString().substring(0, 10));
       setTime("");
       setWlTime("");
       setName("");
@@ -58,6 +86,7 @@ function AddPoll({}) {
       setLauren(false);
       setHotsauce(false);
       setDagzen(false);
+      resetImage();
     }
 
     return res;
@@ -237,6 +266,16 @@ function AddPoll({}) {
                     </label>
                   </div>
                 </div> */}
+
+                <div>
+                  <input
+                    className="w-full text-sm border-gray-200 bg-gray-100 rounded-lg"
+                    accept=".jpg, .png, .jpeg"
+                    type="file"
+                    onChange={handleFileChange}
+                    ref={imageRef}
+                  />
+                </div>
 
                 <div className="mt-4 flex justify-end">
                   <button
