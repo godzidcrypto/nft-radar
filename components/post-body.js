@@ -18,6 +18,7 @@ const customMarkdownOptions = (content) => ({
     ),
     [INLINES.HYPERLINK]: (node) => {
       if (node.data.uri.indexOf("status") !== -1) {
+        // Tweets
         const tweetId = node.data.uri.split("/").slice(-1)[0];
         return (
           <div className="w-3/4 mx-auto">
@@ -25,6 +26,7 @@ const customMarkdownOptions = (content) => ({
           </div>
         );
       } else if (node.data.uri.indexOf("watch") !== -1) {
+        // YouTube Links
         const youtubeId = node.data.uri.split("=").slice(-1)[0];
         return (
           <div className="w-full flex justify-center">
@@ -32,9 +34,13 @@ const customMarkdownOptions = (content) => ({
           </div>
         );
       } else if (node.data.uri.indexOf("track") !== -1) {
+        // Audius Links
+        console.log("NODE", node);
+        const audiusLink = node.data.uri.split("/").slice(-1)[0];
+        const audiusEmbed = audiusLink.split("?")[0];
         return (
           <iframe
-            src="https://audius.co/embed/track/O6agV?flavor=compact"
+            src={`https://audius.co/embed/track/${audiusEmbed}?flavor=compact`}
             className="w-full"
           />
         );
