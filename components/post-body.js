@@ -4,22 +4,39 @@ import markdownStyles from "./markdown-styles.module.css";
 import RichTextAsset from "./rich-text-asset";
 import convertToSlug from "../lib/convertToSlug";
 import TweetEmbed from "react-tweet-embed";
+import YouTube from "react-youtube";
 
 const customMarkdownOptions = (content) => ({
   renderNode: {
     [BLOCKS.EMBEDDED_ASSET]: (node) => (
-      <RichTextAsset
-        id={node.data.target.sys.id}
-        assets={content.links?.assets?.block}
-      />
+      <div className="w-full flex justify-center">
+        <RichTextAsset
+          id={node.data.target.sys.id}
+          assets={content.links?.assets?.block}
+        />
+      </div>
     ),
     [INLINES.HYPERLINK]: (node) => {
       if (node.data.uri.indexOf("status") !== -1) {
         const tweetId = node.data.uri.split("/").slice(-1)[0];
         return (
-          <div className="w-full flex justify-center">
+          <div className="w-3/4 mx-auto">
             <TweetEmbed tweetId={tweetId} options={{ theme: "dark" }} />
           </div>
+        );
+      } else if (node.data.uri.indexOf("watch") !== -1) {
+        const youtubeId = node.data.uri.split("=").slice(-1)[0];
+        return (
+          <div className="w-full flex justify-center">
+            <YouTube videoId={youtubeId} />
+          </div>
+        );
+      } else if (node.data.uri.indexOf("track") !== -1) {
+        return (
+          <iframe
+            src="https://audius.co/embed/track/O6agV?flavor=compact"
+            className="w-full"
+          />
         );
       } else {
         return (
