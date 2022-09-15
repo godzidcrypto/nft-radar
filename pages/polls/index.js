@@ -136,19 +136,21 @@ function Polls({ selectedDate }) {
         />
         <div className={`py-12`}>
           {guildRoles?.includes(moderatorRole) && <AddPoll />}
-          <AddPoll></AddPoll>
-          <p>
-            {loading ? "LOADING" : "NOT LOADING"} |{" "}
-            {/* {isMember.length === 1 ? "NFT Radar Member" : "Not a Member"} */}
-            {guildRoles?.includes(voterRole)
-              ? "Verified Voter"
-              : "Not Eligible to Vote"}
-          </p>
+          <div className="text-4xl text-center mb-8">
+            <p className="text-lg font-extralight">
+              {guildRoles?.includes(voterRole)
+                ? "Verified Voter"
+                : "Not Eligible to Vote"}
+            </p>
+            <p className="font-bold">
+              Mints for{" "}
+              <DateComponent dateString={selectedDate[0].selectedDate} />
+            </p>
+          </div>
           <div className="grid grid-cols-2 gap-4">
             {mintsToday?.map((item, index) => {
               const {
                 _id,
-                date,
                 time,
                 wlTime,
                 name,
@@ -158,11 +160,7 @@ function Polls({ selectedDate }) {
                 mintPrice,
                 wlMintPrice,
                 quantity,
-                lauren,
-                hotsauce,
-                dagzen,
                 yes,
-                no,
                 voters,
                 imageUrl,
               } = item;
@@ -176,58 +174,52 @@ function Polls({ selectedDate }) {
                 return voter.discordId === "449623048505786369";
               });
               return (
-                <div key={index}>
-                  {/* <div className="flex justify-between">
-                  <DateComponent dateString={date} />
-                </div> */}
-                  <div className="grid grid-rows-3 grid-cols-1 justify-between bg-[#16181C] p-8 rounded-xl relative">
-                    <div className="flex items-center justify-between w-full relative">
-                      <div className="flex gap-4 text-xs font-extralight absolute top-3 text-gray-400 items-center">
-                        <p>
-                          <DateComponent dateString={date} />
-                        </p>
-                        {findVoters.length !== 0 ? (
-                          <p className="border-gray-800 text-gray-800 bg-gray-100 border px-2 rounded-full">
-                            ✅ Voted
-                          </p>
-                        ) : null}
-                      </div>
-                      <div className="flex items-center gap-4">
-                        <h3 className="text-3xl font-bold">{name}</h3>
-                        <div className="flex items-center">
-                          <a
-                            className="mx-2 hover:scale-125 duration-200"
-                            href={twitter}
-                            target="_blank"
-                          >
-                            <Twitter fill={"#ffffff"} width={16} />
-                          </a>
-                          <a
-                            className="mx-2 scale-125 hover:scale-150 duration-200"
-                            href={discord}
-                            target="_blank"
-                          >
-                            <Discord fill={"#ffffff"} width={16} />
-                          </a>
-                          <a
-                            className="mx-2 scale-125 hover:scale-150 duration-200"
-                            href={website}
-                            target="_blank"
-                          >
-                            <Website fill={"#ffffff"} width={16} />
-                          </a>
-                        </div>
-                      </div>
-                      <p className="text-green-300">Minting: {yes}</p>
-                      <div>
-                        <ContentfulImage
-                          src={imageUrl}
-                          width={35}
-                          height={35}
-                        />
-                      </div>
+                <div
+                  key={index}
+                  class="overflow-hidden border border-gray-600 rounded-lg grid grid-cols-1 group sm:grid-cols-3 bg-[#16181C]"
+                >
+                  <div class="relative">
+                    <div>
+                      <ContentfulImage
+                        src={imageUrl}
+                        layout="fill"
+                        objectFit="cover"
+                      />
                     </div>
-                    <dl class="grid gap-4 grid-cols-3">
+                  </div>
+
+                  <div class="p-8 sm:col-span-2 relative">
+                    <span class="absolute right-4 top-6 rounded-full px-3 py-1.5 bg-green-100 text-green-600 font-medium text-xs">
+                      Minting: {yes}
+                    </span>
+
+                    <div className="flex items-center">
+                      <a
+                        className="mr-2 hover:scale-125 duration-200"
+                        href={twitter}
+                        target="_blank"
+                      >
+                        <Twitter fill={"#ffffff"} width={16} />
+                      </a>
+                      <a
+                        className="mx-2 scale-125 hover:scale-150 duration-200"
+                        href={discord}
+                        target="_blank"
+                      >
+                        <Discord fill={"#ffffff"} width={16} />
+                      </a>
+                      <a
+                        className="mx-2 scale-125 hover:scale-150 duration-200"
+                        href={website}
+                        target="_blank"
+                      >
+                        <Website fill={"#ffffff"} width={16} />
+                      </a>
+                    </div>
+
+                    <h3 className="mt-3 text-xl font-bold">{name}</h3>
+
+                    <dl class="mt-4 grid gap-4 grid-cols-3">
                       <div class="flex flex-col py-2 text-center border border-gray-100 rounded-lg">
                         <dt class="order-last text-xs font-medium text-gray-500">
                           WL Mint Price
@@ -277,36 +269,27 @@ function Polls({ selectedDate }) {
                         </dd>
                       </div>
                     </dl>
-                    <div className="flex justify-between items-center">
-                      <div className="flex gap-2">
-                        <p
-                          className={`${
-                            findLauren.length !== 0
-                              ? "border-green-800 text-green-800 bg-green-100"
-                              : "border-red-800 text-red-800 bg-red-100"
-                          } border px-4 rounded-full`}
-                        >
-                          Lauren
-                        </p>
-                        <p
-                          className={`${
-                            findHotsauce.length !== 0
-                              ? "border-green-800 text-green-800 bg-green-100"
-                              : "border-red-800 text-red-800 bg-red-100"
-                          } border px-4 rounded-full`}
-                        >
-                          HoTsAuCe
-                        </p>
-                        {/* <p
-                          className={`${
-                            dagzen
-                              ? "border-green-800 text-green-800 bg-green-100"
-                              : "border-red-800 text-red-800 bg-red-100"
-                          } border px-4 rounded-full`}
-                        >
-                          Dagzen
-                        </p> */}
-                      </div>
+                    <div className="mt-4 flex gap-1">
+                      <p
+                        className={`${
+                          findLauren.length !== 0
+                            ? "border-green-800 text-green-800 bg-green-100"
+                            : "border-red-800 text-red-800 bg-red-100"
+                        } inline-block px-3 py-1 text-xs font-semibold rounded-full`}
+                      >
+                        Lauren
+                      </p>
+                      <p
+                        className={`${
+                          findHotsauce.length !== 0
+                            ? "border-green-800 text-green-800 bg-green-100"
+                            : "border-red-800 text-red-800 bg-red-100"
+                        } inline-block px-3 py-1 text-xs font-semibold rounded-full`}
+                      >
+                        HoTsAuCe
+                      </p>
+                    </div>
+                    <div class="absolute flex justify-end bottom-0 right-0 text-sm">
                       {guildRoles?.includes(voterRole) && (
                         <div>
                           {findVoters.length === 0 ? (
@@ -314,7 +297,9 @@ function Polls({ selectedDate }) {
                               <input type="hidden" value={_id} />
                               <button
                                 disabled={loading ? true : false}
-                                className="bg-gray-800 py-4 px-6 rounded-md disabled:opacity-50"
+                                className={`${
+                                  loading ? "bg-gray-500" : "bg-green-600"
+                                } -mr-[2px] -mb-[2px] inline-flex items-center gap-1 rounded-tl-xl rounded-br-xl py-1.5 px-3 text-white`}
                               >
                                 Will Mint
                               </button>
@@ -324,7 +309,9 @@ function Polls({ selectedDate }) {
                               <input type="hidden" value={_id} />
                               <button
                                 disabled={loading ? true : false}
-                                className="bg-gray-800 py-4 px-6 rounded-md disabled:opacity-50"
+                                className={`${
+                                  loading ? "bg-gray-500" : "bg-red-500"
+                                } -mr-[2px] -mb-[2px] inline-flex items-center gap-1 rounded-tl-xl rounded-br-xl py-1.5 px-3 text-white`}
                               >
                                 Will Not Mint
                               </button>
