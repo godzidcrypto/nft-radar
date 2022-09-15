@@ -3,6 +3,7 @@ import { BLOCKS, INLINES } from "@contentful/rich-text-types";
 import markdownStyles from "./markdown-styles.module.css";
 import RichTextAsset from "./rich-text-asset";
 import convertToSlug from "../lib/convertToSlug";
+import TweetEmbed from "react-tweet-embed";
 
 const customMarkdownOptions = (content) => ({
   renderNode: {
@@ -13,15 +14,24 @@ const customMarkdownOptions = (content) => ({
       />
     ),
     [INLINES.HYPERLINK]: (node) => {
-      return (
-        <a
-          href={node.data.uri}
-          target="_blank"
-          className="text-[#60a5fa] underline hover:text-[#93c5fd]"
-        >
-          {node.content[0].value}
-        </a>
-      );
+      if (node.data.uri.indexOf("status") !== -1) {
+        const tweetId = node.data.uri.split("/").slice(-1)[0];
+        return (
+          <div className="w-full flex justify-center">
+            <TweetEmbed tweetId={tweetId} options={{ theme: "dark" }} />
+          </div>
+        );
+      } else {
+        return (
+          <a
+            href={node.data.uri}
+            target="_blank"
+            className="text-[#60a5fa] underline hover:text-[#93c5fd]"
+          >
+            {node.content[0].value}
+          </a>
+        );
+      }
     },
     [BLOCKS.HEADING_2]: (node) => {
       const text = node.content[0].value;
