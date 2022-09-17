@@ -2,6 +2,7 @@ import Layout from "../../components/layout";
 import { getAllInterviews, getSingleInterview } from "../../lib/api";
 import Container from "../../components/container";
 import EntryView from "../../components/entry-view";
+import YouTube from "react-youtube";
 
 function InterviewItem({ interview, allInterviews }) {
   const {
@@ -15,6 +16,22 @@ function InterviewItem({ interview, allInterviews }) {
     author,
   } = interview[0];
 
+  let mediaId;
+  let isVideo;
+
+  // const videoId = videoLink.split("=").slice(-1)[0];
+  // const audiusLink = videoLink.split("/").slice(-1)[0];
+  // const audiusEmbed = audiusLink.split("?")[0];
+
+  if (videoLink.indexOf("youtube.com") !== -1) {
+    isVideo = true;
+    mediaId = videoLink.split("=").slice(-1)[0];
+  } else if (videoLink.indexOf("audius.co") !== -1) {
+    isVideo = false;
+    const audiusLink = videoLink.split("/").slice(-1)[0];
+    mediaId = audiusLink.split("?")[0];
+  }
+
   const otherInterviews = allInterviews.filter((otherInterview) => {
     return otherInterview.title !== interview[0].title;
   });
@@ -25,6 +42,8 @@ function InterviewItem({ interview, allInterviews }) {
   const headings = content.filter((content) => {
     return content.nodeType.includes("heading");
   });
+
+  console.log("MEDIA", mediaId);
 
   return (
     <Layout title={title}>
@@ -39,7 +58,30 @@ function InterviewItem({ interview, allInterviews }) {
           headings={headings}
           otherEntries={otherInterviews}
           route={"interviews"}
-        ></EntryView>
+        >
+          {isVideo ? (
+            <div className="mt-6 bg-gray-800 p-6 rounded-md">
+              <span className="text-2xl font-bold uppercase">
+                Video Summary
+              </span>
+              <div className="w-full flex justify-center mt-4">
+                <YouTube videoId={mediaId} />
+              </div>
+            </div>
+          ) : (
+            <div className="mt-6 bg-gray-800 p-6 rounded-md">
+              <span className="text-2xl font-bold uppercase">
+                Audio Summary
+              </span>
+              <div className="w-full flex justify-center mt-4">
+                <iframe
+                  src={`https://audius.co/embed/track/${mediaId}?flavor=compact`}
+                  className="w-full"
+                />
+              </div>
+            </div>
+          )}
+        </EntryView>
       </Container>
     </Layout>
   );
