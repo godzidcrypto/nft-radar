@@ -54,6 +54,7 @@ function AnalysisItem({ analysis, allAnalysis }) {
         <a
           className="grid grid-cols-1 overflow-hidden border border-gray-100 rounded-lg group sm:grid-cols-3"
           href={url}
+          target="_blank"
         >
           <div className="relative">
             <img
