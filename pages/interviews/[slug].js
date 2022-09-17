@@ -19,14 +19,10 @@ function InterviewItem({ interview, allInterviews }) {
   let mediaId;
   let isVideo;
 
-  // const videoId = videoLink.split("=").slice(-1)[0];
-  // const audiusLink = videoLink.split("/").slice(-1)[0];
-  // const audiusEmbed = audiusLink.split("?")[0];
-
-  if (videoLink.indexOf("youtube.com") !== -1) {
+  if (videoLink?.indexOf("youtube.com") !== -1) {
     isVideo = true;
     mediaId = videoLink.split("=").slice(-1)[0];
-  } else if (videoLink.indexOf("audius.co") !== -1) {
+  } else if (videoLink?.indexOf("audius.co") !== -1) {
     isVideo = false;
     const audiusLink = videoLink.split("/").slice(-1)[0];
     mediaId = audiusLink.split("?")[0];

@@ -8,7 +8,7 @@ function NewsItem({ cryptoNews, allCryptoNews }) {
   const { sys, title, chain, featuredImage, videoLink, writeUp, author } =
     cryptoNews[0];
 
-  const videoId = videoLink.split("=").slice(-1)[0];
+  const videoId = videoLink?.split("=").slice(-1)[0];
 
   const otherNews = allCryptoNews.filter((news) => {
     return news.title !== cryptoNews[0].title;

@@ -19,7 +19,7 @@ function EducationalContentItem({ educationalContent, allEducationalContent }) {
     author,
   } = educationalContent[0];
 
-  const videoId = videoLink.split("=").slice(-1)[0];
+  const videoId = videoLink?.split("=").slice(-1)[0];
 
   const otherEducationalContent = allEducationalContent.filter(
     (otherEducation) => {

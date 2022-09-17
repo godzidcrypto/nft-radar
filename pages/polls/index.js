@@ -176,9 +176,9 @@ function Polls({ selectedDate }) {
               return (
                 <div
                   key={index}
-                  class="overflow-hidden border border-gray-600 rounded-lg grid grid-cols-1 group sm:grid-cols-3 bg-[#16181C]"
+                  className="overflow-hidden border border-gray-600 rounded-lg grid grid-cols-1 group sm:grid-cols-3 bg-[#16181C]"
                 >
-                  <div class="relative">
+                  <div className="relative">
                     <div>
                       <ContentfulImage
                         src={imageUrl}
@@ -188,8 +188,8 @@ function Polls({ selectedDate }) {
                     </div>
                   </div>
 
-                  <div class="p-8 sm:col-span-2 relative">
-                    <span class="absolute right-4 top-6 rounded-full px-3 py-1.5 bg-green-100 text-green-600 font-medium text-xs">
+                  <div className="p-8 sm:col-span-2 relative">
+                    <span className="absolute right-4 top-6 rounded-full px-3 py-1.5 bg-green-100 text-green-600 font-medium text-xs">
                       Minting: {yes}
                     </span>
 
@@ -219,52 +219,52 @@ function Polls({ selectedDate }) {
 
                     <h3 className="mt-3 text-xl font-bold">{name}</h3>
 
-                    <dl class="mt-4 grid gap-4 grid-cols-3">
-                      <div class="flex flex-col py-2 text-center border border-gray-100 rounded-lg">
-                        <dt class="order-last text-xs font-medium text-gray-500">
+                    <dl className="mt-4 grid gap-4 grid-cols-3">
+                      <div className="flex flex-col py-2 text-center border border-gray-100 rounded-lg">
+                        <dt className="order-last text-xs font-medium text-gray-500">
                           WL Mint Price
                         </dt>
 
-                        <dd class="text-md font-extrabold text-gray-300">
+                        <dd className="text-md font-extrabold text-gray-300">
                           {wlMintPrice}
                         </dd>
                       </div>
-                      <div class="flex flex-col py-2 text-center border border-gray-100 rounded-lg">
-                        <dt class="order-last text-xs font-medium text-gray-500">
+                      <div className="flex flex-col py-2 text-center border border-gray-100 rounded-lg">
+                        <dt className="order-last text-xs font-medium text-gray-500">
                           WL Mint Time
                         </dt>
 
-                        <dd class="text-md font-extrabold text-gray-300">
+                        <dd className="text-md font-extrabold text-gray-300">
                           {wlTime}
                         </dd>
                       </div>
 
-                      <div class="row-span-2 justify-center flex flex-col py-2 text-center border border-gray-100 rounded-lg">
-                        <dt class="order-last text-xs font-medium text-gray-500">
+                      <div className="row-span-2 justify-center flex flex-col py-2 text-center border border-gray-100 rounded-lg">
+                        <dt className="order-last text-xs font-medium text-gray-500">
                           Quantity
                         </dt>
 
-                        <dd class="text-md font-extrabold text-gray-300">
+                        <dd className="text-md font-extrabold text-gray-300">
                           {quantity}
                         </dd>
                       </div>
 
-                      <div class="flex flex-col py-2 text-center border border-gray-100 rounded-lg">
-                        <dt class="order-last text-xs font-medium text-gray-500">
+                      <div className="flex flex-col py-2 text-center border border-gray-100 rounded-lg">
+                        <dt className="order-last text-xs font-medium text-gray-500">
                           Mint Price
                         </dt>
 
-                        <dd class="text-md font-extrabold text-gray-300">
+                        <dd className="text-md font-extrabold text-gray-300">
                           {mintPrice}
                         </dd>
                       </div>
 
-                      <div class="flex flex-col py-2 text-center border border-gray-100 rounded-lg">
-                        <dt class="order-last text-xs font-medium text-gray-500">
+                      <div className="flex flex-col py-2 text-center border border-gray-100 rounded-lg">
+                        <dt className="order-last text-xs font-medium text-gray-500">
                           Mint Time
                         </dt>
 
-                        <dd class="text-md font-extrabold text-gray-300">
+                        <dd className="text-md font-extrabold text-gray-300">
                           {time}
                         </dd>
                       </div>
@@ -289,7 +289,7 @@ function Polls({ selectedDate }) {
                         HoTsAuCe
                       </p>
                     </div>
-                    <div class="absolute flex justify-end bottom-0 right-0 text-sm">
+                    <div className="absolute flex justify-end bottom-0 right-0 text-sm">
                       {guildRoles?.includes(voterRole) && (
                         <div>
                           {findVoters.length === 0 ? (
