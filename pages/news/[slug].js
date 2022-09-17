@@ -2,10 +2,13 @@ import Layout from "../../components/layout";
 import { getAllCryptoNews, getSingleCryptoNews } from "../../lib/api";
 import Container from "../../components/container";
 import EntryView from "../../components/entry-view";
+import YouTube from "react-youtube";
 
 function NewsItem({ cryptoNews, allCryptoNews }) {
   const { sys, title, chain, featuredImage, videoLink, writeUp, author } =
     cryptoNews[0];
+
+  const videoId = videoLink.split("=").slice(-1)[0];
 
   const otherNews = allCryptoNews.filter((news) => {
     return news.title !== cryptoNews[0].title;
@@ -31,7 +34,18 @@ function NewsItem({ cryptoNews, allCryptoNews }) {
           headings={headings}
           otherEntries={otherNews}
           route={"news"}
-        ></EntryView>
+        >
+          {videoLink && (
+            <div className="mt-6 bg-gray-800 p-6 rounded-md">
+              <span className="text-2xl font-bold uppercase">
+                Video Summary
+              </span>
+              <div className="w-full flex justify-center mt-4">
+                <YouTube videoId={videoId} />
+              </div>
+            </div>
+          )}
+        </EntryView>
       </Container>
     </Layout>
   );

@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 
-function AddPoll({}) {
+function AddPoll({ isRequest = false }) {
   const [date, setDate] = useState(new Date().toISOString().substring(0, 10));
   const [time, setTime] = useState("");
   const [wlTime, setWlTime] = useState("");
