@@ -8,6 +8,8 @@ import Link from "next/link";
 import Twitter from "../components/twitter";
 import Carousel from "../components/swiper";
 import useSWR, { SWRConfig } from "swr";
+import Discord from "../components/discord";
+import Website from "../components/website";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 const API = `/api/polls`;
@@ -114,8 +116,6 @@ function Index({ allContent, selectedDate }) {
               <div className="grid gap-2">
                 {mintsToday.map((item, index) => {
                   const {
-                    _id,
-                    date,
                     name,
                     twitter,
                     discord,
@@ -126,50 +126,50 @@ function Index({ allContent, selectedDate }) {
                   } = item;
                   // Project Name - Supply | Price - # Votes
                   return (
-                    <div className="bg-[#16181C] p-8 rounded-xl text-center grid items-center">
-                      {name} - {quantity}
-                      <div>
+                    <div className="bg-[#16181C] p-4 rounded-xl grid items-center">
+                      <div className="flex items-center mb-2">
+                        <a
+                          className="mr-2 hover:scale-125 duration-200"
+                          href={twitter}
+                          target="_blank"
+                        >
+                          <Twitter fill={"#ffffff"} width={12} />
+                        </a>
+                        <a
+                          className="mx-2 scale-125 hover:scale-150 duration-200"
+                          href={discord}
+                          target="_blank"
+                        >
+                          <Discord fill={"#ffffff"} width={12} />
+                        </a>
+                        {website && (
+                          <a
+                            className="mx-2 scale-125 hover:scale-150 duration-200"
+                            href={website}
+                            target="_blank"
+                          >
+                            <Website fill={"#ffffff"} width={12} />
+                          </a>
+                        )}
+                      </div>
+                      <span className="font-bold">{name}</span>
+                      <div className="grid grid-cols-3 gap-2 mt-2">
+                        <p className="text-xs font-thin">Supply: {quantity}</p>
                         <p className="text-xs font-thin">
                           Mint Price: {mintPrice}
                         </p>
-                        <p className="text-xs font-thin">Minting: {yes}</p>
+                        <p className="text-xs font-thin text-green-300">
+                          Votes: {yes}
+                        </p>
                       </div>
                     </div>
                   );
                 })}
-                {/* <div className="bg-[#16181C] p-8 rounded-xl text-center grid items-center">
-                  project
-                  <div>
-                    <p className="text-xs font-thin">18 upvotes</p>
-                    <p className="text-xs font-thin">6 downvotes</p>
-                  </div>
-                </div>
-                <div className="bg-[#16181C] p-8 rounded-xl text-center grid items-center">
-                  project
-                  <div>
-                    <p className="text-xs font-thin">18 upvotes</p>
-                    <p className="text-xs font-thin">6 downvotes</p>
-                  </div>
-                </div>
-                <div className="bg-[#16181C] p-8 rounded-xl text-center grid items-center">
-                  project
-                  <div>
-                    <p className="text-xs font-thin">18 upvotes</p>
-                    <p className="text-xs font-thin">6 downvotes</p>
-                  </div>
-                </div>
-                <div className="bg-[#16181C] p-8 rounded-xl text-center grid items-center">
-                  project
-                  <div>
-                    <p className="text-xs font-thin">18 upvotes</p>
-                    <p className="text-xs font-thin">6 downvotes</p>
-                  </div>
-                </div> */}
               </div>
               <h2 className="uppercase font-extralight my-4">
                 Top 5 Collections by 24H Volume
               </h2>
-              <div className="grid gap-4">
+              <div className="grid gap-2">
                 <div className="bg-[#16181C] rounded-xl grid p-6">
                   <span>Degen Fat Cats</span>
                 </div>

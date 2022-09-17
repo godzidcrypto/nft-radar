@@ -208,13 +208,15 @@ function Polls({ selectedDate }) {
                       >
                         <Discord fill={"#ffffff"} width={16} />
                       </a>
-                      <a
-                        className="mx-2 scale-125 hover:scale-150 duration-200"
-                        href={website}
-                        target="_blank"
-                      >
-                        <Website fill={"#ffffff"} width={16} />
-                      </a>
+                      {website && (
+                        <a
+                          className="mx-2 scale-125 hover:scale-150 duration-200"
+                          href={website}
+                          target="_blank"
+                        >
+                          <Website fill={"#ffffff"} width={16} />
+                        </a>
+                      )}
                     </div>
 
                     <h3 className="mt-3 text-xl font-bold">{name}</h3>
