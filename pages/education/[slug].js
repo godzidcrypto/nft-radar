@@ -5,6 +5,7 @@ import {
 } from "../../lib/api";
 import Container from "../../components/container";
 import EntryView from "../../components/entry-view";
+import YouTube from "react-youtube";
 
 function EducationalContentItem({ educationalContent, allEducationalContent }) {
   const {
@@ -17,6 +18,8 @@ function EducationalContentItem({ educationalContent, allEducationalContent }) {
     writeUp,
     author,
   } = educationalContent[0];
+
+  const videoId = videoLink.split("=").slice(-1)[0];
 
   const otherEducationalContent = allEducationalContent.filter(
     (otherEducation) => {
@@ -44,7 +47,18 @@ function EducationalContentItem({ educationalContent, allEducationalContent }) {
           headings={headings}
           otherEntries={otherEducationalContent}
           route={"education"}
-        ></EntryView>
+        >
+          {videoLink && (
+            <div className="mt-6 bg-gray-800 p-6 rounded-md">
+              <span className="text-2xl font-bold uppercase">
+                Video Summary
+              </span>
+              <div className="w-full flex justify-center mt-4">
+                <YouTube videoId={videoId} />
+              </div>
+            </div>
+          )}
+        </EntryView>
       </Container>
     </Layout>
   );
