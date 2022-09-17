@@ -1,6 +1,10 @@
 import Layout from "../components/layout";
 import Hero from "../components/hero";
-import { getAllContentForHome, getMintPollDate } from "../lib/api";
+import {
+  getAllContentForHome,
+  getMintPollDate,
+  getFeaturedItems,
+} from "../lib/api";
 import Container from "../components/container";
 import CoverImage from "../components/cover-image";
 import DateComponent from "../components/date";
@@ -14,7 +18,19 @@ import Website from "../components/website";
 const fetcher = (url) => fetch(url).then((res) => res.json());
 const API = `/api/polls`;
 
-function Index({ allContent, selectedDate }) {
+function Index({ allContent, featuredItems, selectedDate }) {
+  const {
+    featuredArticlesCollection,
+    featuredArtistCollection,
+    featuredProjectsCollection,
+  } = featuredItems;
+
+  const featuredArticles =
+    featuredArticlesCollection.items[0].articlesCollection.items;
+  const featuredArtist = featuredArtistCollection.items[0].artist;
+  const featuredProjects =
+    featuredProjectsCollection.items[0].projectsCollection.items;
+
   const { data: swrData } = useSWR(API, fetcher, {
     refreshInterval: 1000,
   });
@@ -124,7 +140,6 @@ function Index({ allContent, selectedDate }) {
                     quantity,
                     yes,
                   } = item;
-                  // Project Name - Supply | Price - # Votes
                   return (
                     <div className="bg-[#16181C] p-4 rounded-xl grid items-center">
                       <div className="flex items-center mb-2">
@@ -190,7 +205,7 @@ function Index({ allContent, selectedDate }) {
             <div>
               <div className="pb-4">
                 <div className="grid grid-cols-2 gap-4">
-                  {merged.slice(0, 3).map((item, index) => {
+                  {featuredArticles.map((item, index) => {
                     const route = checkRoute(item);
                     const { title, featuredImage, slug, sys, author, caption } =
                       item;
@@ -241,12 +256,8 @@ function Index({ allContent, selectedDate }) {
                 </div>
               </div>
               <div>
-                {/* <h2>
-                  Something (follow quartz 'latest stories' or 247 just list out
-                  the rest of the content by date, displaying a total of 15)
-                </h2> */}
                 <div className="grid gap-4">
-                  {merged.slice(4, 10).map((item, index) => {
+                  {merged.slice(0, 7).map((item, index) => {
                     const route = checkRoute(item);
                     const { title, featuredImage, slug, sys, author, caption } =
                       item;
@@ -286,144 +297,41 @@ function Index({ allContent, selectedDate }) {
               </div>
             </div>
             <div className="grid gap-4 h-fit sticky top-32">
-              {/* <div className="bg-[#16181C] p-6 rounded-xl">
-                <h2 className="uppercase font-extralight pb-4">
-                  Upcoming Projects
-                </h2>
-                <div>
-                  {upcomingProjects.map((item, index) => {
-                    const route = checkRoute(item);
-                    const {
-                      title,
-                      mintDate,
-                      slug,
-                      projectTwitter,
-                      projectDiscord,
-                      chain,
-                    } = item;
-                    return (
-                      <div
-                        key={index}
-                        className="py-2 grid grid-cols-2 items-center"
-                      >
-                        <div>
-                          <h3 className="my-2">
-                            <Link href={`/${route}/${slug}`}>
-                              <a className="hover:underline hover:cursor-pointer font-semibold">
-                                {title}
-                              </a>
-                            </Link>
-                          </h3>
-                          <p className="font-extralight text-sm">
-                            <DateComponent dateString={mintDate} />
-                          </p>
-                        </div>
-                        <div className="flex justify-between items-center">
-                          {chain?.length === 1 && chain[0] === "Solana" ? (
-                            <ContentfulImage
-                              src={Solana}
-                              width={24}
-                              height={24}
-                            />
-                          ) : chain?.length === 1 && chain[0] === "Ethereum" ? (
-                            <ContentfulImage
-                              src={Ethereum}
-                              width={24}
-                              height={24}
-                            />
-                          ) : chain?.length === 2 ? (
-                            <>
-                              <ContentfulImage
-                                src={Solana}
-                                width={24}
-                                height={24}
-                              />
-                              <ContentfulImage
-                                src={Ethereum}
-                                width={24}
-                                height={24}
-                              />
-                            </>
-                          ) : (
-                            ""
-                          )}
-                          <a
-                            className="mx-4 hover:scale-125 duration-200"
-                            href={projectTwitter}
-                            target="_blank"
-                          >
-                            <Twitter fill={"#ffffff"} width={24} />
-                          </a>
-                          <a
-                            className="mx-4 scale-125 hover:scale-150 duration-200"
-                            href={projectDiscord}
-                            target="_blank"
-                          >
-                            <Discord fill={"#ffffff"} width={24} />
-                          </a>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div> */}
               <h2 className="uppercase font-extralight">Featured Projects</h2>
-              {/* <div className="bg-[#16181C] p-6 rounded-xl">
-                <div>
-                  {projectWriteUpCollection.items.map((news, index) => {
-                    return <div key={index}>{news.title}</div>;
-                  })}
-                </div>
-              </div> */}
-              <Carousel items={projectWriteUpCollection.items} />
+              <Carousel items={featuredProjects} />
               <h2 className="uppercase font-extralight">Featured Artist</h2>
               <div>
                 <div>
-                  {artistFeatureCollection.items.map((news, index) => {
-                    const {
-                      title,
-                      featuredImage,
-                      slug,
-                      caption,
-                      artistTwitter,
-                      artistWebsite,
-                      artistMarketplace,
-                      previousWorks,
-                    } = news;
-                    return (
-                      <div
-                        key={index}
-                        className="grid grid-cols-2 items-center"
-                      >
-                        <CoverImage
-                          title={title}
-                          url={featuredImage.url}
-                          slug={slug}
-                          route={"artists"}
-                          height={"200"}
-                        />
-                        <div className="pl-4">
-                          <div className="flex items-center">
-                            <h3>
-                              <Link href={`/projects/${slug}`}>
-                                <a className="text-md hover:underline hover:cursor-pointer font-semibold">
-                                  {title}
-                                </a>
-                              </Link>
-                            </h3>
-                            <a
-                              className="mx-2 hover:scale-125 duration-200"
-                              href={artistTwitter}
-                              target="_blank"
-                            >
-                              <Twitter fill={"#ffffff"} width={12} />
+                  <div className="grid grid-cols-2 items-center">
+                    <CoverImage
+                      title={featuredArtist.title}
+                      url={featuredArtist.featuredImage.url}
+                      slug={featuredArtist.slug}
+                      route={"artists"}
+                      height={"200"}
+                    />
+                    <div className="pl-4">
+                      <div className="flex items-center">
+                        <h3>
+                          <Link href={`/projects/${featuredArtist.slug}`}>
+                            <a className="text-md hover:underline hover:cursor-pointer font-semibold">
+                              {featuredArtist.title}
                             </a>
-                          </div>
-                          <p className="text-xs font-extralight">{caption}</p>
-                        </div>
+                          </Link>
+                        </h3>
+                        <a
+                          className="mx-2 hover:scale-125 duration-200"
+                          href={featuredArtist.artistTwitter}
+                          target="_blank"
+                        >
+                          <Twitter fill={"#ffffff"} width={12} />
+                        </a>
                       </div>
-                    );
-                  })}
+                      <p className="text-xs font-extralight">
+                        {featuredArtist.caption}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -474,6 +382,7 @@ function Index({ allContent, selectedDate }) {
                   </h3>
                   <div className="grid grid-cols-[1fr_2fr_1fr] py-8 gap-8">
                     <div>
+                      {/* content on the left side */}
                       <div className="grid gap-8">
                         {categories[1].items
                           .slice(1, 3)
@@ -506,13 +415,10 @@ function Index({ allContent, selectedDate }) {
                                       </a>
                                     </Link>
                                   </h3>
-                                  <p className="text-xs font-extralight flex">
+                                  <p className="text-xs font-extralight flex flex-col">
                                     <DateComponent
                                       dateString={sys.firstPublishedAt}
                                     />
-                                    <span className="mx-2 font-extrabold">
-                                      &#183;
-                                    </span>
                                     <p>{author.name}</p>
                                   </p>
                                 </div>
@@ -522,6 +428,7 @@ function Index({ allContent, selectedDate }) {
                       </div>
                     </div>
                     <div>
+                      {/* content in the center */}
                       <div>
                         {categories[1].items
                           .slice(0, 1)
@@ -568,6 +475,7 @@ function Index({ allContent, selectedDate }) {
                       </div>
                     </div>
                     <div>
+                      {/* content on the right side */}
                       <div className="grid gap-8">
                         {categories[1].items
                           .slice(3, 5)
@@ -600,13 +508,10 @@ function Index({ allContent, selectedDate }) {
                                       </a>
                                     </Link>
                                   </h3>
-                                  <p className="text-xs font-extralight flex">
+                                  <p className="text-xs font-extralight flex flex-col">
                                     <DateComponent
                                       dateString={sys.firstPublishedAt}
                                     />
-                                    <span className="mx-2 font-extrabold">
-                                      &#183;
-                                    </span>
                                     <p>{author.name}</p>
                                   </p>
                                 </div>
@@ -626,10 +531,19 @@ function Index({ allContent, selectedDate }) {
   );
 }
 
-export default function IndexPage({ allContent, selectedDate, fallback }) {
+export default function IndexPage({
+  allContent,
+  selectedDate,
+  featuredItems,
+  fallback,
+}) {
   return (
     <SWRConfig value={{ fallback }}>
-      <Index allContent={allContent} selectedDate={selectedDate} />
+      <Index
+        allContent={allContent}
+        selectedDate={selectedDate}
+        featuredItems={featuredItems}
+      />
     </SWRConfig>
   );
 }
@@ -640,10 +554,12 @@ export async function getServerSideProps() {
   const selectedDate = (await getMintPollDate()) ?? [];
 
   const allContent = (await getAllContentForHome()) ?? [];
+  const featuredItems = (await getFeaturedItems()) ?? [];
   return {
     props: {
       allContent,
       selectedDate,
+      featuredItems,
       fallback: {
         [API]: data,
       },
