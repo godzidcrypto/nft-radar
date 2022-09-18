@@ -2,7 +2,7 @@ import Layout from "../../components/layout";
 import { getAllCryptoNews, getSingleCryptoNews } from "../../lib/api";
 import Container from "../../components/container";
 import EntryView from "../../components/entry-view";
-import YouTube from "react-youtube";
+import YoutubeEmbed from "../../components/youtube-embed";
 
 function NewsItem({ cryptoNews, allCryptoNews }) {
   const { sys, title, chain, featuredImage, videoLink, writeUp, author } =
@@ -40,9 +40,7 @@ function NewsItem({ cryptoNews, allCryptoNews }) {
               <span className="text-2xl font-bold uppercase">
                 Video Summary
               </span>
-              <div className="w-full flex justify-center mt-4">
-                <YouTube videoId={videoId} />
-              </div>
+              <YoutubeEmbed videoId={videoId} videoLink={videoLink} />
             </div>
           )}
         </EntryView>

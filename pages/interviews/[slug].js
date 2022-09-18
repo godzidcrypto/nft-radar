@@ -2,7 +2,7 @@ import Layout from "../../components/layout";
 import { getAllInterviews, getSingleInterview } from "../../lib/api";
 import Container from "../../components/container";
 import EntryView from "../../components/entry-view";
-import YouTube from "react-youtube";
+import YoutubeEmbed from "../../components/youtube-embed";
 
 function InterviewItem({ interview, allInterviews }) {
   const {
@@ -60,20 +60,27 @@ function InterviewItem({ interview, allInterviews }) {
               <span className="text-2xl font-bold uppercase">
                 Video Summary
               </span>
-              <div className="w-full flex justify-center mt-4">
-                <YouTube videoId={mediaId} />
-              </div>
+              <YoutubeEmbed videoId={mediaId} videoLink={videoLink} />
             </div>
           ) : (
             <div className="mt-6 bg-gray-800 p-6 rounded-md">
               <span className="text-2xl font-bold uppercase">
                 Audio Summary
               </span>
-              <div className="w-full flex justify-center mt-4">
+              <div className="w-full flex justify-center mt-4 flex-col">
                 <iframe
                   src={`https://audius.co/embed/track/${mediaId}?flavor=compact`}
                   className="w-full"
                 />
+                <span>
+                  <a
+                    href={videoLink}
+                    target="_blank"
+                    className="font-light uppercase hover:text-[#8C50EE] duration-200 text-xs"
+                  >
+                    View Audio &#8594;
+                  </a>
+                </span>
               </div>
             </div>
           )}

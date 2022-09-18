@@ -4,6 +4,7 @@ import markdownStyles from "./markdown-styles.module.css";
 import RichTextAsset from "./rich-text-asset";
 import convertToSlug from "../lib/convertToSlug";
 import TweetEmbed from "react-tweet-embed";
+import YoutubeEmbed from "./youtube-embed";
 import YouTube from "react-youtube";
 
 const customMarkdownOptions = (content) => ({
@@ -21,8 +22,17 @@ const customMarkdownOptions = (content) => ({
         // Tweets
         const tweetId = node.data.uri.split("/").slice(-1)[0];
         return (
-          <div className="w-3/4 mx-auto">
+          <div className="w-full lg:w-3/4 mx-auto overflow-hidden">
             <TweetEmbed tweetId={tweetId} options={{ theme: "dark" }} />
+            <span>
+              <a
+                href={node.data.uri}
+                target="_blank"
+                className="font-light uppercase hover:text-[#8C50EE] duration-200 text-xs"
+              >
+                View Tweet &#8594;
+              </a>
+            </span>
           </div>
         );
       } else if (node.data.uri.indexOf("watch") !== -1) {
@@ -30,7 +40,7 @@ const customMarkdownOptions = (content) => ({
         const youtubeId = node.data.uri.split("=").slice(-1)[0];
         return (
           <div className="w-full flex justify-center">
-            <YouTube videoId={youtubeId} />
+            <YoutubeEmbed videoId={youtubeId} videoLink={node.data.uri} />
           </div>
         );
       } else if (node.data.uri.indexOf("track") !== -1) {
@@ -39,10 +49,21 @@ const customMarkdownOptions = (content) => ({
         const audiusLink = node.data.uri.split("/").slice(-1)[0];
         const audiusEmbed = audiusLink.split("?")[0];
         return (
-          <iframe
-            src={`https://audius.co/embed/track/${audiusEmbed}?flavor=compact`}
-            className="w-full"
-          />
+          <div>
+            <iframe
+              src={`https://audius.co/embed/track/${audiusEmbed}?flavor=compact`}
+              className="w-full"
+            />
+            <span>
+              <a
+                href={node.data.uri}
+                target="_blank"
+                className="font-light uppercase hover:text-[#8C50EE] duration-200 text-xs"
+              >
+                View Audio &#8594;
+              </a>
+            </span>
+          </div>
         );
       } else {
         return (

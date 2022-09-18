@@ -2,7 +2,7 @@ import Layout from "../../components/layout";
 import { getAllAnalysis, getSingleAnalysis } from "../../lib/api";
 import Container from "../../components/container";
 import EntryView from "../../components/entry-view";
-import YouTube from "react-youtube";
+import YoutubeEmbed from "../../components/youtube-embed";
 import { useEffect, useState } from "react";
 
 function AnalysisItem({ analysis, allAnalysis }) {
@@ -91,9 +91,7 @@ function AnalysisItem({ analysis, allAnalysis }) {
               <span className="text-2xl font-bold uppercase">
                 Video Summary
               </span>
-              <div className="w-full flex justify-center mt-4">
-                <YouTube videoId={videoId} />
-              </div>
+              <YoutubeEmbed videoId={videoId} videoLink={videoLink} />
             </div>
           )}
           {linksToData && (
