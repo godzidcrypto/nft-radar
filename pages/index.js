@@ -7,6 +7,7 @@ import {
 } from "../lib/api";
 import Container from "../components/container";
 import CoverImage from "../components/cover-image";
+import ContentfulImage from "../components/contentful-image";
 import DateComponent from "../components/date";
 import Link from "next/link";
 import Twitter from "../components/twitter";
@@ -14,11 +15,24 @@ import Carousel from "../components/swiper";
 import useSWR, { SWRConfig } from "swr";
 import Discord from "../components/discord";
 import Website from "../components/website";
+import { useEffect, useState } from "react";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 const API = `/api/polls`;
 
 function Index({ allContent, featuredItems, selectedDate }) {
+  const [topCollections, setTopCollections] = useState();
+
+  useEffect(async () => {
+    const res = await fetch(
+      "https://stats-mainnet.magiceden.io/collection_stats/popular_collections/sol?limit=5&window=1d"
+    ).then((res) => {
+      return res.json();
+    });
+    setTopCollections(res);
+  }, []);
+
+  console.log("top", topCollections);
   const {
     featuredArticlesCollection,
     featuredArtistCollection,
@@ -62,7 +76,6 @@ function Index({ allContent, featuredItems, selectedDate }) {
     ...opinionPieceCollection.items,
     ...interviewCollection.items,
   ];
-  console.log(merged);
 
   // converts allContent object variable into multiple arrays segmented by category
   const result = Object.keys(allContent).map((key) => [key, allContent[key]]);
@@ -139,35 +152,56 @@ function Index({ allContent, featuredItems, selectedDate }) {
                     mintPrice,
                     quantity,
                     yes,
+                    imageUrl,
                   } = item;
                   return (
                     <div className="bg-[#16181C] p-4 rounded-xl grid items-center">
-                      <div className="flex items-center mb-2">
-                        <a
-                          className="mr-2 hover:scale-125 duration-200"
-                          href={twitter}
-                          target="_blank"
-                        >
-                          <Twitter fill={"#ffffff"} width={12} />
-                        </a>
-                        <a
-                          className="mx-2 scale-125 hover:scale-150 duration-200"
-                          href={discord}
-                          target="_blank"
-                        >
-                          <Discord fill={"#ffffff"} width={12} />
-                        </a>
-                        {website && (
-                          <a
-                            className="mx-2 scale-125 hover:scale-150 duration-200"
-                            href={website}
-                            target="_blank"
-                          >
-                            <Website fill={"#ffffff"} width={12} />
-                          </a>
-                        )}
+                      <div className="flex gap-6 items-center">
+                        <Link href={"/polls"}>
+                          <div className="hover:cursor-pointer">
+                            <ContentfulImage
+                              src={imageUrl}
+                              width={50}
+                              height={50}
+                              className="rounded-full"
+                            />
+                          </div>
+                        </Link>
+                        <div className="flex flex-col">
+                          <div className="flex items-center mb-2">
+                            <a
+                              className="mr-2 hover:scale-125 duration-200"
+                              href={twitter}
+                              target="_blank"
+                            >
+                              <Twitter fill={"#ffffff"} width={12} />
+                            </a>
+                            <a
+                              className="mx-2 scale-125 hover:scale-150 duration-200"
+                              href={discord}
+                              target="_blank"
+                            >
+                              <Discord fill={"#ffffff"} width={12} />
+                            </a>
+                            {website && (
+                              <a
+                                className="mx-2 scale-125 hover:scale-150 duration-200"
+                                href={website}
+                                target="_blank"
+                              >
+                                <Website fill={"#ffffff"} width={12} />
+                              </a>
+                            )}
+                          </div>
+                          <span className="font-bold">
+                            <Link href={"/polls"}>
+                              <a className="hover:text-[#8C50EE] duration-200">
+                                {name}
+                              </a>
+                            </Link>
+                          </span>
+                        </div>
                       </div>
-                      <span className="font-bold">{name}</span>
                       <div className="grid grid-cols-3 gap-2 mt-2">
                         <p className="text-xs font-thin">Supply: {quantity}</p>
                         <p className="text-xs font-thin">
@@ -185,7 +219,53 @@ function Index({ allContent, featuredItems, selectedDate }) {
                 Top 5 Collections by 24H Volume
               </h2>
               <div className="grid gap-2">
-                <div className="bg-[#16181C] rounded-xl grid p-6">
+                {topCollections?.map((collection, index) => {
+                  const { name, fp, totalVol, vol, image, collectionSymbol } =
+                    collection;
+                  return (
+                    <div
+                      key={index}
+                      className="bg-[#16181C] rounded-xl grid p-6"
+                    >
+                      <div className="flex items-center gap-4">
+                        <a
+                          href={`https://magiceden.io/marketplace/${collectionSymbol}`}
+                          target="_blank"
+                        >
+                          <div>
+                            <ContentfulImage
+                              src={image}
+                              width={50}
+                              height={50}
+                              className="rounded-full"
+                            />
+                          </div>
+                        </a>
+                        <p className="font-bold">
+                          <a
+                            href={`https://magiceden.io/marketplace/${collectionSymbol}`}
+                            target="_blank"
+                            className="hover:text-[#8C50EE] duration-200"
+                          >
+                            {name}
+                          </a>
+                        </p>
+                      </div>
+                      <div className="grid grid-cols-3 gap-8 mt-2">
+                        <p className="text-xs font-thin">
+                          Volume: {Math.round(vol).toLocaleString()}
+                        </p>
+                        <p className="text-xs font-thin">
+                          Total Volume: {Math.round(totalVol).toLocaleString()}
+                        </p>
+                        <p className="text-xs font-thin text-green-300">
+                          Floor Price: {fp / 1000000000}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+                {/* <div className="bg-[#16181C] rounded-xl grid p-6">
                   <span>Degen Fat Cats</span>
                 </div>
                 <div className="bg-[#16181C] rounded-xl grid p-6">
@@ -199,7 +279,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
                 </div>
                 <div className="bg-[#16181C] rounded-xl grid p-6">
                   <span>Degen Fat Cats</span>
-                </div>
+                </div> */}
               </div>
             </div>
             {/* center content */}
