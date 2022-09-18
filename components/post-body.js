@@ -121,7 +121,7 @@ const customMarkdownOptions = (content) => ({
 
 export default function PostBody({ content }) {
   return (
-    <div className="text-justify">
+    <div>
       <div className={markdownStyles["markdown"]}>
         {documentToReactComponents(
           content.json,

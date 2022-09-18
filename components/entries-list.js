@@ -10,9 +10,9 @@ function EntriesList({ entries, route, featured }) {
   const { title, slug, caption, chain, featuredImage, sys, author } = featured;
   return (
     <div className="py-8">
-      <div className="grid grid-cols-[1fr_2fr] gap-8 items-center">
+      <div className="grid md:grid-cols-[1fr_2fr] gap-8 items-center">
         <div
-          className="text-white bg-black w-full"
+          className="text-white bg-black w-full order-2 md:order-first"
           style={{
             background:
               "linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent)",

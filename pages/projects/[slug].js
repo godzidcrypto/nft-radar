@@ -57,7 +57,7 @@ function ProjectItem({ project, allProjects }) {
           <div className="mt-6 bg-gray-800 p-6 rounded-md relative">
             {willMint && (
               <span
-                className={`absolute right-4 top-6 rounded-full px-3 py-1.5 ${
+                className={`md:absolute right-4 top-6 rounded-full px-3 py-1.5 ${
                   willMint === "Yes"
                     ? "bg-green-100 text-green-600"
                     : "bg-red-100 text-red-600"
@@ -66,7 +66,7 @@ function ProjectItem({ project, allProjects }) {
                 Will Mint: {willMint}
               </span>
             )}
-            <div className="flex items-center gap-6">
+            <div className="mt-4 md:mt-0 flex md:items-center gap-4 flex-col-reverse md:flex-row">
               <h2 className="text-xl font-bold">{projectName}</h2>
               <div className="flex items-center">
                 <a
@@ -93,7 +93,7 @@ function ProjectItem({ project, allProjects }) {
               </div>
             </div>
             <div>
-              <dl className="mt-4 grid gap-4 grid-cols-2">
+              <dl className="mt-4 grid gap-4 md:grid-cols-2">
                 <div className="flex flex-col py-2 text-center border border-gray-100 rounded-lg">
                   <dt className="order-last text-xs font-medium text-gray-500">
                     Mint Price

@@ -45,13 +45,14 @@ function OtherEntries({ otherEntries, route }) {
         <span className="text-xl font-semibold">Check Out Other Content</span>
       )}
       {otherEntries.length > 0 && (
-        <div className="grid grid-cols-3 gap-8 py-4">
+        <div className="lg:grid grid-cols-3 gap-8 py-4">
           {otherEntries.slice(0, 3).map((entry, index) => {
             const { title, slug, caption, featuredImage, sys, author } = entry;
 
             return (
               <div
                 key={index}
+                className="mb-8"
                 // className="grid grid-cols-[1fr_2fr] lg:grid-cols-2 py-4 border-b-2 border-b-[#E7E9EA] items-center last:border-b-0"
               >
                 <div>

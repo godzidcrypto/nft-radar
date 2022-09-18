@@ -56,14 +56,14 @@ function AnalysisItem({ analysis, allAnalysis }) {
           href={url}
           target="_blank"
         >
-          <div className="relative">
+          <div className="relative h-24 md:h-auto">
             <img
               alt="Climber"
               src={images[0]}
               className="absolute inset-0 object-cover w-full h-full"
             />
           </div>
-          <div className="p-8 sm:col-span-2">
+          <div className="p-4 lg:p-8 sm:col-span-2">
             <h5 className="mt-4 font-bold">{title}</h5>
             <p className="mt-2 text-sm text-gray-500 truncate">{description}</p>
           </div>

@@ -124,8 +124,8 @@ function Index({ allContent, featuredItems, selectedDate }) {
             }
             reverse={true}
           />
-          <div className="grid grid-cols-[1fr_2fr_1fr] gap-8 py-12 relative">
-            <div className="h-fit sticky top-32 rounded-xl">
+          <div className="grid lg:grid-cols-[1fr_2fr_1fr] gap-8 py-12 relative">
+            <div className="h-fit lg:sticky top-32 rounded-xl order-last lg:order-first">
               <h2 className="uppercase font-extralight pb-4">
                 Daily Mints Poll
               </h2>
@@ -202,9 +202,10 @@ function Index({ allContent, featuredItems, selectedDate }) {
                 </div>
               </div>
             </div>
+            {/* center content */}
             <div>
               <div className="pb-4">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid lg:grid-cols-2 gap-4">
                   {featuredArticles.map((item, index) => {
                     const route = checkRoute(item);
                     const { title, featuredImage, slug, sys, author, caption } =
@@ -213,7 +214,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
                       <div
                         key={index}
                         className={`${
-                          index === 0 ? "col-span-2" : ""
+                          index === 0 ? "lg:col-span-2" : ""
                         } relative`}
                       >
                         <CoverImage
@@ -255,6 +256,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
                   })}
                 </div>
               </div>
+              {/* bottom center content */}
               <div>
                 <div className="grid gap-4">
                   {merged.slice(0, 7).map((item, index) => {
@@ -264,7 +266,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
                     return (
                       <div
                         key={index}
-                        className="grid grid-cols-[1fr_3fr] items-center"
+                        className="grid grid-cols-[1fr_2fr] lg:grid-cols-[1fr_3fr] items-center"
                       >
                         <div>
                           <CoverImage
@@ -276,9 +278,11 @@ function Index({ allContent, featuredItems, selectedDate }) {
                           />
                         </div>
                         <div className="ml-4">
-                          <p className="text-sm font-extralight flex">
+                          <p className="text-sm font-extralight flex lg:flex-row flex-col">
                             <DateComponent dateString={sys.firstPublishedAt} />
-                            <span className="mx-2 font-extrabold">&#183;</span>
+                            <span className="hidden lg:block mx-2 font-extrabold">
+                              &#183;
+                            </span>
                             <p>{author.name}</p>
                           </p>
                           <h3 className="my-2">
@@ -296,7 +300,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
                 </div>
               </div>
             </div>
-            <div className="grid gap-4 h-fit sticky top-32">
+            <div className="grid gap-4 h-fit lg:sticky top-32 order-first lg:order-last">
               <h2 className="uppercase font-extralight">Featured Projects</h2>
               <Carousel items={featuredProjects} />
               <h2 className="uppercase font-extralight">Featured Artist</h2>
@@ -380,7 +384,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
                       </a>
                     </Link>
                   </h3>
-                  <div className="grid grid-cols-[1fr_2fr_1fr] py-8 gap-8">
+                  <div className="grid lg:grid-cols-[1fr_2fr_1fr] py-8 gap-8">
                     <div>
                       {/* content on the left side */}
                       <div className="grid gap-8">

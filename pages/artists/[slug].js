@@ -53,7 +53,7 @@ function ArtistFeatureItem({ artistFeature, allAristFeatures }) {
                 {artStyle}
               </span>
             )}
-            <div className="flex items-center gap-4">
+            <div className="flex md:items-center gap-4 flex-col-reverse md:flex-row">
               <h2 className="text-2xl font-bold uppercase">{artistName}</h2>
               <div>
                 <div className="flex items-center">
@@ -79,13 +79,13 @@ function ArtistFeatureItem({ artistFeature, allAristFeatures }) {
             <div
               className={`grid ${
                 artistMarketplaceSite && previousWorks
-                  ? "grid-cols-2"
+                  ? "lg:grid-cols-2"
                   : "grid-cols-1"
               } mt-4 gap-4`}
             >
               {artistMarketplaceSite && (
                 <a
-                  className="relative block p-4 px-8 border border-gray-100 shadow-xl rounded-xl hover:scale-105 duration-200"
+                  className="relative block p-4 border border-gray-100 shadow-xl rounded-xl hover:scale-105 duration-200"
                   href={artistMarketplaceSite}
                   target="_blank"
                 >
@@ -118,7 +118,7 @@ function ArtistFeatureItem({ artistFeature, allAristFeatures }) {
               )}
               {previousWorks && (
                 <a
-                  className="relative block p-4 px-8 border border-gray-100 shadow-xl rounded-xl hover:scale-105 duration-200"
+                  className="relative block p-4 border border-gray-100 shadow-xl rounded-xl hover:scale-105 duration-200"
                   href={previousWorks}
                   target="_blank"
                 >

@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import DateComponent from "../../components/date";
 import { getMintPollDate } from "../../lib/api";
 import ContentfulImage from "../../components/contentful-image";
+import Logo from "../../assets/images/logo.png";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 const API = `/api/polls`;
@@ -147,7 +148,7 @@ function Polls({ selectedDate }) {
               <DateComponent dateString={selectedDate[0].selectedDate} />
             </p>
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid lg:grid-cols-2 gap-4">
             {mintsToday?.map((item, index) => {
               const {
                 _id,
@@ -176,12 +177,12 @@ function Polls({ selectedDate }) {
               return (
                 <div
                   key={index}
-                  className="overflow-hidden border border-gray-600 rounded-lg grid grid-cols-1 group sm:grid-cols-3 bg-[#16181C]"
+                  className="overflow-hidden border border-gray-600 rounded-lg grid grid-cols-1 md:grid-cols-3 bg-[#16181C]"
                 >
-                  <div className="relative">
+                  <div className="relative h-48 md:h-auto">
                     <div>
                       <ContentfulImage
-                        src={imageUrl}
+                        src={imageUrl ?? Logo}
                         layout="fill"
                         objectFit="cover"
                       />
@@ -221,7 +222,7 @@ function Polls({ selectedDate }) {
 
                     <h3 className="mt-3 text-xl font-bold">{name}</h3>
 
-                    <dl className="mt-4 grid gap-4 grid-cols-3">
+                    <dl className="mt-4 grid gap-4 md:grid-cols-3">
                       <div className="flex flex-col py-2 text-center border border-gray-100 rounded-lg">
                         <dt className="order-last text-xs font-medium text-gray-500">
                           WL Mint Price
