@@ -95,8 +95,11 @@ function Index({ allContent, featuredItems, selectedDate }) {
   const checkRoute = (item) => {
     let route;
     result.map((items) => {
-      const check = items[1].items.indexOf(item);
-      if (check !== -1) {
+      // used json stringify on array and item to search
+      // {} === {} will return false if they come from different objects
+      const check =
+        JSON.stringify(items[1].items).indexOf(JSON.stringify(item)) > -1;
+      if (check !== false) {
         const objectIndex = result.indexOf(items);
         switch (objectIndex) {
           case 0:
@@ -215,9 +218,11 @@ function Index({ allContent, featuredItems, selectedDate }) {
                   );
                 })}
               </div>
-              <h2 className="uppercase font-extralight my-4">
-                Top 5 Collections by 24H Volume
-              </h2>
+              {topCollections && (
+                <h2 className="uppercase font-extralight my-4">
+                  Top 5 Collections by 24H Volume
+                </h2>
+              )}
               <div className="grid gap-2">
                 {topCollections?.map((collection, index) => {
                   const { name, fp, totalVol, vol, image, collectionSymbol } =
