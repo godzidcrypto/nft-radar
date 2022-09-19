@@ -3,11 +3,27 @@ import Footer from "../components/footer";
 import Meta from "../components/meta";
 import Head from "next/head";
 import Navbar from "./navbar";
+import Script from "next/script";
 
 export default function Layout({ hide = false, children, title }) {
   return (
     <>
       <Meta />
+      <Script
+        strategy="lazyOnload"
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+      />
+
+      <Script strategy="lazyOnload" id="google-analytics">
+        {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
+        page_path: window.location.pathname,
+        });
+    `}
+      </Script>
       <Head>
         <title>{title ? title : "NFT Radar"}</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
