@@ -416,7 +416,7 @@ export default function PollsPage({ selectedDate, fallback }) {
 export async function getServerSideProps() {
   // Fetch data from external API
   const res = await fetch(`${process.env.BACKEND_SERVER}/api/polls`);
-  const data = await res.json();
+  const data = (await res.json()) ?? [];
   const selectedDate = (await getMintPollDate()) ?? [];
 
   // Pass data to the page via props
