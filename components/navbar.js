@@ -81,7 +81,7 @@ export default function Navbar() {
                     ? "bg-[#8C50EE] text-black lg:text-[#8C50EE]"
                     : "text-white"
                 }`
-          } lg:mx-4 hover:underline my-2 p-4 bg-black rounded-md lg:rounded-none lg:bg-transparent lg:p-0 lg:my-0`}
+          } lg:mx-2 text-sm hover:underline my-2 p-4 bg-black rounded-md lg:rounded-none lg:bg-transparent lg:p-0 lg:my-0`}
         >
           {title}
         </a>
@@ -197,6 +197,56 @@ export default function Navbar() {
               color ? "bg-black" : "bg-[#8C50EE]"
             } flex flex-col absolute top-0 mt-24 -mx-6 px-6 md:-mx-12 md:px-12 w-full h-view pb-4 duration-300`}
           >
+            {!user && (
+              <div className="flex justify-end items-center mb-4">
+                <a
+                  className="mx-4 hover:scale-125 duration-200"
+                  href="https://twitter.com/solnftradar"
+                  target="_blank"
+                >
+                  <Twitter
+                    fill={`${color ? "#8C50EE" : "#ffffff"}`}
+                    width={24}
+                  />
+                </a>
+                <a
+                  className="mx-4 scale-125 hover:scale-150 duration-200"
+                  href="https://discord.gg/nftradar"
+                  target="_blank"
+                >
+                  <Discord
+                    fill={`${color ? "#8C50EE" : "#ffffff"}`}
+                    width={24}
+                  />
+                </a>
+                <Link href={`/auth/signIn`}>
+                  <button
+                    className={`${
+                      color
+                        ? "text-black hover:text-[#8C50EE] bg-[#8C50EE] hover:bg-black border-[#8C50EE]"
+                        : "text-black bg-white border-white hover:bg-[#8C50EE] hover:text-white hover:border-white"
+                    } ml-2 px-4 py-2 rounded-md border-2 duration-200 transition-colors`}
+                  >
+                    Login
+                  </button>
+                </Link>
+              </div>
+            )}
+            {user && (
+              <div className="flex justify-end mb-4">
+                <Avatar picture={{ url: user.image }} />
+                <button
+                  className={`${
+                    color
+                      ? "text-black hover:text-[#8C50EE] bg-[#8C50EE] hover:bg-black border-[#8C50EE]"
+                      : "text-black bg-white border-white hover:bg-[#8C50EE] hover:text-white hover:border-white"
+                  } ml-4 px-4 py-2 rounded-md border-2 duration-200 transition-colors`}
+                  onClick={() => signOut()}
+                >
+                  Logout
+                </button>
+              </div>
+            )}
             {routes.map((route, index) => {
               return (
                 <Route key={index} route={route.route} title={route.title} />
