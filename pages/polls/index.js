@@ -138,15 +138,55 @@ function Polls({ selectedDate }) {
         <div className={`py-12`}>
           {guildRoles?.includes(moderatorRole) && <AddPoll />}
           <div className="text-4xl text-center mb-8">
-            <p className="text-lg font-extralight">
-              {guildRoles?.includes(voterRole)
-                ? "Verified Voter"
-                : "Not Eligible to Vote"}
-            </p>
-            <p className="font-bold">
-              Mints for{" "}
-              <DateComponent dateString={selectedDate[0].selectedDate} />
-            </p>
+            <p className="font-bold"></p>
+            <section class="text-white bg-[#16181C]">
+              <div class="px-4 py-12 mx-auto max-w-screen-xl lg:items-center lg:flex">
+                <div class="max-w-3xl mx-auto text-center">
+                  <h1 class="text-3xl font-extrabold text-transparent sm:text-5xl bg-clip-text bg-gradient-to-r from-gray-300 to-purple-600">
+                    {/* <h1 class="text-3xl font-extrabold text-white sm:text-5xl"> */}
+                    Mints for{" "}
+                    <DateComponent dateString={selectedDate[0].selectedDate} />
+                  </h1>
+
+                  <p class="max-w-xl mx-auto mt-4 sm:leading-relaxed sm:text-xl">
+                    <p className="text-lg font-extralight">
+                      {guildRoles?.includes(voterRole)
+                        ? "Verified Voter"
+                        : "Not Eligible to Vote"}
+                    </p>
+                  </p>
+
+                  <div class="grid md:grid-cols-2 justify-center mt-8 gap-8">
+                    <div class="items-start ">
+                      <a
+                        class="block w-full px-12 py-3 text-sm font-medium text-white bg-purple-600 border border-purple-600 rounded sm:w-auto active:text-opacity-75 hover:bg-transparent hover:text-white focus:outline-none focus:ring"
+                        // href="/get-started"
+                      >
+                        Get Featured
+                      </a>
+                      <p class="mt-4 text-sm text-gray-300">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Error cumque tempore est ab possimus quisquam reiciendis
+                        tempora animi!
+                      </p>
+                    </div>
+                    <div class="items-start ">
+                      <a
+                        class="block w-full px-12 py-3 text-sm font-medium text-white border border-purple-600 rounded sm:w-auto hover:bg-purple-600 active:bg-purple-500 focus:outline-none focus:ring"
+                        // href="/about"
+                      >
+                        Become Eligible
+                      </a>
+                      <p class="mt-4 text-sm text-gray-300">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Error cumque tempore est ab possimus quisquam reiciendis
+                        tempora animi!
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
           </div>
           <div className="grid lg:grid-cols-2 gap-4">
             {mintsToday?.map((item, index) => {
