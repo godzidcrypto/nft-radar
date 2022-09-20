@@ -137,7 +137,6 @@ function Polls({ selectedDate }) {
         />
         <div className={`py-12`}>
           {guildRoles?.includes(moderatorRole) && <AddPoll />}
-          <AddPoll></AddPoll>
           <div className="text-4xl text-center mb-8">
             <p className="text-lg font-extralight">
               {guildRoles?.includes(voterRole)
