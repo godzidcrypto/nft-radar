@@ -16,6 +16,7 @@ import useSWR, { SWRConfig } from "swr";
 import Discord from "../components/discord";
 import Website from "../components/website";
 import { useEffect, useState } from "react";
+import Logo from "../assets/images/logo.png";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 const API = `/api/polls`;
@@ -163,7 +164,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
                         <Link href={"/polls"}>
                           <div className="hover:cursor-pointer">
                             <ContentfulImage
-                              src={imageUrl}
+                              src={imageUrl ?? Logo}
                               width={50}
                               height={50}
                               className="rounded-full"
