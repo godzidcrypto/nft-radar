@@ -15,6 +15,7 @@ function AddPoll({ isRequest = false }) {
   const [hotsauce, setHotsauce] = useState(false);
   const [dagzen, setDagzen] = useState(false);
   const [selectedImage, setSelectedImage] = useState();
+  const [isRequested, setIsRequested] = useState(false);
 
   const imageRef = useRef();
   const resetImage = () => {
@@ -60,6 +61,7 @@ function AddPoll({ isRequest = false }) {
       hotsauce,
       dagzen,
       imageUrl,
+      isRequested,
     };
 
     console.log(newPoll);
@@ -87,6 +89,7 @@ function AddPoll({ isRequest = false }) {
       setHotsauce(false);
       setDagzen(false);
       resetImage();
+      setIsRequested(false);
     }
 
     return res;
@@ -267,14 +270,31 @@ function AddPoll({ isRequest = false }) {
                   </div>
                 </div> */}
 
-                <div>
-                  <input
-                    className="w-full text-sm border-gray-200 bg-gray-100 rounded-lg"
-                    accept=".jpg, .png, .jpeg"
-                    type="file"
-                    onChange={handleFileChange}
-                    ref={imageRef}
-                  />
+                <div className="grid sm:grid-cols-4 items-center gap-2">
+                  <div class="col-span-2">
+                    <label for="MarketingAccept" class="flex gap-4">
+                      <input
+                        type="checkbox"
+                        id="MarketingAccept"
+                        name="marketing_accept"
+                        class="w-5 h-5 bg-white border-gray-200 rounded-md shadow-sm"
+                        onChange={() => setIsRequested(!isRequested)}
+                      />
+
+                      <span class="text-sm text-gray-300">
+                        Project Requested to be Featured
+                      </span>
+                    </label>
+                  </div>
+                  <div className="col-span-2">
+                    <input
+                      className="w-full text-sm border-gray-200 bg-gray-100 rounded-lg"
+                      accept=".jpg, .png, .jpeg"
+                      type="file"
+                      onChange={handleFileChange}
+                      ref={imageRef}
+                    />
+                  </div>
                 </div>
 
                 <div className="mt-4 flex justify-end">

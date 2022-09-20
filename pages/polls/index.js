@@ -137,6 +137,7 @@ function Polls({ selectedDate }) {
         />
         <div className={`py-12`}>
           {guildRoles?.includes(moderatorRole) && <AddPoll />}
+          <AddPoll></AddPoll>
           <div className="text-4xl text-center mb-8">
             <p className="text-lg font-extralight">
               {guildRoles?.includes(voterRole)
@@ -164,6 +165,7 @@ function Polls({ selectedDate }) {
                 yes,
                 voters,
                 imageUrl,
+                isRequested,
               } = item;
               const findVoters = voters.filter((voter) => {
                 return voter.discordId === userInfo.id;
@@ -220,7 +222,37 @@ function Polls({ selectedDate }) {
                       )}
                     </div>
 
-                    <h3 className="mt-3 text-xl font-bold">{name}</h3>
+                    <div className="flex items-center mt-3">
+                      {isRequested && (
+                        <div>
+                          <div class="group cursor-pointer relative text-center mr-1.5">
+                            <svg
+                              aria-haspopup="true"
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="icon icon-tabler icon-tabler-info-circle"
+                              width={25}
+                              height={25}
+                              viewBox="0 0 24 24"
+                              strokeWidth="1.5"
+                              stroke="#A0AEC0"
+                              fill="none"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
+                              <path stroke="none" d="M0 0h24v24H0z" />
+                              <circle cx={12} cy={12} r={9} />
+                              <line x1={12} y1={8} x2="12.01" y2={8} />
+                              <polyline points="11 12 12 12 12 16 13 16" />
+                            </svg>
+                            <div class="opacity-0 bg-black text-white text-center text-xs rounded-lg py-2 absolute z-10 group-hover:opacity-100 top-full px-3 pointer-events-none -left-6 w-48">
+                              Cillum mollit anim amet laborum pariatur anim
+                              nostrud.
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                      <h3 className="text-xl font-bold">{name}</h3>
+                    </div>
 
                     <dl className="mt-4 grid gap-4 md:grid-cols-3">
                       <div className="flex flex-col py-2 text-center border border-gray-100 rounded-lg">
