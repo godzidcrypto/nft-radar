@@ -329,7 +329,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
                           </div>
                           <h3 className="my-2">
                             <Link href={`/${route}/${slug}`}>
-                              <a className="text-xl hover:underline hover:cursor-pointer font-semibold">
+                              <a className="text-xl hover:text-purple-400 duration-200 hover:cursor-pointer font-semibold">
                                 {title}
                               </a>
                             </Link>
@@ -372,7 +372,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
                           </p>
                           <h3 className="my-2">
                             <Link href={`/${route}/${slug}`}>
-                              <a className="hover:text-[#8C50EE] text-xl hover:cursor-pointer font-semibold">
+                              <a className="hover:text-[#8C50EE] duration-200 text-xl hover:cursor-pointer font-semibold">
                                 {title}
                               </a>
                             </Link>
@@ -403,7 +403,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
                       <div className="flex items-center">
                         <h3>
                           <Link href={`/projects/${featuredArtist.slug}`}>
-                            <a className="text-md hover:underline hover:cursor-pointer font-semibold">
+                            <a className="text-md hover:text-[#8C50EE] duration-200 hover:cursor-pointer font-semibold">
                               {featuredArtist.title}
                             </a>
                           </Link>
@@ -464,7 +464,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
                   {/* <h2 className=" hover:cursor-pointer"> */}
                   <h3 className="mt-4 uppercase font-extrabold border-b-2">
                     <Link href={`/${route}`}>
-                      <a className="text-6xl hover:text-[#8C50EE] hover:cursor-pointer font-semibold">
+                      <a className="text-6xl hover:text-[#8C50EE] duration-200 hover:cursor-pointer font-semibold">
                         {categoryTitle}
                       </a>
                     </Link>
@@ -499,7 +499,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
                                 <div>
                                   <h3 className="my-2">
                                     <Link href={`/${route}/${slug}`}>
-                                      <a className="text-2xl hover:text-[#8C50EE] hover:cursor-pointer font-semibold">
+                                      <a className="text-2xl hover:text-[#8C50EE] duration-200 hover:cursor-pointer font-semibold">
                                         {title}
                                       </a>
                                     </Link>
@@ -542,7 +542,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
                                 <div>
                                   <h3 className="mt-4">
                                     <Link href={`/${route}/${slug}`}>
-                                      <a className="text-2xl hover:text-[#8C50EE] hover:cursor-pointer font-semibold">
+                                      <a className="text-2xl hover:text-[#8C50EE] duration-200 hover:cursor-pointer font-semibold">
                                         {title}
                                       </a>
                                     </Link>
@@ -592,7 +592,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
                                 <div>
                                   <h3 className="my-2">
                                     <Link href={`/${route}/${slug}`}>
-                                      <a className="text-2xl hover:text-[#8C50EE] hover:cursor-pointer font-semibold">
+                                      <a className="text-2xl hover:text-[#8C50EE] duration-200 hover:cursor-pointer font-semibold">
                                         {title}
                                       </a>
                                     </Link>
