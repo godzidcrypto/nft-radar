@@ -8,9 +8,10 @@ export default function RichTextAsset({ id, assets }) {
     return (
       <ContentfulImage
         src={asset.url}
-        width={asset.width}
-        height={asset.height}
+        layout="fill"
+        objectFit="cover"
         alt={asset.description}
+        className={`rounded-3xl`}
       />
     );
   }

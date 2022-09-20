@@ -10,7 +10,10 @@ import YouTube from "react-youtube";
 const customMarkdownOptions = (content) => ({
   renderNode: {
     [BLOCKS.EMBEDDED_ASSET]: (node) => (
-      <div className="w-full flex justify-center">
+      <div
+        className="w-full flex justify-center relative"
+        style={{ height: "240px" }}
+      >
         <RichTextAsset
           id={node.data.target.sys.id}
           assets={content.links?.assets?.block}
