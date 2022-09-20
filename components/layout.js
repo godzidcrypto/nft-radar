@@ -19,7 +19,7 @@ export default function Layout({ hide = false, children, title }) {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
+        gtag('config', ${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}, {
         page_path: window.location.pathname,
         });
     `}
@@ -32,6 +32,11 @@ export default function Layout({ hide = false, children, title }) {
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
           rel="stylesheet"
         />
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8160193017744513"
+          crossorigin="anonymous"
+        ></Script>
       </Head>
       {!hide && <Navbar />}
       <div
