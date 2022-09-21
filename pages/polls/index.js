@@ -52,13 +52,6 @@ function Polls({ selectedDate }) {
       ).then((res) => {
         return res.json();
       });
-
-      // const member = guildRes?.filter((guild) => {
-      //   return guild.name === "Degen Fat Cats & Coin Flip";
-      // });
-
-      // setIsMember(member);
-      // setGuilds(guildRes);
       setUserInfo(userRes);
       setGuildRoles(guildRolesRes.roles);
     }
@@ -114,8 +107,6 @@ function Polls({ selectedDate }) {
     setLoading(false);
   }, [swrData]);
 
-  // let today = new Date().toISOString();
-
   const mintsToday = swrData.filter((data) => {
     return (
       data.date.substring(0, 10) ===
@@ -124,9 +115,6 @@ function Polls({ selectedDate }) {
   });
 
   mintsToday.sort((a, b) => parseFloat(b.yes) - parseFloat(a.yes));
-
-  // filter swrdata to only show mints for today
-  // const admins = ["nozid16@gmail.com"];
 
   return (
     <Layout title={"NFT Radar | Daily Mint Polls"}>
@@ -155,35 +143,6 @@ function Polls({ selectedDate }) {
                         : "Not Eligible to Vote"}
                     </p>
                   </p>
-
-                  <div class="grid md:grid-cols-2 justify-center mt-8 gap-8">
-                    <div class="items-start ">
-                      <a
-                        class="block w-full px-12 py-3 text-sm font-medium text-white bg-purple-600 border border-purple-600 rounded sm:w-auto active:text-opacity-75 hover:bg-transparent hover:text-white focus:outline-none focus:ring"
-                        // href="/get-started"
-                      >
-                        Get Featured
-                      </a>
-                      <p class="mt-4 text-sm text-gray-300">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Error cumque tempore est ab possimus quisquam reiciendis
-                        tempora animi!
-                      </p>
-                    </div>
-                    <div class="items-start ">
-                      <a
-                        class="block w-full px-12 py-3 text-sm font-medium text-white border border-purple-600 rounded sm:w-auto hover:bg-purple-600 active:bg-purple-500 focus:outline-none focus:ring"
-                        // href="/about"
-                      >
-                        Become Eligible
-                      </a>
-                      <p class="mt-4 text-sm text-gray-300">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Error cumque tempore est ab possimus quisquam reiciendis
-                        tempora animi!
-                      </p>
-                    </div>
-                  </div>
                 </div>
               </div>
             </section>
@@ -398,6 +357,68 @@ function Polls({ selectedDate }) {
                 </div>
               );
             })}
+          </div>
+          <div class="space-y-4 mt-8">
+            <h2 className="text-3xl font-semibold">FAQs</h2>
+            <details class="group" open>
+              <summary class="flex items-center justify-between p-4 rounded-lg cursor-pointer bg-[#16181C]">
+                <h5 class="font-medium">
+                  How can I get my project featured in the Daily Mint Polls?
+                </h5>
+
+                <svg
+                  class="flex-shrink-0 ml-1.5 w-5 h-5 transition duration-300 group-open:-rotate-180"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </summary>
+
+              <p class="px-4 mt-4 leading-relaxed">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab hic
+                veritatis molestias culpa in, recusandae laboriosam neque
+                aliquid libero nesciunt voluptate dicta quo officiis explicabo
+                consequuntur distinctio corporis earum similique!
+              </p>
+            </details>
+
+            <details class="group">
+              <summary class="flex items-center justify-between p-4 rounded-lg cursor-pointer bg-[#16181C]">
+                <h5 class="font-medium">
+                  How can I become eligible to vote for upcoming mints?
+                </h5>
+
+                <svg
+                  class="flex-shrink-0 ml-1.5 w-5 h-5 transition duration-300 group-open:-rotate-180"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </summary>
+
+              <p class="px-4 mt-4 leading-relaxed">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab hic
+                veritatis molestias culpa in, recusandae laboriosam neque
+                aliquid libero nesciunt voluptate dicta quo officiis explicabo
+                consequuntur distinctio corporis earum similique!
+              </p>
+            </details>
           </div>
         </div>
       </Container>
