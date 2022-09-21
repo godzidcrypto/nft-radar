@@ -144,7 +144,8 @@ function Index({ allContent, featuredItems, selectedDate }) {
           <div className="grid lg:grid-cols-[1fr_2fr_1fr] gap-8 py-12 relative">
             <div className="h-fit lg:sticky top-32 rounded-xl order-last lg:order-first">
               <h2 className="uppercase font-extralight pb-4">
-                Daily Mints Poll
+                Mints for{" "}
+                <DateComponent dateString={selectedDate[0].selectedDate} />
               </h2>
               <div className="grid gap-2">
                 {mintsToday.map((item, index) => {

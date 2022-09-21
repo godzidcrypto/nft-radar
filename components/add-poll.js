@@ -152,8 +152,6 @@ function AddPoll({ isRequest = false }) {
                       className="w-full p-3 text-sm border-gray-200 rounded-lg"
                       placeholder="Mint Price"
                       type="number"
-                      step={1}
-                      min={0}
                       onChange={(e) => setMintPrice(e.target.value)}
                       value={mintPrice}
                       required
@@ -165,8 +163,6 @@ function AddPoll({ isRequest = false }) {
                       className="w-full p-3 text-sm border-gray-200 rounded-lg"
                       placeholder="WL Mint Price"
                       type="number"
-                      step={1}
-                      min={0}
                       onChange={(e) => setWlMintPrice(e.target.value)}
                       value={wlMintPrice}
                     />

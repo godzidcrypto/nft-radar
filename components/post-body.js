@@ -5,7 +5,6 @@ import RichTextAsset from "./rich-text-asset";
 import convertToSlug from "../lib/convertToSlug";
 import TweetEmbed from "react-tweet-embed";
 import YoutubeEmbed from "./youtube-embed";
-import YouTube from "react-youtube";
 
 const customMarkdownOptions = (content) => ({
   renderNode: {
