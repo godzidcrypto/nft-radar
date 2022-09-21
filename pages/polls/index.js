@@ -127,16 +127,16 @@ function Polls({ selectedDate }) {
           {guildRoles?.includes(moderatorRole) && <AddPoll />}
           <div className="text-4xl text-center mb-8">
             <p className="font-bold"></p>
-            <section class="text-white bg-[#16181C]">
-              <div class="px-4 py-12 mx-auto max-w-screen-xl lg:items-center lg:flex">
-                <div class="max-w-3xl mx-auto text-center">
-                  <h1 class="text-3xl font-extrabold text-transparent sm:text-5xl bg-clip-text bg-gradient-to-r from-gray-300 to-purple-600">
-                    {/* <h1 class="text-3xl font-extrabold text-white sm:text-5xl"> */}
+            <section className="text-white bg-[#16181C]">
+              <div className="px-4 py-12 mx-auto max-w-screen-xl lg:items-center lg:flex">
+                <div className="max-w-3xl mx-auto text-center">
+                  <h1 className="text-3xl font-extrabold text-transparent sm:text-5xl bg-clip-text bg-gradient-to-r from-gray-300 to-purple-600">
+                    {/* <h1 className="text-3xl font-extrabold text-white sm:text-5xl"> */}
                     Mints for{" "}
                     <DateComponent dateString={selectedDate[0].selectedDate} />
                   </h1>
 
-                  <p class="max-w-xl mx-auto mt-4 sm:leading-relaxed sm:text-xl">
+                  <p className="max-w-xl mx-auto mt-4 sm:leading-relaxed sm:text-xl">
                     <p className="text-lg font-extralight">
                       {guildRoles?.includes(voterRole)
                         ? "Verified Voter"
@@ -223,7 +223,7 @@ function Polls({ selectedDate }) {
                     <div className="flex items-center mt-3">
                       {isRequested && (
                         <div>
-                          <div class="group cursor-pointer relative text-center mr-1.5">
+                          <div className="group cursor-pointer relative text-center mr-1.5">
                             <svg
                               aria-haspopup="true"
                               xmlns="http://www.w3.org/2000/svg"
@@ -242,7 +242,7 @@ function Polls({ selectedDate }) {
                               <line x1={12} y1={8} x2="12.01" y2={8} />
                               <polyline points="11 12 12 12 12 16 13 16" />
                             </svg>
-                            <div class="opacity-0 bg-black text-white text-center text-xs rounded-lg py-2 absolute z-10 group-hover:opacity-100 top-full px-3 pointer-events-none -left-6 w-48">
+                            <div className="opacity-0 bg-black text-white text-center text-xs rounded-lg py-2 absolute z-10 group-hover:opacity-100 top-full px-3 pointer-events-none -left-6 w-48">
                               Cillum mollit anim amet laborum pariatur anim
                               nostrud.
                             </div>
@@ -358,16 +358,16 @@ function Polls({ selectedDate }) {
               );
             })}
           </div>
-          <div class="space-y-4 mt-8">
+          <div className="space-y-4 mt-8">
             <h2 className="text-3xl font-semibold">FAQs</h2>
-            <details class="group" open>
-              <summary class="flex items-center justify-between p-4 rounded-lg cursor-pointer bg-[#16181C]">
-                <h5 class="font-medium">
+            <details className="group" open>
+              <summary className="flex items-center justify-between p-4 rounded-lg cursor-pointer bg-[#16181C]">
+                <h5 className="font-medium">
                   How can I get my project featured in the Daily Mint Polls?
                 </h5>
 
                 <svg
-                  class="flex-shrink-0 ml-1.5 w-5 h-5 transition duration-300 group-open:-rotate-180"
+                  className="flex-shrink-0 ml-1.5 w-5 h-5 transition duration-300 group-open:-rotate-180"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -382,7 +382,7 @@ function Polls({ selectedDate }) {
                 </svg>
               </summary>
 
-              <p class="px-4 mt-4 leading-relaxed">
+              <p className="px-4 mt-4 leading-relaxed">
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab hic
                 veritatis molestias culpa in, recusandae laboriosam neque
                 aliquid libero nesciunt voluptate dicta quo officiis explicabo
@@ -390,14 +390,14 @@ function Polls({ selectedDate }) {
               </p>
             </details>
 
-            <details class="group">
-              <summary class="flex items-center justify-between p-4 rounded-lg cursor-pointer bg-[#16181C]">
-                <h5 class="font-medium">
+            <details className="group">
+              <summary className="flex items-center justify-between p-4 rounded-lg cursor-pointer bg-[#16181C]">
+                <h5 className="font-medium">
                   How can I become eligible to vote for upcoming mints?
                 </h5>
 
                 <svg
-                  class="flex-shrink-0 ml-1.5 w-5 h-5 transition duration-300 group-open:-rotate-180"
+                  className="flex-shrink-0 ml-1.5 w-5 h-5 transition duration-300 group-open:-rotate-180"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -412,7 +412,7 @@ function Polls({ selectedDate }) {
                 </svg>
               </summary>
 
-              <p class="px-4 mt-4 leading-relaxed">
+              <p className="px-4 mt-4 leading-relaxed">
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab hic
                 veritatis molestias culpa in, recusandae laboriosam neque
                 aliquid libero nesciunt voluptate dicta quo officiis explicabo

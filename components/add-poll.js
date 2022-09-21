@@ -267,17 +267,17 @@ function AddPoll({ isRequest = false }) {
                 </div> */}
 
                 <div className="grid sm:grid-cols-4 items-center gap-2">
-                  <div class="col-span-2">
-                    <label for="MarketingAccept" class="flex gap-4">
+                  <div className="col-span-2">
+                    <label for="MarketingAccept" className="flex gap-4">
                       <input
                         type="checkbox"
                         id="MarketingAccept"
                         name="marketing_accept"
-                        class="w-5 h-5 bg-white border-gray-200 rounded-md shadow-sm"
+                        className="w-5 h-5 bg-white border-gray-200 rounded-md shadow-sm"
                         onChange={() => setIsRequested(!isRequested)}
                       />
 
-                      <span class="text-sm text-gray-300">
+                      <span className="text-sm text-gray-300">
                         Project Requested to be Featured
                       </span>
                     </label>
