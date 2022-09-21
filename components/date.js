@@ -1,9 +1,10 @@
-import { format } from "date-fns";
+import { utcToZonedTime, format } from "date-fns-tz";
 
 export default function DateComponent({ dateString }) {
-  return (
-    <time dateTime={dateString}>
-      {format(new Date(dateString), "LLLL	d, yyyy", { timeZone: "Iceland" })}
-    </time>
-  );
+  const timeZone = "Iceland";
+  const zonedDate = utcToZonedTime(dateString, timeZone);
+  const pattern = "LLLL d, yyyy";
+  const date = format(zonedDate, pattern, { timeZone: timeZone });
+
+  return <time dateTime={dateString}>{date}</time>;
 }
