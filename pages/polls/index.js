@@ -136,7 +136,7 @@ function Polls({ selectedDate }) {
           description={"Dolore nisi anim culpa cillum ullamco cillum."}
         />
         <div className={`py-12`}>
-          {!guildRoles?.includes(moderatorRole) && <AddPoll />}
+          {guildRoles?.includes(moderatorRole) && <AddPoll />}
           <div className="text-4xl text-center mb-8">
             <p className="font-bold"></p>
             <section class="text-white bg-[#16181C]">
