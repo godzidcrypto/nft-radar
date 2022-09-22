@@ -130,6 +130,10 @@ function Index({ allContent, featuredItems, selectedDate }) {
     return route;
   };
 
+  const onlyNumbers = (str) => {
+    return /^[0-9.,]+$/.test(str);
+  };
+
   return (
     <>
       <Layout>
@@ -155,13 +159,17 @@ function Index({ allContent, featuredItems, selectedDate }) {
                     discord,
                     website,
                     mintPrice,
+                    wlMintPrice,
                     quantity,
                     yes,
                     imageUrl,
                   } = item;
                   return (
-                    <div className="bg-[#16181C] p-4 rounded-xl grid items-center">
-                      <div className="flex gap-6 items-center">
+                    <div
+                      className="bg-[#16181C] p-4 rounded-xl grid items-center relative"
+                      key={index}
+                    >
+                      <div className="grid grid-cols-[1fr_3fr] gap-6 items-center">
                         <Link href={"/polls"}>
                           <div className="hover:cursor-pointer">
                             <ContentfulImage
@@ -172,32 +180,12 @@ function Index({ allContent, featuredItems, selectedDate }) {
                             />
                           </div>
                         </Link>
-                        <div className="flex flex-col">
-                          <div className="flex items-center mb-2">
-                            <a
-                              className="mr-2 hover:scale-125 duration-200"
-                              href={twitter}
-                              target="_blank"
-                            >
-                              <Twitter fill={"#ffffff"} width={12} />
-                            </a>
-                            <a
-                              className="mx-2 scale-125 hover:scale-150 duration-200"
-                              href={discord}
-                              target="_blank"
-                            >
-                              <Discord fill={"#ffffff"} width={12} />
-                            </a>
-                            {website && (
-                              <a
-                                className="mx-2 scale-125 hover:scale-150 duration-200"
-                                href={website}
-                                target="_blank"
-                              >
-                                <Website fill={"#ffffff"} width={12} />
-                              </a>
-                            )}
-                          </div>
+                        <div className="flex flex-col gap-2">
+                          <span
+                            className={`absolute justify-end bottom-0 right-0 text-xs font-light bg-gray-200 text-gray-600 inline-flex items-center gap-1 rounded-tl-xl rounded-br-xl py-1 px-1.5`}
+                          >
+                            Minting: {yes}
+                          </span>
                           <span className="font-bold">
                             <Link href={"/polls"}>
                               <a className="hover:text-[#8C50EE] duration-200">
@@ -205,17 +193,51 @@ function Index({ allContent, featuredItems, selectedDate }) {
                               </a>
                             </Link>
                           </span>
+                          <div className="flex items-center gap-2 lg:gap-3">
+                            <a
+                              className="hover:scale-125 duration-200"
+                              href={twitter}
+                              target="_blank"
+                            >
+                              <Twitter fill={"#ffffff"} width={12} />
+                            </a>
+                            <a
+                              className="scale-125 hover:scale-150 duration-200"
+                              href={discord}
+                              target="_blank"
+                            >
+                              <Discord fill={"#ffffff"} width={12} />
+                            </a>
+                            {website && (
+                              <a
+                                className="scale-125 hover:scale-150 duration-200"
+                                href={website}
+                                target="_blank"
+                              >
+                                <Website fill={"#ffffff"} width={12} />
+                              </a>
+                            )}
+                          </div>
                         </div>
                       </div>
-                      <div className="grid grid-cols-3 gap-2 mt-2">
-                        <p className="text-xs font-thin">Supply: {quantity}</p>
-                        <p className="text-xs font-thin">
-                          Mint Price: {mintPrice}
+                      {/* <div className="grid grid-cols-3 gap-2 mt-2">
+                        <p className="text-xs font-normal">
+                          Supply: <br />
+                          {quantity}
                         </p>
-                        <p className="text-xs font-thin text-green-300">
-                          Votes: {yes}
+                        <p className="text-xs font-normal">
+                          WL Mint Price: <br />
+                          {onlyNumbers(wlMintPrice)
+                            ? parseFloat(wlMintPrice)
+                            : wlMintPrice}
                         </p>
-                      </div>
+                        <p className="text-xs font-normal">
+                          Mint Price: <br />
+                          {onlyNumbers(mintPrice)
+                            ? parseFloat(mintPrice)
+                            : mintPrice}
+                        </p>
+                      </div> */}
                     </div>
                   );
                 })}
@@ -272,21 +294,6 @@ function Index({ allContent, featuredItems, selectedDate }) {
                     </div>
                   );
                 })}
-                {/* <div className="bg-[#16181C] rounded-xl grid p-6">
-                  <span>Degen Fat Cats</span>
-                </div>
-                <div className="bg-[#16181C] rounded-xl grid p-6">
-                  <span>Degen Fat Cats</span>
-                </div>
-                <div className="bg-[#16181C] rounded-xl grid p-6">
-                  <span>Degen Fat Cats</span>
-                </div>
-                <div className="bg-[#16181C] rounded-xl grid p-6">
-                  <span>Degen Fat Cats</span>
-                </div>
-                <div className="bg-[#16181C] rounded-xl grid p-6">
-                  <span>Degen Fat Cats</span>
-                </div> */}
               </div>
             </div>
             {/* center content */}
