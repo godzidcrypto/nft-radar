@@ -58,7 +58,9 @@ function Polls({ selectedDate }) {
   };
 
   useEffect(() => {
-    getGuilds();
+    // if guildRoles array ahs been updated, prevent function call to repeat
+    // this prevents getting rate limited from discord API
+    guildRoles.length === 0 ? getGuilds() : console.log("getguilds");
   }, [session]);
 
   const handleSubmit = async (e) => {
@@ -103,6 +105,25 @@ function Polls({ selectedDate }) {
     return res;
   };
 
+  const tConvert = (time) => {
+    // Check correct time format and split into components
+    time = time
+      .toString()
+      .match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
+
+    if (time.length > 1) {
+      // If time format correct
+      time = time.slice(1); // Remove full string match value
+      time[5] = +time[0] < 12 ? " AM" : " PM"; // Set AM/PM
+      time[0] = +time[0] % 12 || 12; // Adjust hours
+    }
+    return time.join(""); // return adjusted time or original string
+  };
+
+  const onlyNumbers = (str) => {
+    return /^[0-9.,]+$/.test(str);
+  };
+
   useEffect(() => {
     setLoading(false);
   }, [swrData]);
@@ -119,29 +140,31 @@ function Polls({ selectedDate }) {
   return (
     <Layout title={"NFT Radar | Daily Mint Polls"}>
       <Container>
-        <Hero
+        {/* <Hero
           title={"Daily Mint Polls"}
           description={"Dolore nisi anim culpa cillum ullamco cillum."}
-        />
+        /> */}
         <div className={`py-12`}>
           {guildRoles?.includes(moderatorRole) && <AddPoll />}
           <div className="text-4xl text-center mb-8">
             <p className="font-bold"></p>
             <section className="text-white bg-[#16181C]">
-              <div className="px-4 py-12 mx-auto max-w-screen-xl lg:items-center lg:flex">
+              <div className="py-8 mx-auto max-w-screen-xl lg:items-center lg:flex">
                 <div className="max-w-3xl mx-auto text-center">
                   <h1 className="text-3xl font-extrabold text-transparent sm:text-5xl bg-clip-text bg-gradient-to-r from-gray-300 to-purple-600">
-                    {/* <h1 className="text-3xl font-extrabold text-white sm:text-5xl"> */}
                     Mints for{" "}
                     <DateComponent dateString={selectedDate[0].selectedDate} />
                   </h1>
 
                   <p className="max-w-xl mx-auto mt-4 sm:leading-relaxed sm:text-xl">
-                    <p className="text-lg font-extralight">
-                      {guildRoles?.includes(voterRole)
-                        ? "Verified Voter"
-                        : "Not Eligible to Vote"}
-                    </p>
+                    <p className="text-lg font-medium">Mint Times are in UTC</p>
+                    {user && (
+                      <p className="text-lg font-extralight">
+                        {guildRoles?.includes(voterRole)
+                          ? `${user.name}: Verified Voter`
+                          : `${user.name}: Not Eligible to Vote`}
+                      </p>
+                    )}
                   </p>
                 </div>
               </div>
@@ -186,41 +209,14 @@ function Polls({ selectedDate }) {
                         layout="fill"
                         objectFit="cover"
                       />
+                      <span className="absolute right-4 top-6 rounded-full px-3 py-1.5 bg-gray-100 text-gray-600 font-black text-base">
+                        Minting: {yes}
+                      </span>
                     </div>
                   </div>
 
                   <div className="p-8 sm:col-span-2 relative">
-                    <span className="absolute right-4 top-6 rounded-full px-3 py-1.5 bg-green-100 text-green-600 font-medium text-xs">
-                      Minting: {yes}
-                    </span>
-
-                    <div className="flex items-center">
-                      <a
-                        className="mr-2 hover:scale-125 duration-200"
-                        href={twitter}
-                        target="_blank"
-                      >
-                        <Twitter fill={"#ffffff"} width={16} />
-                      </a>
-                      <a
-                        className="mx-2 scale-125 hover:scale-150 duration-200"
-                        href={discord}
-                        target="_blank"
-                      >
-                        <Discord fill={"#ffffff"} width={16} />
-                      </a>
-                      {website && (
-                        <a
-                          className="mx-2 scale-125 hover:scale-150 duration-200"
-                          href={website}
-                          target="_blank"
-                        >
-                          <Website fill={"#ffffff"} width={16} />
-                        </a>
-                      )}
-                    </div>
-
-                    <div className="flex items-center mt-3">
+                    <div className="flex items-center mb-3">
                       {isRequested && (
                         <div>
                           <div className="group cursor-pointer relative text-center mr-1.5">
@@ -252,27 +248,75 @@ function Polls({ selectedDate }) {
                       <h3 className="text-xl font-bold">{name}</h3>
                     </div>
 
-                    <dl className="mt-4 grid gap-4 md:grid-cols-3">
-                      <div className="flex flex-col py-2 text-center border border-gray-100 rounded-lg">
+                    <div className="flex items-center gap-2">
+                      <a
+                        className="hover:scale-125 duration-200"
+                        href={twitter}
+                        target="_blank"
+                      >
+                        <Twitter fill={"#ffffff"} width={16} />
+                      </a>
+                      <a
+                        className="scale-125 hover:scale-150 duration-200"
+                        href={discord}
+                        target="_blank"
+                      >
+                        <Discord fill={"#ffffff"} width={16} />
+                      </a>
+                      {website && (
+                        <a
+                          className="scale-125 hover:scale-150 duration-200"
+                          href={website}
+                          target="_blank"
+                        >
+                          <Website fill={"#ffffff"} width={16} />
+                        </a>
+                      )}
+                      <div className="ml-2 flex gap-1">
+                        <p
+                          className={`${
+                            findLauren.length !== 0
+                              ? "border-green-800 text-green-800 bg-green-100"
+                              : "border-red-800 text-red-800 bg-red-100"
+                          } inline-block px-2 py-1 text-xs font-normal rounded-full`}
+                        >
+                          Lauren
+                        </p>
+                        <p
+                          className={`${
+                            findHotsauce.length !== 0
+                              ? "border-green-800 text-green-800 bg-green-100"
+                              : "border-red-800 text-red-800 bg-red-100"
+                          } inline-block px-2 py-1 text-xs font-normal rounded-full`}
+                        >
+                          HoTsAuCe
+                        </p>
+                      </div>
+                    </div>
+
+                    <dl className="mt-4 grid gap-2 lg:gap-4 md:grid-cols-3">
+                      <div className="flex flex-col p-2 text-center border border-gray-100 rounded-lg">
                         <dt className="order-last text-xs font-medium text-gray-500">
                           WL Mint Price
                         </dt>
 
                         <dd className="text-md font-extrabold text-gray-300">
-                          {wlMintPrice}
+                          {onlyNumbers(wlMintPrice)
+                            ? parseFloat(wlMintPrice)
+                            : wlMintPrice}
                         </dd>
                       </div>
-                      <div className="flex flex-col py-2 text-center border border-gray-100 rounded-lg">
+                      <div className="flex flex-col p-2 text-center border border-gray-100 rounded-lg">
                         <dt className="order-last text-xs font-medium text-gray-500">
                           WL Mint Time
                         </dt>
 
                         <dd className="text-md font-extrabold text-gray-300">
-                          {wlTime}
+                          {tConvert(wlTime)}
                         </dd>
                       </div>
 
-                      <div className="row-span-2 justify-center flex flex-col py-2 text-center border border-gray-100 rounded-lg">
+                      <div className="justify-center flex flex-col py-2 text-center border border-gray-100 rounded-lg">
                         <dt className="order-last text-xs font-medium text-gray-500">
                           Quantity
                         </dt>
@@ -282,46 +326,28 @@ function Polls({ selectedDate }) {
                         </dd>
                       </div>
 
-                      <div className="flex flex-col py-2 text-center border border-gray-100 rounded-lg">
+                      <div className="flex flex-col p-2 text-center border border-gray-100 rounded-lg">
                         <dt className="order-last text-xs font-medium text-gray-500">
                           Mint Price
                         </dt>
 
                         <dd className="text-md font-extrabold text-gray-300">
-                          {mintPrice}
+                          {onlyNumbers(mintPrice)
+                            ? parseFloat(mintPrice)
+                            : mintPrice}
                         </dd>
                       </div>
 
-                      <div className="flex flex-col py-2 text-center border border-gray-100 rounded-lg">
+                      <div className="flex flex-col p-2 text-center border border-gray-100 rounded-lg">
                         <dt className="order-last text-xs font-medium text-gray-500">
                           Mint Time
                         </dt>
 
                         <dd className="text-md font-extrabold text-gray-300">
-                          {time}
+                          {tConvert(time)}
                         </dd>
                       </div>
                     </dl>
-                    <div className="mt-4 flex gap-1">
-                      <p
-                        className={`${
-                          findLauren.length !== 0
-                            ? "border-green-800 text-green-800 bg-green-100"
-                            : "border-red-800 text-red-800 bg-red-100"
-                        } inline-block px-3 py-1 text-xs font-semibold rounded-full`}
-                      >
-                        Lauren
-                      </p>
-                      <p
-                        className={`${
-                          findHotsauce.length !== 0
-                            ? "border-green-800 text-green-800 bg-green-100"
-                            : "border-red-800 text-red-800 bg-red-100"
-                        } inline-block px-3 py-1 text-xs font-semibold rounded-full`}
-                      >
-                        HoTsAuCe
-                      </p>
-                    </div>
                     <div className="absolute flex justify-end bottom-0 right-0 text-sm">
                       {guildRoles?.includes(voterRole) && (
                         <div>
