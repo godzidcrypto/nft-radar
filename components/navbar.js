@@ -32,6 +32,10 @@ export default function Navbar() {
 
   const routes = [
     {
+      title: "Polls",
+      route: "/polls",
+    },
+    {
       title: "News",
       route: "/news",
     },
@@ -58,10 +62,6 @@ export default function Navbar() {
     {
       title: "Interviews",
       route: "/interviews",
-    },
-    {
-      title: "Polls",
-      route: "/polls",
     },
   ];
 
