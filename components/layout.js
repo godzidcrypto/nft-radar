@@ -40,7 +40,7 @@ export default function Layout({ hide = false, children, title }) {
       </Head>
       {!hide && <Navbar />}
       <div
-        className={`min-h-screen bg-black text-[#E7E9EA] ${
+        className={`min-h-screen bg-[#8C50EE] text-[#E7E9EA] ${
           hide ? "" : "pt-24"
         }`}
         // style={{
@@ -49,7 +49,7 @@ export default function Layout({ hide = false, children, title }) {
         // }}
       >
         {/* <Alert preview={preview} /> */}
-        <main>{children}</main>
+        <main className="bg-black">{children}</main>
       </div>
       {!hide && <Footer />}
     </>

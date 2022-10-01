@@ -93,7 +93,9 @@ export default function Navbar() {
     <>
       <nav
         className={`${
-          color ? "bg-[#000000] text-[#8C50EE]" : "bg-[#8C50EE] text-white"
+          color
+            ? "bg-[rgba(0,0,0,.5)] text-[#8C50EE] backdrop-blur-2xl duration-[0ms]"
+            : "bg-[#8C50EE] text-white"
         } py-2 fixed z-50 w-full duration-300 lg:block hidden`}
       >
         <Container>
