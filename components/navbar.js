@@ -182,7 +182,9 @@ export default function Navbar() {
       {/* mobile nav */}
       <nav
         className={`${
-          color ? "bg-[#000000] text-[#8C50EE]" : "bg-[#8C50EE] text-white"
+          color
+            ? "bg-[rgba(0,0,0,.5)] text-[#8C50EE] backdrop-blur-2xl duration-[0ms]"
+            : "bg-[#8C50EE] text-white"
         } py-2 fixed z-50 w-full duration-300 lg:hidden block`}
       >
         <div className="flex items-center justify-between h-20 md:px-12 px-6">
