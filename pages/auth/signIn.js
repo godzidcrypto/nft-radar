@@ -8,14 +8,16 @@ import Link from "next/link";
 function SignIn({ providers, headers }) {
   return (
     <Layout hide={true}>
-      <div className="h-screen text-white grid grid-cols-2">
+      <div className="h-screen text-white grid md:grid-cols-2">
         <div className="bg-[#8C50EE] grid items-center justify-center text-center">
-          <div className="lg:block hidden">
+          <div className="grid gap-8">
             <h1 className="font-extrabold text-3xl text-black">
               <Link href={"/"}>NFT Radar</Link>
             </h1>
-            <ContentfulImage src={Space} width={250} height={250} />
-            <p className="font-extralight">
+            <div className="relative md:h-40 h-28">
+              <ContentfulImage src={Space} layout="fill" />
+            </div>
+            <p className="font-extralight px-12">
               Adipisicing adipisicing ad amet ex nostrud reprehenderit qui.
             </p>
           </div>
