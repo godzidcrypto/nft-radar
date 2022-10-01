@@ -128,7 +128,7 @@ export default function Navbar() {
               {!user && (
                 <>
                   <a
-                    className="mx-4 hover:scale-125 duration-200"
+                    className="mx-4 hover:scale-125 duration-300"
                     href="https://twitter.com/solnftradar"
                     target="_blank"
                   >
@@ -138,7 +138,7 @@ export default function Navbar() {
                     />
                   </a>
                   <a
-                    className="mx-4 scale-125 hover:scale-150 duration-200"
+                    className="mx-4 scale-125 hover:scale-150 duration-300"
                     href="https://discord.gg/nftradar"
                     target="_blank"
                   >
@@ -153,7 +153,7 @@ export default function Navbar() {
                         color
                           ? "text-black hover:text-[#8C50EE] bg-[#8C50EE] hover:bg-black border-[#8C50EE]"
                           : "text-black bg-white border-white hover:bg-[#8C50EE] hover:text-white hover:border-white"
-                      } ml-2 px-4 py-2 rounded-md border-2 duration-200 transition-colors`}
+                      } ml-2 px-4 py-2 rounded-md border-2 duration-300 transition-colors`}
                     >
                       Login
                     </button>
@@ -168,7 +168,7 @@ export default function Navbar() {
                       color
                         ? "text-black hover:text-[#8C50EE] bg-[#8C50EE] hover:bg-black border-[#8C50EE]"
                         : "text-black bg-white border-white hover:bg-[#8C50EE] hover:text-white hover:border-white"
-                    } ml-4 px-4 py-2 rounded-md border-2 duration-200 transition-colors`}
+                    } ml-4 px-4 py-2 rounded-md border-2 duration-300 transition-colors`}
                     onClick={() => signOut()}
                   >
                     Logout
@@ -183,7 +183,9 @@ export default function Navbar() {
       <nav
         className={`${
           color
-            ? "bg-[rgba(0,0,0,.5)] text-[#8C50EE] backdrop-blur-2xl duration-[0ms]"
+            ? `${
+                open ? "bg-black !duration-300" : "bg-[rgba(0,0,0,.5)]"
+              } text-[#8C50EE] backdrop-blur-2xl duration-[0ms]`
             : "bg-[#8C50EE] text-white"
         } py-2 fixed z-50 w-full duration-300 lg:hidden block`}
       >
@@ -199,12 +201,12 @@ export default function Navbar() {
           <div
             className={`${open ? "block" : "hidden"} ${
               color ? "bg-black" : "bg-[#8C50EE]"
-            } flex flex-col absolute top-0 mt-24 -mx-6 px-6 md:-mx-12 md:px-12 w-full h-view pb-4 duration-300`}
+            } flex flex-col absolute top-0 mt-24 -mx-6 px-6 md:-mx-12 md:px-12 w-full h-view py-4 duration-300`}
           >
             {!user && (
               <div className="flex justify-end items-center mb-4">
                 <a
-                  className="mx-4 hover:scale-125 duration-200"
+                  className="mx-4 hover:scale-125 duration-300"
                   href="https://twitter.com/solnftradar"
                   target="_blank"
                 >
@@ -214,7 +216,7 @@ export default function Navbar() {
                   />
                 </a>
                 <a
-                  className="mx-4 scale-125 hover:scale-150 duration-200"
+                  className="mx-4 scale-125 hover:scale-150 duration-300"
                   href="https://discord.gg/nftradar"
                   target="_blank"
                 >
@@ -229,7 +231,7 @@ export default function Navbar() {
                       color
                         ? "text-black hover:text-[#8C50EE] bg-[#8C50EE] hover:bg-black border-[#8C50EE]"
                         : "text-black bg-white border-white hover:bg-[#8C50EE] hover:text-white hover:border-white"
-                    } ml-2 px-4 py-2 rounded-md border-2 duration-200 transition-colors`}
+                    } ml-2 px-4 py-2 rounded-md border-2 duration-300 transition-colors`}
                   >
                     Login
                   </button>
@@ -244,7 +246,7 @@ export default function Navbar() {
                     color
                       ? "text-black hover:text-[#8C50EE] bg-[#8C50EE] hover:bg-black border-[#8C50EE]"
                       : "text-black bg-white border-white hover:bg-[#8C50EE] hover:text-white hover:border-white"
-                  } ml-4 px-4 py-2 rounded-md border-2 duration-200 transition-colors`}
+                  } ml-4 px-4 py-2 rounded-md border-2 duration-300 transition-colors`}
                   onClick={() => signOut()}
                 >
                   Logout
