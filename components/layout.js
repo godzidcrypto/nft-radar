@@ -40,16 +40,14 @@ export default function Layout({ hide = false, children, title }) {
       </Head>
       {!hide && <Navbar />}
       <div
-        className={`min-h-screen bg-[#8C50EE] text-[#E7E9EA] ${
-          hide ? "" : "pt-24"
-        }`}
+        className={`bg-[#8C50EE] text-[#E7E9EA] ${hide ? "" : "pt-24"}`}
         // style={{
         //   backgroundImage: "radial-gradient(#d1d5db 1.15px, #faf5ff 1.15px)",
         //   backgroundSize: "20px 20px",
         // }}
       >
         {/* <Alert preview={preview} /> */}
-        <main className="bg-black">{children}</main>
+        <main className="bg-black min-h-screen ">{children}</main>
       </div>
       {!hide && <Footer />}
     </>
