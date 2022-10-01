@@ -9,7 +9,7 @@ import YoutubeEmbed from "./youtube-embed";
 const customMarkdownOptions = (content) => ({
   renderNode: {
     [BLOCKS.EMBEDDED_ASSET]: (node) => (
-      <div
+      <section
         className="w-full flex justify-center relative"
         style={{ height: "240px" }}
       >
@@ -17,7 +17,7 @@ const customMarkdownOptions = (content) => ({
           id={node.data.target.sys.id}
           assets={content.links?.assets?.block}
         />
-      </div>
+      </section>
     ),
     [INLINES.HYPERLINK]: (node) => {
       if (node.data.uri.indexOf("status") !== -1) {
