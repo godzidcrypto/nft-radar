@@ -127,6 +127,8 @@ function PollsAdmin() {
     return voter.discordId === "449623048505786369";
   });
 
+  console.log("HERE", swrData);
+
   return (
     <Layout>
       <Container>
@@ -192,7 +194,7 @@ function PollsAdmin() {
                 >
                   <Discord fill={"#ffffff"} width={16} />
                 </a>
-                {website && (
+                {swrData?.website && (
                   <a
                     className="scale-125 hover:scale-150 duration-200"
                     href={swrData?.website}
