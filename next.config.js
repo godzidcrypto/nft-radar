@@ -3,11 +3,11 @@ module.exports = () => {
     return [
       {
         source: "/api/polls",
-        destination: `${process.env.BACKEND_SERVER}/api/polls`,
+        destination: `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/polls`,
       },
       {
         source: "/api/polls/:id",
-        destination: `${process.env.BACKEND_SERVER}/api/polls/:id`,
+        destination: `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/polls/:id`,
       },
     ];
   };

@@ -73,13 +73,16 @@ function Polls({ selectedDate }) {
 
     const newVote = { id, vote, discordId };
 
-    const res = await fetch(`/api/polls/${id}`, {
-      method: "PATCH",
-      body: JSON.stringify(newVote),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/polls/${id}`,
+      {
+        method: "PATCH",
+        body: JSON.stringify(newVote),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     return res;
   };
@@ -94,13 +97,16 @@ function Polls({ selectedDate }) {
 
     const newVote = { id, vote, discordId };
 
-    const res = await fetch(`/api/polls/${id}`, {
-      method: "PATCH",
-      body: JSON.stringify(newVote),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/polls/${id}`,
+      {
+        method: "PATCH",
+        body: JSON.stringify(newVote),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     return res;
   };
@@ -462,7 +468,9 @@ export default function PollsPage({ selectedDate, fallback }) {
 
 export async function getServerSideProps() {
   // Fetch data from external API
-  const res = await fetch(`${process.env.BACKEND_SERVER}/api/polls`);
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/polls`
+  );
   const data = (await res.json()) ?? [];
   const selectedDate = (await getMintPollDate()) ?? [];
 

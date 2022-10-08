@@ -649,7 +649,9 @@ export default function IndexPage({
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(`${process.env.BACKEND_SERVER}/api/polls`);
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/polls`
+  );
   const data = (await res.json()) ?? [];
   const selectedDate = (await getMintPollDate()) ?? [];
 
