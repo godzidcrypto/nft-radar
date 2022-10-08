@@ -14,7 +14,7 @@ import ContentfulImage from "../../components/contentful-image";
 import Logo from "../../assets/images/logo.png";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
-const API = `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/polls/`;
+const API = `/api/polls`;
 
 function Polls({ selectedDate }) {
   const { data: session } = useSession();
@@ -73,16 +73,13 @@ function Polls({ selectedDate }) {
 
     const newVote = { id, vote, discordId };
 
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/polls/${id}`,
-      {
-        method: "PATCH",
-        body: JSON.stringify(newVote),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const res = await fetch(`/api/polls/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify(newVote),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
     return res;
   };
@@ -97,16 +94,13 @@ function Polls({ selectedDate }) {
 
     const newVote = { id, vote, discordId };
 
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/polls/${id}`,
-      {
-        method: "PATCH",
-        body: JSON.stringify(newVote),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const res = await fetch(`/api/polls/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify(newVote),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
     return res;
   };
