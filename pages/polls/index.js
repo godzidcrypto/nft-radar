@@ -14,7 +14,7 @@ import ContentfulImage from "../../components/contentful-image";
 import Logo from "../../assets/images/logo.png";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
-const API = `/api/polls`;
+const API = `${process.env.NEXT_PUBLIC_BACKEND_SERVER}/api/polls/`;
 
 function Polls({ selectedDate }) {
   const { data: session } = useSession();
