@@ -9,7 +9,7 @@ export default function RichTextAsset({ id, assets }) {
       <ContentfulImage
         src={asset.url}
         layout="fill"
-        objectFit="cover"
+        objectFit="contain"
         alt={asset.description}
         className={`rounded-3xl`}
       />

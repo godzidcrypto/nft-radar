@@ -11,7 +11,7 @@ const customMarkdownOptions = (content) => ({
     [BLOCKS.EMBEDDED_ASSET]: (node) => (
       <section
         className="w-full flex justify-center relative"
-        style={{ height: "240px" }}
+        style={{ height: "360px" }}
       >
         <RichTextAsset
           id={node.data.target.sys.id}
