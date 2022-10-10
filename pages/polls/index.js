@@ -239,8 +239,10 @@ function Polls({ selectedDate }) {
                               <polyline points="11 12 12 12 12 16 13 16" />
                             </svg>
                             <div className="opacity-0 bg-black text-white text-center text-xs rounded-lg py-2 absolute z-10 group-hover:opacity-100 top-full px-3 pointer-events-none -left-6 w-48">
-                              Cillum mollit anim amet laborum pariatur anim
-                              nostrud.
+                              This project paid to be included in today's poll.
+                              Please refer to the FAQs at the bottom of the
+                              Polls page to see a list of reasons why we charge
+                              projects to be listed
                             </div>
                           </div>
                         </div>
@@ -386,7 +388,46 @@ function Polls({ selectedDate }) {
           </div>
           <div className="space-y-4 mt-8">
             <h2 className="text-3xl font-semibold">FAQs</h2>
-            <details className="group" open>
+            <details className="group">
+              <summary className="flex items-center justify-between p-4 rounded-lg cursor-pointer bg-[#16181C]">
+                <h5 className="font-medium">
+                  For what reasons might a project not be listed?
+                </h5>
+
+                <svg
+                  className="flex-shrink-0 ml-1.5 w-5 h-5 transition duration-300 group-open:-rotate-180"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </summary>
+
+              <p className="px-4 mt-4 leading-relaxed">
+                Normally we don't list projects for any of the following
+                reasons:
+                <ol className="list-disc ml-6">
+                  <li>Derivative of another project</li>
+                  <li>Botting project (i.e. mint bots, sniping tools, etc)</li>
+                  <li>Twitter followers or Discord members look botted</li>
+                  <li>
+                    Number of people online in Discord is concerningly low
+                  </li>
+                  <li>Degen Mints</li>
+                  <li>Gambling/casino projects at our discretion</li>
+                  <li>Relaunch due to poor sales the first time</li>
+                </ol>
+              </p>
+            </details>
+
+            <details className="group">
               <summary className="flex items-center justify-between p-4 rounded-lg cursor-pointer bg-[#16181C]">
                 <h5 className="font-medium">
                   How can I get my project featured in the Daily Mint Polls?
@@ -409,10 +450,8 @@ function Polls({ selectedDate }) {
               </summary>
 
               <p className="px-4 mt-4 leading-relaxed">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab hic
-                veritatis molestias culpa in, recusandae laboriosam neque
-                aliquid libero nesciunt voluptate dicta quo officiis explicabo
-                consequuntur distinctio corporis earum similique!
+                To be considered for listing in the poll, please contact
+                HoTsAuCe#7292 on Discord
               </p>
             </details>
 
@@ -439,10 +478,10 @@ function Polls({ selectedDate }) {
               </summary>
 
               <p className="px-4 mt-4 leading-relaxed">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab hic
-                veritatis molestias culpa in, recusandae laboriosam neque
-                aliquid libero nesciunt voluptate dicta quo officiis explicabo
-                consequuntur distinctio corporis earum similique!
+                To be eligible to vote you must be in the NFT Radar Discord
+                server, verify when you join and then reach level 1. Once you
+                have completed these requirements, simply login to this site
+                using your Discord account and you will be able to vote
               </p>
             </details>
           </div>
