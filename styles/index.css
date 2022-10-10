@@ -3,3 +3,9 @@
 @tailwind components;
 /* purgecss end ignore */
 @tailwind utilities;
+
+@layer utilities {
+    p {
+        white-space: pre-wrap;
+    }
+}
