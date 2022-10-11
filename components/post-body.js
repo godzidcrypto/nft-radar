@@ -82,7 +82,7 @@ const customMarkdownOptions = (content) => ({
     [BLOCKS.HEADING_2]: (node) => {
       const text = node.content[0].value;
       return (
-        <h2 className={`relative`}>
+        <h2 className={`relative font-bold text-[#D8D8D9]`}>
           <span
             id={convertToSlug(text)}
             className={`top-[-100px] absolute`}
@@ -94,7 +94,7 @@ const customMarkdownOptions = (content) => ({
     [BLOCKS.HEADING_3]: (node) => {
       const text = node.content[0].value;
       return (
-        <h3 className={`relative`}>
+        <h3 className={`relative font-bold text-[#D8D8D9]`}>
           <span
             id={convertToSlug(text)}
             className={`top-[-100px] absolute`}
@@ -106,7 +106,7 @@ const customMarkdownOptions = (content) => ({
     [BLOCKS.HEADING_4]: (node) => {
       const text = node.content[0].value;
       return (
-        <h4 className={`relative`}>
+        <h4 className={`relative font-bold text-[#D8D8D9]`}>
           <span
             id={convertToSlug(text)}
             className={`top-[-100px] absolute`}
@@ -118,7 +118,7 @@ const customMarkdownOptions = (content) => ({
     [BLOCKS.HEADING_5]: (node) => {
       const text = node.content[0].value;
       return (
-        <h5 className={`relative`}>
+        <h5 className={`relative font-bold text-[#D8D8D9]`}>
           <span
             id={convertToSlug(text)}
             className={`top-[-100px] absolute`}
@@ -130,7 +130,7 @@ const customMarkdownOptions = (content) => ({
     [BLOCKS.HEADING_6]: (node) => {
       const text = node.content[0].value;
       return (
-        <h6 className={`relative`}>
+        <h6 className={`relative font-bold text-[#D8D8D9]`}>
           <span
             id={convertToSlug(text)}
             className={`top-[-100px] absolute`}
@@ -144,7 +144,7 @@ const customMarkdownOptions = (content) => ({
 
 export default function PostBody({ content }) {
   return (
-    <div>
+    <div className="text-[#C4C4C6]">
       <div className={markdownStyles["markdown"]}>
         {documentToReactComponents(
           content.json,
