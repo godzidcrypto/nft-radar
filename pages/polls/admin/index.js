@@ -49,7 +49,7 @@ function PollsAdmin() {
   useEffect(() => {
     // if guildRoles array ahs been updated, prevent function call to repeat
     // this prevents getting rate limited from discord API
-    guildRoles.length === 0 ? getGuilds() : console.log("getguilds");
+    guildRoles?.length === 0 ? getGuilds() : console.log("getguilds");
   }, [session]);
 
   const { data: swrData } = useSWR(API, fetcher, {
@@ -75,7 +75,7 @@ function PollsAdmin() {
     return time.join(""); // return adjusted time or original string
   };
 
-  if (!guildRoles?.includes(moderatorRole))
+  if (guildRoles?.includes(moderatorRole))
     return (
       <Layout>
         <Container>
