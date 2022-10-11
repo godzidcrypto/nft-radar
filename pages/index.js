@@ -92,6 +92,14 @@ function Index({ allContent, featuredItems, selectedDate }) {
     return new Date(b.sys.firstPublishedAt) - new Date(a.sys.firstPublishedAt);
   });
 
+  // filters out "latest articles" by removing the "featured articles"
+  // this prevents double articles
+  const featuredArticlesSlugs = featuredArticles.map((item) => item.slug);
+
+  const filteredMerged = merged.filter((item) => {
+    return !featuredArticlesSlugs.includes(item.slug);
+  });
+
   // function to check route
   const checkRoute = (item) => {
     let route;
@@ -355,7 +363,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
               {/* bottom center content */}
               <div>
                 <div className="grid gap-4">
-                  {merged.slice(0, 7).map((item, index) => {
+                  {filteredMerged.slice(0, 7).map((item, index) => {
                     const route = checkRoute(item);
                     const { title, featuredImage, slug, sys, author, caption } =
                       item;
