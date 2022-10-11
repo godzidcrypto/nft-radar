@@ -7,11 +7,51 @@ import Discord from "../../../components/discord";
 import Website from "../../../components/website";
 import Logo from "../../../assets/images/logo.png";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 const API = `/api/polls`;
 
 function PollsAdmin() {
+  const [userInfo, setUserInfo] = useState("");
+  const [guildRoles, setGuildRoles] = useState([]);
+  const { data: session } = useSession();
+
+  const guildId = "892235360501923850"; // NFT Radar
+  const moderatorRole = "892237845828341760"; // NFT Radar
+
+  const getGuilds = async () => {
+    if (session) {
+      const userRes = await fetch("https://discord.com/api/users/@me", {
+        headers: {
+          Authorization: "Bearer " + session.accessToken,
+        },
+      }).then((res) => {
+        return res.json();
+      });
+
+      const guildRolesRes = await fetch(
+        `https://discord.com/api/users/@me/guilds/${guildId}/member`,
+        {
+          headers: {
+            Authorization: "Bearer " + session.accessToken,
+          },
+        }
+      ).then((res) => {
+        return res.json();
+      });
+      setUserInfo(userRes);
+      setGuildRoles(guildRolesRes.roles);
+    }
+  };
+
+  useEffect(() => {
+    // if guildRoles array ahs been updated, prevent function call to repeat
+    // this prevents getting rate limited from discord API
+    guildRoles.length === 0 ? getGuilds() : console.log("getguilds");
+  }, [session]);
+
   const { data: swrData } = useSWR(API, fetcher, {
     refreshInterval: 1000,
   });
@@ -35,7 +75,14 @@ function PollsAdmin() {
     return time.join(""); // return adjusted time or original string
   };
 
-  console.log(swrData);
+  if (!guildRoles?.includes(moderatorRole))
+    return (
+      <Layout>
+        <Container>
+          <p className="text-center text-4xl uppercase pt-24">No Access</p>
+        </Container>
+      </Layout>
+    );
 
   return (
     <Layout>
