@@ -177,7 +177,7 @@ function PollsAdmin() {
     }
   };
 
-  if (guildRoles?.includes(moderatorRole))
+  if (!guildRoles?.includes(moderatorRole))
     return (
       <Layout>
         <Container>

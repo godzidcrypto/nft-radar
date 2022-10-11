@@ -75,7 +75,7 @@ function PollsAdmin() {
     return time.join(""); // return adjusted time or original string
   };
 
-  if (guildRoles?.includes(moderatorRole))
+  if (!guildRoles?.includes(moderatorRole))
     return (
       <Layout>
         <Container>
