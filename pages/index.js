@@ -24,16 +24,16 @@ const API = `/api/polls`;
 function Index({ allContent, featuredItems, selectedDate }) {
   const [topCollections, setTopCollections] = useState();
 
-  useEffect(async () => {
-    const res = await fetch(
-      "https://stats-mainnet.magiceden.io/collection_stats/popular_collections/sol?limit=5&window=1d"
-    ).then((res) => {
-      return res.json();
-    });
-    setTopCollections(res);
-  }, []);
+  // useEffect(async () => {
+  //   const res = await fetch(
+  //     "https://stats-mainnet.magiceden.io/collection_stats/popular_collections/sol?limit=5&window=1d"
+  //   ).then((res) => {
+  //     return res.json();
+  //   });
+  //   setTopCollections(res);
+  // }, []);
 
-  console.log("top", topCollections);
+  // console.log("top", topCollections);
   const {
     featuredArticlesCollection,
     featuredArtistCollection,
@@ -471,7 +471,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
                   break;
               }
               return (
-                <>
+                <div key={index}>
                   {/* <h2 className=" hover:cursor-pointer"> */}
                   <h3 className="mt-4 uppercase font-extrabold border-b-2">
                     <Link href={`/${route}`}>
@@ -621,7 +621,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
                       </div>
                     </div>
                   </div>
-                </>
+                </div>
               );
             })}
           </div>
