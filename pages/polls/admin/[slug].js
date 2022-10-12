@@ -9,6 +9,7 @@ import Discord from "../../../components/discord";
 import Website from "../../../components/website";
 import Logo from "../../../assets/images/logo.png";
 import { useSession } from "next-auth/react";
+import DateComponent from "../../../components/date";
 
 function PollsAdmin() {
   const [userInfo, setUserInfo] = useState("");
@@ -73,6 +74,19 @@ function PollsAdmin() {
   const [dagzen, setDagzen] = useState(false);
   const [selectedImage, setSelectedImage] = useState();
   const [isRequested, setIsRequested] = useState(swrData?.isRequested);
+  const [solana, setSolana] = useState(swrData?.chain?.includes("Solana"));
+  const [ethereum, setEthereum] = useState(
+    swrData?.chain?.includes("Ethereum")
+  );
+
+  const chain =
+    solana && ethereum
+      ? ["Solana", "Ethereum"]
+      : solana
+      ? ["Solana"]
+      : ethereum
+      ? ["Ethereum"]
+      : [];
 
   const imageRef = useRef();
   const resetImage = () => {
@@ -120,6 +134,7 @@ function PollsAdmin() {
       dagzen,
       imageUrl,
       isRequested,
+      chain,
     };
 
     console.log(newPoll);
@@ -205,6 +220,9 @@ function PollsAdmin() {
             </div>
 
             <div className="p-8 sm:col-span-2 relative">
+              <p className="absolute right-4 top-4">
+                {/* <DateComponent dateString={swrData?.date} /> */}
+              </p>
               <div className="flex items-center mb-3">
                 {swrData?.isRequested && (
                   <div>
@@ -357,15 +375,48 @@ function PollsAdmin() {
                       </div>
                     )}
 
-                    <div>
-                      <input
-                        className="w-full p-3 text-sm border-gray-200 rounded-lg"
-                        placeholder="Name"
-                        type="text"
-                        onChange={(e) => setName(e.target.value)}
-                        defaultValue={swrData?.name}
-                        required
-                      />
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                      <div>
+                        <input
+                          className="w-full p-3 text-sm border-gray-200 rounded-lg"
+                          placeholder="Name"
+                          type="text"
+                          onChange={(e) => setName(e.target.value)}
+                          defaultValue={swrData?.name}
+                          required
+                        />
+                      </div>
+
+                      <div class="grid grid-cols-2">
+                        <label
+                          for="MarketingAccept"
+                          className="flex gap-4 items-center"
+                        >
+                          <input
+                            type="checkbox"
+                            className="w-5 h-5 bg-white border-gray-200 rounded-md shadow-sm"
+                            onChange={() => setSolana(!solana)}
+                            defaultChecked={swrData?.chain?.includes("Solana")}
+                          />
+                          <span className="text-sm text-gray-300">Solana</span>
+                        </label>
+                        <label
+                          for="MarketingAccept"
+                          className="flex gap-4 items-center"
+                        >
+                          <input
+                            type="checkbox"
+                            className="w-5 h-5 bg-white border-gray-200 rounded-md shadow-sm"
+                            onChange={() => setEthereum(!ethereum)}
+                            defaultChecked={swrData?.chain?.includes(
+                              "Ethereum"
+                            )}
+                          />
+                          <span className="text-sm text-gray-300">
+                            Ethereum
+                          </span>
+                        </label>
+                      </div>
                     </div>
 
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">

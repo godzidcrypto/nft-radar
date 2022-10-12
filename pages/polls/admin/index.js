@@ -9,6 +9,10 @@ import Logo from "../../../assets/images/logo.png";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
+import DateComponent from "../../../components/date";
+import Solana from "../../../assets/images/solana.png";
+import Ethereum from "../../../assets/images/ethereum.png";
+import AddPoll from "../../../components/add-poll";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 const API = `/api/polls`;
@@ -75,7 +79,7 @@ function PollsAdmin() {
     return time.join(""); // return adjusted time or original string
   };
 
-  if (!guildRoles?.includes(moderatorRole))
+  if (guildRoles?.includes(moderatorRole))
     return (
       <Layout>
         <Container>
@@ -84,9 +88,23 @@ function PollsAdmin() {
       </Layout>
     );
 
+  swrData?.sort(function (a, b) {
+    return new Date(b.date) - new Date(a.date);
+  });
+
+  // const pollDates = [...new Set(swrData.map((item) => item.date))];
+
+  // console.log(pollDates);
+
   return (
     <Layout>
       <Container>
+        {/* <div>
+          {pollDates.map((date, index) => {
+            return <p>{date}</p>;
+          })}
+        </div> */}
+        <AddPoll />
         <div className="grid lg:grid-cols-2 gap-4 py-16">
           {swrData?.map((item, index) => {
             const {
@@ -104,6 +122,7 @@ function PollsAdmin() {
               voters,
               imageUrl,
               isRequested,
+              chain,
             } = item;
             const findLauren = voters.filter((voter) => {
               return voter.discordId === "778658118854115418";
@@ -127,10 +146,43 @@ function PollsAdmin() {
                       <span className="absolute right-4 top-6 rounded-full px-3 py-1.5 bg-gray-100 text-gray-600 font-black text-base">
                         Minting: {yes}
                       </span>
+                      {chain.length > 0 && (
+                        <div className="absolute bottom-0 w-full px-3 py-1.5 font-black text-base bg-[rgba(0,0,0,.8)] flex justify-center items-center">
+                          {chain?.length === 1 && chain[0] === "Solana" ? (
+                            <ContentfulImage
+                              src={Solana}
+                              width={25}
+                              height={25}
+                            />
+                          ) : chain?.length === 1 && chain[0] === "Ethereum" ? (
+                            <ContentfulImage
+                              src={Ethereum}
+                              width={25}
+                              height={25}
+                            />
+                          ) : chain?.length === 2 ? (
+                            <>
+                              <ContentfulImage
+                                src={Solana}
+                                width={25}
+                                height={25}
+                              />
+                              <ContentfulImage
+                                src={Ethereum}
+                                width={25}
+                                height={25}
+                              />
+                            </>
+                          ) : null}
+                        </div>
+                      )}
                     </div>
                   </div>
 
                   <div className="p-8 sm:col-span-2 relative">
+                    <p className="absolute right-4 top-4 text-xs">
+                      <DateComponent dateString={item.date} />
+                    </p>
                     <div className="flex items-center mb-3">
                       {isRequested && (
                         <div>

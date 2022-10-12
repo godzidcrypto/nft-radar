@@ -16,6 +16,17 @@ function AddPoll({ isRequest = false }) {
   const [dagzen, setDagzen] = useState(false);
   const [selectedImage, setSelectedImage] = useState();
   const [isRequested, setIsRequested] = useState(false);
+  const [solana, setSolana] = useState(false);
+  const [ethereum, setEthereum] = useState(false);
+
+  const chain =
+    solana && ethereum
+      ? ["Solana", "Ethereum"]
+      : solana
+      ? ["Solana"]
+      : ethereum
+      ? ["Ethereum"]
+      : [];
 
   const imageRef = useRef();
   const resetImage = () => {
@@ -62,6 +73,7 @@ function AddPoll({ isRequest = false }) {
       dagzen,
       imageUrl,
       isRequested,
+      chain,
     };
 
     console.log(newPoll);
@@ -90,6 +102,8 @@ function AddPoll({ isRequest = false }) {
       setDagzen(false);
       resetImage();
       setIsRequested(false);
+      setSolana(false);
+      setEthereum(false);
     }
 
     return res;
@@ -112,15 +126,46 @@ function AddPoll({ isRequest = false }) {
                   />
                 </div>
 
-                <div>
-                  <input
-                    className="w-full p-3 text-sm border-gray-200 rounded-lg"
-                    placeholder="Name"
-                    type="text"
-                    onChange={(e) => setName(e.target.value)}
-                    value={name}
-                    required
-                  />
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <div>
+                    <input
+                      className="w-full p-3 text-sm border-gray-200 rounded-lg"
+                      placeholder="Name"
+                      type="text"
+                      onChange={(e) => setName(e.target.value)}
+                      value={name}
+                      required
+                    />
+                  </div>
+
+                  <div class="grid grid-cols-2">
+                    <label
+                      for="MarketingAccept"
+                      className="flex gap-4 items-center"
+                      onClick={() => setSolana(!solana)}
+                    >
+                      <input
+                        type="checkbox"
+                        className="w-5 h-5 bg-white border-gray-200 rounded-md shadow-sm"
+                        onChange={() => setSolana(!solana)}
+                        checked={solana}
+                      />
+                      <span className="text-sm text-gray-300">Solana</span>
+                    </label>
+                    <label
+                      for="MarketingAccept"
+                      className="flex gap-4 items-center"
+                      onClick={() => setEthereum(!ethereum)}
+                    >
+                      <input
+                        type="checkbox"
+                        className="w-5 h-5 bg-white border-gray-200 rounded-md shadow-sm"
+                        onChange={() => setEthereum(!ethereum)}
+                        checked={ethereum}
+                      />
+                      <span className="text-sm text-gray-300">Ethereum</span>
+                    </label>
+                  </div>
                 </div>
 
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -216,7 +261,11 @@ function AddPoll({ isRequest = false }) {
 
                 <div className="grid sm:grid-cols-4 items-center gap-2">
                   <div className="col-span-2">
-                    <label for="MarketingAccept" className="flex gap-4">
+                    <label
+                      for="MarketingAccept"
+                      className="flex gap-4"
+                      onClick={() => setIsRequested(!isRequested)}
+                    >
                       <input
                         type="checkbox"
                         className="w-5 h-5 bg-white border-gray-200 rounded-md shadow-sm"

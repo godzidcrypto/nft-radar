@@ -12,6 +12,8 @@ import DateComponent from "../../components/date";
 import { getMintPollDate } from "../../lib/api";
 import ContentfulImage from "../../components/contentful-image";
 import Logo from "../../assets/images/logo.png";
+import Solana from "../../assets/images/solana.png";
+import Ethereum from "../../assets/images/ethereum.png";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 const API = `/api/polls`;
@@ -187,6 +189,7 @@ function Polls({ selectedDate }) {
                 voters,
                 imageUrl,
                 isRequested,
+                chain,
               } = item;
               const findVoters = voters.filter((voter) => {
                 return voter.discordId === userInfo.id;
@@ -212,6 +215,36 @@ function Polls({ selectedDate }) {
                       <span className="absolute right-4 top-6 rounded-full px-3 py-1.5 bg-gray-100 text-gray-600 font-black text-base">
                         Minting: {yes}
                       </span>
+                      {chain.length > 0 && (
+                        <div className="absolute bottom-0 w-full px-3 py-1.5 font-black text-base bg-[rgba(0,0,0,.8)] flex justify-center items-center">
+                          {chain?.length === 1 && chain[0] === "Solana" ? (
+                            <ContentfulImage
+                              src={Solana}
+                              width={25}
+                              height={25}
+                            />
+                          ) : chain?.length === 1 && chain[0] === "Ethereum" ? (
+                            <ContentfulImage
+                              src={Ethereum}
+                              width={25}
+                              height={25}
+                            />
+                          ) : chain?.length === 2 ? (
+                            <>
+                              <ContentfulImage
+                                src={Solana}
+                                width={25}
+                                height={25}
+                              />
+                              <ContentfulImage
+                                src={Ethereum}
+                                width={25}
+                                height={25}
+                              />
+                            </>
+                          ) : null}
+                        </div>
+                      )}
                     </div>
                   </div>
 
