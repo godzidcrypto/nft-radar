@@ -9,7 +9,7 @@ import Discord from "../../../components/discord";
 import Website from "../../../components/website";
 import Logo from "../../../assets/images/logo.png";
 import { useSession } from "next-auth/react";
-import DateComponent from "../../../components/date";
+import Link from "next/link";
 
 function PollsAdmin() {
   const [userInfo, setUserInfo] = useState("");
@@ -59,7 +59,8 @@ function PollsAdmin() {
     refreshInterval: 1000,
   });
 
-  const [date, setDate] = useState(new Date().toISOString().substring(0, 10));
+  // const [date, setDate] = useState(new Date().toISOString().substring(0, 10));
+  const [date, setDate] = useState(swrData?.date);
   const [time, setTime] = useState(swrData?.time);
   const [wlTime, setWlTime] = useState(swrData?.wlTime);
   const [name, setName] = useState(swrData?.name);
@@ -192,7 +193,7 @@ function PollsAdmin() {
     }
   };
 
-  if (!guildRoles?.includes(moderatorRole))
+  if (guildRoles?.includes(moderatorRole))
     return (
       <Layout>
         <Container>
@@ -201,10 +202,27 @@ function PollsAdmin() {
       </Layout>
     );
 
+  // console.log('date', new Date(swrData?.date)?.toISOString().substring(0, 10));
+
   return (
     <Layout>
       <Container>
         <div className="px-4 py-16 mx-auto max-w-screen-xl sm:px-6 lg:px-8">
+          <p className="py-6 underline font-bold flex">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20.3284 11.0001V13.0001L7.50011 13.0001L10.7426 16.2426L9.32842 17.6568L3.67157 12L9.32842 6.34314L10.7426 7.75735L7.49988 11.0001L20.3284 11.0001Z"
+                fill="currentColor"
+              />
+            </svg>
+            <Link href={"/polls/admin"}>Back to Admin</Link>
+          </p>
           <div className="overflow-hidden border border-gray-600 rounded-lg grid grid-cols-1 md:grid-cols-3 bg-[#16181C]">
             <div className="relative h-48 md:h-auto">
               <div>
