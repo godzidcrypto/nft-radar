@@ -168,17 +168,49 @@ function Index({ allContent, featuredItems, selectedDate }) {
                     twitter,
                     discord,
                     website,
-                    mintPrice,
-                    wlMintPrice,
-                    quantity,
                     yes,
                     imageUrl,
+                    isRequested,
                   } = item;
                   return (
                     <div
                       className="bg-[#16181C] p-4 rounded-xl grid items-center relative"
                       key={index}
                     >
+                      {isRequested && (
+                        <div className="absolute top-4 right-4">
+                          <div className="group cursor-pointer relative text-center mr-1.5">
+                            <svg
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M12 6C12.5523 6 13 6.44772 13 7V13C13 13.5523 12.5523 14 12 14C11.4477 14 11 13.5523 11 13V7C11 6.44772 11.4477 6 12 6Z"
+                                fill="#fde047"
+                              />
+                              <path
+                                d="M12 16C11.4477 16 11 16.4477 11 17C11 17.5523 11.4477 18 12 18C12.5523 18 13 17.5523 13 17C13 16.4477 12.5523 16 12 16Z"
+                                fill="#fde047"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2ZM4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12Z"
+                                fill="#fde047"
+                              />
+                            </svg>
+                            <div className="opacity-0 bg-black text-white text-center text-xs rounded-lg py-2 absolute z-10 group-hover:opacity-100 top-0 px-3 pointer-events-none right-6 w-48">
+                              This project paid to be included in today's poll.
+                              Please refer to the FAQs at the bottom of the
+                              Polls page to see a list of reasons why we charge
+                              projects to be listed
+                            </div>
+                          </div>
+                        </div>
+                      )}
                       <div className="grid grid-cols-[1fr_3fr] gap-6 items-center">
                         <Link href={"/polls"}>
                           <div className="hover:cursor-pointer">
@@ -209,14 +241,14 @@ function Index({ allContent, featuredItems, selectedDate }) {
                               href={twitter}
                               target="_blank"
                             >
-                              <Twitter fill={"#ffffff"} width={12} />
+                              <Twitter fill={"#C4C4C6"} width={12} />
                             </a>
                             <a
                               className="scale-125 hover:scale-150 duration-200"
                               href={discord}
                               target="_blank"
                             >
-                              <Discord fill={"#ffffff"} width={12} />
+                              <Discord fill={"#C4C4C6"} width={12} />
                             </a>
                             {website && (
                               <a
@@ -224,7 +256,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
                                 href={website}
                                 target="_blank"
                               >
-                                <Website fill={"#ffffff"} width={12} />
+                                <Website fill={"#C4C4C6"} width={12} />
                               </a>
                             )}
                           </div>
