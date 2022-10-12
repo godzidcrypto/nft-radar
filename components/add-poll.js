@@ -16,7 +16,7 @@ function AddPoll({ isRequest = false }) {
   const [dagzen, setDagzen] = useState(false);
   const [selectedImage, setSelectedImage] = useState();
   const [isRequested, setIsRequested] = useState(false);
-  const [solana, setSolana] = useState(false);
+  const [solana, setSolana] = useState(true);
   const [ethereum, setEthereum] = useState(false);
 
   const chain =
