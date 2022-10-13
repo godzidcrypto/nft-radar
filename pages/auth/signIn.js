@@ -18,7 +18,7 @@ function SignIn({ providers, headers }) {
               <ContentfulImage src={Space} layout="fill" />
             </div>
             <p className="font-extralight px-12">
-              Adipisicing adipisicing ad amet ex nostrud reprehenderit qui.
+              The premier source for all things NFTs
             </p>
           </div>
         </div>
