@@ -10,9 +10,9 @@ function ArtistsCollection({ allArtistFeatures }) {
     <Layout title={"NFT Radar | Artist Features"}>
       <Container>
         <Hero
-          title={"1/1 Artist Feature"}
+          title={"1/1 Artist Features"}
           description={
-            "Fugiat id mollit exercitation culpa mollit laborum nostrud ullamco velit magna aliqua exercitation. Ea laboris elit quis culpa adipisicing exercitation aliquip."
+            "Showcasing some of the best and underrated artists in the space"
           }
           svg={Artists}
         />

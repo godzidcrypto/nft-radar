@@ -10,8 +10,10 @@ function ProjectsCollection({ allProjects }) {
     <Layout title={"NFT Radar | Project Write-Ups"}>
       <Container>
         <Hero
-          title={"Project Write-Up"}
-          description={"Eiusmod ad qui qui cillum."}
+          title={"Project Write-Ups"}
+          description={
+            "Detailed breakdowns on projects to help provide insight for potential buyers"
+          }
           svg={Projects}
           reverse={true}
         />

@@ -12,7 +12,7 @@ function NewsCollection({ allCryptoNews }) {
         <Hero
           title={"NFT/Crypto News"}
           description={
-            "Labore fugiat sint velit cillum quis nostrud dolor commodo exercitation voluptate."
+            "For all the latest information on important things happening in the space"
           }
           svg={News}
         />

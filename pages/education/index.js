@@ -11,9 +11,7 @@ function EducationCollection({ allEducationalContent }) {
       <Container>
         <Hero
           title={"Educational Content"}
-          description={
-            "Officia et ea quis pariatur pariatur nulla adipisicing nisi nisi ipsum est exercitation cillum tempor."
-          }
+          description={"Easy-to-use guides for beginners and veterans alike"}
           svg={Education}
           reverse={true}
         />

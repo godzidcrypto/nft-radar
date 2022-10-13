@@ -10,10 +10,8 @@ function OpinionsCollection({ allOpinionPieces }) {
     <Layout title={"NFT Radar | Opinion Pieces"}>
       <Container>
         <Hero
-          title={"Opinion Piece"}
-          description={
-            "Ea aliquip veniam deserunt culpa dolore excepteur dolor culpa veniam eu quis nisi amet."
-          }
+          title={"Opinion Pieces"}
+          description={"These are our thoughts on things"}
           svg={Opinions}
           reverse={true}
         />

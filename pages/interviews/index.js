@@ -10,8 +10,10 @@ function InterviewsCollection({ allInterviews }) {
     <Layout title={"NFT Radar | Interviews"}>
       <Container>
         <Hero
-          title={"Interview/AMA"}
-          description={"Do velit exercitation id amet dolore officia."}
+          title={"Interviews/AMAs"}
+          description={
+            "Conversations with some of the brightest and sharpest minds in the space"
+          }
           svg={Interviews}
         />
         <div>

@@ -148,9 +148,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
         <Container>
           <Hero
             title={"Welcome to NFT Radar"}
-            description={
-              "Fugiat ea amet minim pariatur sint do adipisicing laborum nisi."
-            }
+            description={"The premier source for all things NFTs"}
             reverse={true}
           />
           <div className="grid lg:grid-cols-[1fr_2fr_1fr] gap-8 py-12 relative">

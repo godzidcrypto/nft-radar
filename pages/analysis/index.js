@@ -11,7 +11,9 @@ function AnalysisCollection({ allAnalysis }) {
       <Container>
         <Hero
           title={"Analysis"}
-          description={"Dolore nisi anim culpa cillum ullamco cillum."}
+          description={
+            "Number crunching, data, spreadsheets. All that good stuff."
+          }
           svg={Analysis}
         />
         <div>
