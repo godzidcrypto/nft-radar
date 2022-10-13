@@ -213,11 +213,11 @@ function Index({ allContent, featuredItems, selectedDate }) {
                       )}
                       <div className="grid grid-cols-[1fr_3fr] gap-6 items-center">
                         <Link href={"/polls"}>
-                          <div className="hover:cursor-pointer">
+                          <div className="hover:cursor-pointer relative h-12 w-12">
                             <ContentfulImage
                               src={imageUrl ?? Logo}
-                              width={50}
-                              height={50}
+                              layout="fill"
+                              objectFit="cover"
                               className="rounded-full"
                             />
                           </div>
@@ -226,7 +226,8 @@ function Index({ allContent, featuredItems, selectedDate }) {
                           <span
                             className={`absolute justify-end bottom-0 right-0 text-xs font-light bg-gray-200 text-gray-600 inline-flex items-center gap-1 rounded-tl-xl rounded-br-xl py-1 px-1.5`}
                           >
-                            Minting: {yes}
+                            Minting:{" "}
+                            <span className="font-semibold">{yes}</span>
                           </span>
                           <span className="font-bold">
                             <Link href={"/polls"}>
