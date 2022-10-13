@@ -188,22 +188,26 @@ function PollsAdmin() {
                         <div>
                           <div className="group cursor-pointer relative text-center mr-1.5">
                             <svg
-                              aria-haspopup="true"
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="icon icon-tabler icon-tabler-info-circle"
-                              width={25}
-                              height={25}
+                              width="24"
+                              height="24"
                               viewBox="0 0 24 24"
-                              strokeWidth="1.5"
-                              stroke="#A0AEC0"
                               fill="none"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
+                              xmlns="http://www.w3.org/2000/svg"
                             >
-                              <path stroke="none" d="M0 0h24v24H0z" />
-                              <circle cx={12} cy={12} r={9} />
-                              <line x1={12} y1={8} x2="12.01" y2={8} />
-                              <polyline points="11 12 12 12 12 16 13 16" />
+                              <path
+                                d="M12 6C12.5523 6 13 6.44772 13 7V13C13 13.5523 12.5523 14 12 14C11.4477 14 11 13.5523 11 13V7C11 6.44772 11.4477 6 12 6Z"
+                                fill="#fde047"
+                              />
+                              <path
+                                d="M12 16C11.4477 16 11 16.4477 11 17C11 17.5523 11.4477 18 12 18C12.5523 18 13 17.5523 13 17C13 16.4477 12.5523 16 12 16Z"
+                                fill="#fde047"
+                              />
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2ZM4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12Z"
+                                fill="#fde047"
+                              />
                             </svg>
                             <div className="opacity-0 bg-black text-white text-center text-xs rounded-lg py-2 absolute z-10 group-hover:opacity-100 top-full px-3 pointer-events-none -left-6 w-48">
                               Cillum mollit anim amet laborum pariatur anim

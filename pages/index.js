@@ -178,7 +178,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
                       key={index}
                     >
                       {isRequested && (
-                        <div className="absolute top-4 right-4">
+                        <div className="absolute top-2 right-2">
                           <div className="group cursor-pointer relative text-center mr-1.5">
                             <svg
                               width="16"
