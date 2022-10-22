@@ -153,13 +153,16 @@ function Index({ allContent, featuredItems, selectedDate }) {
           />
           <div className="grid lg:grid-cols-[1fr_2fr_1fr] gap-8 py-12 relative">
             <div className="h-fit lg:sticky top-32 rounded-xl order-last lg:order-first">
+              <h2 className="uppercase font-extralight">
+                Mints for{" "}
+                <DateComponent dateString={selectedDate[0].selectedDate} />
+              </h2>
               <Link href={"/polls"}>
-                <h2 className="uppercase font-extralight pb-4 hover:cursor-pointer hover:text-[#8C50EE]">
-                  Mints for{" "}
-                  <DateComponent dateString={selectedDate[0].selectedDate} />
-                </h2>
+                <a className="font-thin uppercase text-xs hover:cursor-pointer hover:text-[#8C50EE]">
+                  To vote, click here
+                </a>
               </Link>
-              <div className="grid gap-2">
+              <div className="grid gap-2 mt-4">
                 {mintsToday.map((item, index) => {
                   const {
                     name,
@@ -360,10 +363,10 @@ function Index({ allContent, featuredItems, selectedDate }) {
                           height={`${index === 0 ? "450" : "300"}`}
                         />
                         <div
-                          className="absolute bottom-0 text-white bg-black w-full p-4"
+                          className="absolute bottom-0 text-white bg-black w-full p-4 pt-0 rounded-xl"
                           style={{
                             background:
-                              "linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent)",
+                              "linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0,0,0,.35))",
                           }}
                         >
                           <div className="flex justify-between mt-4 items-center">
@@ -436,7 +439,38 @@ function Index({ allContent, featuredItems, selectedDate }) {
               </div>
             </div>
             <div className="grid gap-4 h-fit lg:sticky top-32 order-first lg:order-last">
-              <h2 className="uppercase font-extralight">Featured Projects</h2>
+              <div className="flex gap-2">
+                <h2 className="uppercase font-extralight">Featured Projects</h2>
+                <div>
+                  <div className="group cursor-pointer relative text-center mr-1.5">
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M12 6C12.5523 6 13 6.44772 13 7V13C13 13.5523 12.5523 14 12 14C11.4477 14 11 13.5523 11 13V7C11 6.44772 11.4477 6 12 6Z"
+                        fill="#fde047"
+                      />
+                      <path
+                        d="M12 16C11.4477 16 11 16.4477 11 17C11 17.5523 11.4477 18 12 18C12.5523 18 13 17.5523 13 17C13 16.4477 12.5523 16 12 16Z"
+                        fill="#fde047"
+                      />
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2ZM4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12Z"
+                        fill="#fde047"
+                      />
+                    </svg>
+                    <div className="opacity-0 bg-black text-white text-center text-xs rounded-lg py-2 absolute z-10 group-hover:opacity-100 bottom-full px-3 pointer-events-none right-6 w-48">
+                      Featured projects are not endorsements. Always DYOR
+                    </div>
+                  </div>
+                </div>
+              </div>
               <Carousel items={featuredProjects} />
               <h2 className="uppercase font-extralight">Featured Artist</h2>
               <div>

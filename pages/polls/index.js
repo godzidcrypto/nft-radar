@@ -172,7 +172,7 @@ function Polls({ selectedDate }) {
             <p className="font-bold"></p>
             <section className="text-white bg-[#16181C]">
               <div className="py-8 mx-auto max-w-screen-xl lg:items-center lg:flex">
-                <div className="max-w-3xl mx-auto text-center">
+                <div className="max-w-3xl mx-auto text-center px-4">
                   <h1 className="text-3xl font-extrabold text-transparent sm:text-5xl bg-clip-text bg-gradient-to-r from-gray-300 to-purple-600">
                     Mints for{" "}
                     <DateComponent dateString={selectedDate[0].selectedDate} />
@@ -180,6 +180,18 @@ function Polls({ selectedDate }) {
 
                   <p className="max-w-xl mx-auto mt-4 sm:leading-relaxed sm:text-xl">
                     <p className="text-lg font-medium">Mint Times are in UTC</p>
+                    <p className="text-base font-extralight my-4">
+                      To vote you must be logged in with Discord. You must also
+                      be verified and at least level 1 in the{" "}
+                      <a
+                        href="https://discord.gg/nftradar"
+                        target="_blank"
+                        className="font-bold hover:underline"
+                      >
+                        Radar Discord
+                      </a>{" "}
+                      server
+                    </p>
                     {user && (
                       <p className="text-lg font-extralight">
                         {guildRoles?.includes(voterRole)
@@ -353,7 +365,7 @@ function Polls({ selectedDate }) {
                       </div>
                     </div>
 
-                    <dl className="mt-4 grid gap-2 lg:gap-4 md:grid-cols-3">
+                    <dl className="mt-4 grid gap-2 lg:gap-4 grid-cols-2 md:grid-cols-3">
                       <div className="flex flex-col p-2 text-center border border-gray-100 rounded-lg">
                         <dt className="order-last text-xs font-medium text-gray-500">
                           WL Mint Price
@@ -375,7 +387,7 @@ function Polls({ selectedDate }) {
                         </dd>
                       </div>
 
-                      <div className="justify-center flex flex-col py-2 text-center border border-gray-100 rounded-lg">
+                      <div className="justify-center flex flex-col py-2 text-center border border-gray-100 rounded-lg col-span-2 md:col-span-1 order-last md:order-none">
                         <dt className="order-last text-xs font-medium text-gray-500">
                           Quantity
                         </dt>
@@ -397,7 +409,7 @@ function Polls({ selectedDate }) {
                         </dd>
                       </div>
 
-                      <div className="flex flex-col p-2 text-center border border-gray-100 rounded-lg">
+                      <div className="flex flex-col p-2 text-center border border-gray-100 rounded-lg md:col-span-1">
                         <dt className="order-last text-xs font-medium text-gray-500">
                           Mint Time
                         </dt>
@@ -539,6 +551,35 @@ function Polls({ selectedDate }) {
                 server, verify when you join and then reach level 1. Once you
                 have completed these requirements, simply login to this site
                 using your Discord account and you will be able to vote
+              </p>
+            </details>
+
+            <details className="group">
+              <summary className="flex items-center justify-between p-4 rounded-lg cursor-pointer bg-[#16181C]">
+                <h5 className="font-medium">
+                  What does Lauren and HoTsAuCe indicate?
+                </h5>
+
+                <svg
+                  className="flex-shrink-0 ml-1.5 w-5 h-5 transition duration-300 group-open:-rotate-180"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </summary>
+
+              <p className="px-4 mt-4 leading-relaxed">
+                This shows whether or not Lauren and/or HoTsAuCe are minting a
+                certain project. Red means no, green means yes. This is NOT
+                FINANCIAL ADVICE and should not be taken as such.
               </p>
             </details>
           </div>
