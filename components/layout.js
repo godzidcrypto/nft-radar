@@ -13,6 +13,7 @@ export default function Layout({
   description,
   image,
 }) {
+  console.log("HERE", image);
   return (
     <>
       {/* <Meta /> */}
@@ -53,7 +54,10 @@ export default function Layout({
             description ? description : "The premier source for all things NFTs"
           }`}
         />
-        <meta property="og:image" content={image ? image : HOME_OG_IMAGE_URL} />
+        <meta
+          property="og:image"
+          content={image ? image.url : HOME_OG_IMAGE_URL}
+        />
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8160193017744513"
