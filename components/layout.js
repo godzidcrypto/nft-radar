@@ -1,6 +1,4 @@
-import Alert from "../components/alert";
 import Footer from "../components/footer";
-import Meta from "../components/meta";
 import Head from "next/head";
 import Navbar from "./navbar";
 import Script from "next/script";
@@ -13,10 +11,8 @@ export default function Layout({
   description,
   image,
 }) {
-  console.log("HERE", image);
   return (
     <>
-      {/* <Meta /> */}
       <Script
         strategy="lazyOnload"
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
@@ -79,14 +75,7 @@ export default function Layout({
         ></Script>
       </Head>
       {!hide && <Navbar />}
-      <div
-        className={`bg-[#8C50EE] text-[#E7E9EA] ${hide ? "" : "pt-24"}`}
-        // style={{
-        //   backgroundImage: "radial-gradient(#d1d5db 1.15px, #faf5ff 1.15px)",
-        //   backgroundSize: "20px 20px",
-        // }}
-      >
-        {/* <Alert preview={preview} /> */}
+      <div className={`bg-[#8C50EE] text-[#E7E9EA] ${hide ? "" : "pt-24"}`}>
         <main className="bg-black min-h-screen ">{children}</main>
       </div>
       {!hide && <Footer />}
