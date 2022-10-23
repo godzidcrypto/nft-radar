@@ -4,11 +4,18 @@ import Meta from "../components/meta";
 import Head from "next/head";
 import Navbar from "./navbar";
 import Script from "next/script";
+import { HOME_OG_IMAGE_URL } from "../lib/constants";
 
-export default function Layout({ hide = false, children, title }) {
+export default function Layout({
+  hide = false,
+  children,
+  title,
+  description,
+  image,
+}) {
   return (
     <>
-      <Meta />
+      {/* <Meta /> */}
       <Script
         strategy="lazyOnload"
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
@@ -32,6 +39,21 @@ export default function Layout({ hide = false, children, title }) {
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
           rel="stylesheet"
         />
+        <link rel="shortcut icon" href="/favicon/favicon.ico" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta
+          name="msapplication-config"
+          content="/favicon/browserconfig.xml"
+        />
+        <meta name="theme-color" content="#000" />
+        <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
+        <meta
+          name="description"
+          content={`${
+            description ? description : "The premier source for all things NFTs"
+          }`}
+        />
+        <meta property="og:image" content={image ? image : HOME_OG_IMAGE_URL} />
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8160193017744513"

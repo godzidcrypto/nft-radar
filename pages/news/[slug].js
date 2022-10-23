@@ -5,8 +5,16 @@ import EntryView from "../../components/entry-view";
 import YoutubeEmbed from "../../components/youtube-embed";
 
 function NewsItem({ cryptoNews, allCryptoNews }) {
-  const { sys, title, chain, featuredImage, videoLink, writeUp, author } =
-    cryptoNews[0];
+  const {
+    sys,
+    title,
+    chain,
+    featuredImage,
+    videoLink,
+    writeUp,
+    author,
+    caption,
+  } = cryptoNews[0];
 
   const videoId = videoLink?.split("=").slice(-1)[0];
 
@@ -22,7 +30,7 @@ function NewsItem({ cryptoNews, allCryptoNews }) {
   });
 
   return (
-    <Layout title={title}>
+    <Layout title={title} description={caption} image={featuredImage}>
       <Container>
         <EntryView
           title={title}
