@@ -41,6 +41,7 @@ export default function Layout({
           rel="stylesheet"
         />
         <link rel="shortcut icon" href="/favicon/favicon.ico" />
+
         <meta name="msapplication-TileColor" content="#000000" />
         <meta
           name="msapplication-config"
@@ -58,6 +59,19 @@ export default function Layout({
           property="og:image"
           content={image ? image.url : HOME_OG_IMAGE_URL}
         />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:title" content={title ? title : "NFT Radar"} />
+        <meta
+          property="twitter:description"
+          content={`${
+            description ? description : "The premier source for all things NFTs"
+          }`}
+        />
+        <meta
+          property="twitter:image"
+          content={image ? image.url : HOME_OG_IMAGE_URL}
+        ></meta>
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8160193017744513"
