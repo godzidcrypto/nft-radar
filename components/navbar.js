@@ -52,17 +52,21 @@ export default function Navbar() {
       route: "/education",
     },
     {
-      title: "Analysis",
-      route: "/analysis",
+      title: "About Us",
+      route: "/about",
     },
-    {
-      title: "Opinions",
-      route: "/opinions",
-    },
-    {
-      title: "Interviews",
-      route: "/interviews",
-    },
+    // {
+    //   title: "Analysis",
+    //   route: "/analysis",
+    // },
+    // {
+    //   title: "Opinions",
+    //   route: "/opinions",
+    // },
+    // {
+    //   title: "Interviews",
+    //   route: "/interviews",
+    // },
   ];
 
   const Route = ({ route, title }) => {
@@ -100,7 +104,7 @@ export default function Navbar() {
       >
         <Container>
           <div className="flex items-center justify-between h-20">
-            <div className="flex items-center">
+            <div className="flex items-center gap-4">
               <Link href={"/"}>
                 <ContentfulImage
                   src={color ? logo : logoWhite}
