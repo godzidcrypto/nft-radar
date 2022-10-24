@@ -20,7 +20,7 @@ function About({ founderImages }) {
   });
 
   return (
-    <Layout>
+    <Layout title={"NFT Radar | About Us"}>
       <Container>
         <Hero title={"About Us"} reverse={true} />
         <div className="py-12">
