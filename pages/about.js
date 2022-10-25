@@ -6,6 +6,8 @@ import ContentfulImage from "../components/contentful-image";
 import { getFounderImages } from "../lib/api";
 import Twitter from "../components/twitter";
 import Discord from "../components/discord";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function About({ founderImages }) {
   let laurenImg;
@@ -19,8 +21,19 @@ function About({ founderImages }) {
     }
   });
 
+  const copyUsername = (username) => {
+    navigator.clipboard.writeText(username);
+
+    toast.success(`Copied "${username}" to clipboard!`, {
+      className: "!uppercase text-xs font-bold",
+      autoClose: 3000,
+      position: toast.POSITION.BOTTOM_RIGHT,
+    });
+  };
+
   return (
     <Layout title={"NFT Radar | About Us"}>
+      <ToastContainer limit={2} />
       <Container>
         <Hero title={"About Us"} reverse={true} />
         <div className="py-12">
@@ -83,7 +96,10 @@ function About({ founderImages }) {
                   <a href="https://twitter.com/solnftradar" target="_blank">
                     <Twitter fill={"#ffffff"} width={20} />
                   </a>
-                  <div className="group cursor-pointer relative text-center mr-1.5">
+                  <div
+                    className="group cursor-pointer relative text-center mr-1.5"
+                    onClick={() => copyUsername("pearlberry#3405")}
+                  >
                     <Discord fill={"#ffffff"} width={20} />
                     <div className="opacity-0 bg-black text-white text-center text-xs rounded-lg py-2 absolute z-10 group-hover:opacity-100 bottom-full px-3 pointer-events-none -right-6 w-48">
                       Discord Username: pearlberry#3405
@@ -118,7 +134,10 @@ function About({ founderImages }) {
                   <a href="https://twitter.com/SOL_HoTsAuCe" target="_blank">
                     <Twitter fill={"#ffffff"} width={20} />
                   </a>
-                  <div className="group cursor-pointer relative text-center mr-1.5">
+                  <div
+                    className="group cursor-pointer relative text-center mr-1.5"
+                    onClick={() => copyUsername("HoTsAuCe#7292")}
+                  >
                     <Discord fill={"#ffffff"} width={20} />
                     <div className="opacity-0 bg-black text-white text-center text-xs rounded-lg py-2 absolute z-10 group-hover:opacity-100 bottom-full px-3 pointer-events-none -right-6 w-48">
                       Discord Username: HoTsAuCe#7292
