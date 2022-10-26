@@ -471,42 +471,46 @@ function Index({ allContent, featuredItems, selectedDate }) {
                   </div>
                 </div>
               </div>
-              <Carousel items={featuredProjects} />
-              <h2 className="uppercase font-extralight">Featured Artist</h2>
-              <div>
-                <div>
-                  <div className="grid grid-cols-2 items-center">
-                    <CoverImage
-                      title={featuredArtist.title}
-                      url={featuredArtist.featuredImage.url}
-                      slug={featuredArtist.slug}
-                      route={"artists"}
-                      height={"200"}
-                    />
-                    <div className="pl-4">
-                      <div className="flex items-center">
-                        <h3>
-                          <Link href={`/projects/${featuredArtist.slug}`}>
-                            <a className="text-md hover:text-[#8C50EE] duration-200 hover:cursor-pointer font-semibold">
-                              {featuredArtist.title}
+              {featuredProjects && <Carousel items={featuredProjects} />}
+              {featuredArtist && (
+                <>
+                  <h2 className="uppercase font-extralight">Featured Artist</h2>
+                  <div>
+                    <div>
+                      <div className="grid grid-cols-2 items-center">
+                        <CoverImage
+                          title={featuredArtist.title}
+                          url={featuredArtist.featuredImage.url}
+                          slug={featuredArtist.slug}
+                          route={"artists"}
+                          height={"200"}
+                        />
+                        <div className="pl-4">
+                          <div className="flex items-center">
+                            <h3>
+                              <Link href={`/projects/${featuredArtist.slug}`}>
+                                <a className="text-md hover:text-[#8C50EE] duration-200 hover:cursor-pointer font-semibold">
+                                  {featuredArtist.title}
+                                </a>
+                              </Link>
+                            </h3>
+                            <a
+                              className="mx-2 hover:scale-125 duration-200"
+                              href={featuredArtist.artistTwitter}
+                              target="_blank"
+                            >
+                              <Twitter fill={"#ffffff"} width={12} />
                             </a>
-                          </Link>
-                        </h3>
-                        <a
-                          className="mx-2 hover:scale-125 duration-200"
-                          href={featuredArtist.artistTwitter}
-                          target="_blank"
-                        >
-                          <Twitter fill={"#ffffff"} width={12} />
-                        </a>
+                          </div>
+                          <p className="text-xs font-extralight">
+                            {featuredArtist.caption}
+                          </p>
+                        </div>
                       </div>
-                      <p className="text-xs font-extralight">
-                        {featuredArtist.caption}
-                      </p>
                     </div>
                   </div>
-                </div>
-              </div>
+                </>
+              )}
             </div>
           </div>
           <div>
