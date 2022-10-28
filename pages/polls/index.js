@@ -14,6 +14,7 @@ import ContentfulImage from "../../components/contentful-image";
 import Logo from "../../assets/images/logo.png";
 import Solana from "../../assets/images/solana.png";
 import Ethereum from "../../assets/images/ethereum.png";
+import Aptos from "../../assets/images/aptos.png";
 import Link from "next/link";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
@@ -180,18 +181,20 @@ function Polls({ selectedDate }) {
 
                   <p className="max-w-xl mx-auto mt-4 sm:leading-relaxed sm:text-xl">
                     <p className="text-lg font-medium">Mint Times are in UTC</p>
-                    <p className="text-base font-extralight my-4">
-                      To vote you must be logged in with Discord. You must also
-                      be verified and at least level 1 in the{" "}
-                      <a
-                        href="https://discord.gg/nftradar"
-                        target="_blank"
-                        className="font-bold hover:underline"
-                      >
-                        Radar Discord
-                      </a>{" "}
-                      server
-                    </p>
+                    {!guildRoles?.includes(voterRole) && (
+                      <p className="text-base font-extralight my-4">
+                        To vote you must be logged in with Discord. You must
+                        also be verified and at least level 1 in the{" "}
+                        <a
+                          href="https://discord.gg/nftradar"
+                          target="_blank"
+                          className="font-bold hover:underline"
+                        >
+                          Radar Discord
+                        </a>{" "}
+                        server
+                      </p>
+                    )}
                     {user && (
                       <p className="text-lg font-extralight">
                         {guildRoles?.includes(voterRole)
@@ -249,32 +252,18 @@ function Polls({ selectedDate }) {
                       </span>
                       {chain.length > 0 && (
                         <div className="absolute bottom-0 w-full px-3 py-1.5 font-black text-base bg-[rgba(0,0,0,.8)] flex justify-center items-center">
-                          {chain?.length === 1 && chain[0] === "Solana" ? (
-                            <ContentfulImage
-                              src={Solana}
-                              width={25}
-                              height={25}
-                            />
-                          ) : chain?.length === 1 && chain[0] === "Ethereum" ? (
-                            <ContentfulImage
-                              src={Ethereum}
-                              width={25}
-                              height={25}
-                            />
-                          ) : chain?.length === 2 ? (
-                            <>
-                              <ContentfulImage
-                                src={Solana}
-                                width={25}
-                                height={25}
-                              />
-                              <ContentfulImage
-                                src={Ethereum}
-                                width={25}
-                                height={25}
-                              />
-                            </>
-                          ) : null}
+                          {chain.map((chain, index) => {
+                            const images = [Solana, Ethereum, Aptos];
+                            if (chain !== false) {
+                              return (
+                                <ContentfulImage
+                                  src={images[index]}
+                                  width={25}
+                                  height={25}
+                                />
+                              );
+                            }
+                          })}
                         </div>
                       )}
                     </div>

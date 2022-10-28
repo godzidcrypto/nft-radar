@@ -1,6 +1,8 @@
 import { useState, useRef } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-function AddPoll({ isRequest = false }) {
+function AddPoll() {
   const [date, setDate] = useState(new Date().toISOString().substring(0, 10));
   const [time, setTime] = useState("");
   const [wlTime, setWlTime] = useState("");
@@ -18,15 +20,9 @@ function AddPoll({ isRequest = false }) {
   const [isRequested, setIsRequested] = useState(false);
   const [solana, setSolana] = useState(true);
   const [ethereum, setEthereum] = useState(false);
+  const [aptos, setAptos] = useState(false);
 
-  const chain =
-    solana && ethereum
-      ? ["Solana", "Ethereum"]
-      : solana
-      ? ["Solana"]
-      : ethereum
-      ? ["Ethereum"]
-      : [];
+  const chain = [solana && "Solana", ethereum && "Ethereum", aptos && "Aptos"];
 
   const imageRef = useRef();
   const resetImage = () => {
@@ -87,6 +83,12 @@ function AddPoll({ isRequest = false }) {
     });
 
     if (res.ok) {
+      toast.success(`Successfully added "${name}" to polls`, {
+        className: "!uppercase text-xs font-bold",
+        autoClose: 3000,
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
+
       setDate(new Date().toISOString().substring(0, 10));
       setTime("");
       setWlTime("");
@@ -104,6 +106,7 @@ function AddPoll({ isRequest = false }) {
       setIsRequested(false);
       setSolana(false);
       setEthereum(false);
+      setAptos(false);
     }
 
     return res;
@@ -111,6 +114,7 @@ function AddPoll({ isRequest = false }) {
 
   return (
     <div className="px-4 py-16 mx-auto max-w-screen-xl sm:px-6 lg:px-8">
+      <ToastContainer />
       <section>
         <div className="mx-auto max-w-screen-xl sm:px-6 lg:px-8 text-black">
           <div className="grid grid-cols-1 gap-y-8 lg:grid-cols-5">
@@ -138,7 +142,7 @@ function AddPoll({ isRequest = false }) {
                     />
                   </div>
 
-                  <div class="grid grid-cols-2">
+                  <div class="grid grid-cols-3">
                     <label
                       for="MarketingAccept"
                       className="flex gap-4 items-center"
@@ -164,6 +168,19 @@ function AddPoll({ isRequest = false }) {
                         checked={ethereum}
                       />
                       <span className="text-sm text-gray-300">Ethereum</span>
+                    </label>
+                    <label
+                      for="MarketingAccept"
+                      className="flex gap-4 items-center"
+                      onClick={() => setAptos(!aptos)}
+                    >
+                      <input
+                        type="checkbox"
+                        className="w-5 h-5 bg-white border-gray-200 rounded-md shadow-sm"
+                        onChange={() => setAptos(!aptos)}
+                        checked={aptos}
+                      />
+                      <span className="text-sm text-gray-300">Aptos</span>
                     </label>
                   </div>
                 </div>

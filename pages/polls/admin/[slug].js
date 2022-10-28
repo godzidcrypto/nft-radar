@@ -10,6 +10,8 @@ import Website from "../../../components/website";
 import Logo from "../../../assets/images/logo.png";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function PollsAdmin() {
   const [userInfo, setUserInfo] = useState("");
@@ -79,15 +81,9 @@ function PollsAdmin() {
   const [ethereum, setEthereum] = useState(
     swrData?.chain?.includes("Ethereum")
   );
+  const [aptos, setAptos] = useState(swrData?.chain?.includes("Aptos"));
 
-  const chain =
-    solana && ethereum
-      ? ["Solana", "Ethereum"]
-      : solana
-      ? ["Solana"]
-      : ethereum
-      ? ["Ethereum"]
-      : [];
+  const chain = [solana && "Solana", ethereum && "Ethereum", aptos && "Aptos"];
 
   const imageRef = useRef();
   const resetImage = () => {
@@ -150,6 +146,12 @@ function PollsAdmin() {
 
     if (res.ok) {
       resetImage();
+
+      toast.success(`Successfully updated poll`, {
+        className: "!uppercase text-xs font-bold",
+        autoClose: 3000,
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
     }
 
     return res;
@@ -206,6 +208,7 @@ function PollsAdmin() {
 
   return (
     <Layout>
+      <ToastContainer />
       <Container>
         <div className="px-4 py-16 mx-auto max-w-screen-xl sm:px-6 lg:px-8">
           <p className="py-6 underline font-bold flex">
@@ -409,7 +412,7 @@ function PollsAdmin() {
                         />
                       </div>
 
-                      <div class="grid grid-cols-2">
+                      <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
                         <label
                           for="MarketingAccept"
                           className="flex gap-4 items-center"
@@ -437,6 +440,19 @@ function PollsAdmin() {
                           <span className="text-sm text-gray-300">
                             Ethereum
                           </span>
+                        </label>
+                        <label
+                          for="MarketingAccept"
+                          className="flex gap-4 items-center"
+                          onClick={() => setAptos(!aptos)}
+                        >
+                          <input
+                            type="checkbox"
+                            className="w-5 h-5 bg-white border-gray-200 rounded-md shadow-sm"
+                            onChange={() => setAptos(!aptos)}
+                            checked={aptos}
+                          />
+                          <span className="text-sm text-gray-300">Aptos</span>
                         </label>
                       </div>
                     </div>
