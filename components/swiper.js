@@ -53,10 +53,10 @@ const Carousel = ({ items }) => {
                 height={"200"}
               />
               <div
-                className="absolute top-0 text-white bg-black w-full p-4"
+                className="absolute top-0 text-white bg-black w-full px-4 py-2 rounded-xl"
                 style={{
                   background:
-                    "linear-gradient(to bottom, rgba(0, 0, 0, 0.85), transparent)",
+                    "linear-gradient(to bottom, rgba(0, 0, 0, 0.85), rgba(0,0,0,.35))",
                 }}
               >
                 <div className="flex items-center">

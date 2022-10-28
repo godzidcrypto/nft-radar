@@ -369,17 +369,6 @@ function Index({ allContent, featuredItems, selectedDate }) {
                               "linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0,0,0,.35))",
                           }}
                         >
-                          <div className="flex justify-between mt-4 items-center">
-                            <p className="text-sm font-extralight flex">
-                              <DateComponent
-                                dateString={sys.firstPublishedAt}
-                              />
-                              <span className="mx-2 font-extrabold">
-                                &#183;
-                              </span>
-                              <p>{author.name}</p>
-                            </p>
-                          </div>
                           <h3 className="my-2">
                             <Link href={`/${route}/${slug}`}>
                               <a className="text-xl hover:text-purple-400 duration-200 hover:cursor-pointer font-semibold">
