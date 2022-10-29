@@ -77,11 +77,12 @@ function ArtistFeatureItem({ artistFeature, allAristFeatures }) {
               </div>
             </div>
             <div
-              className={`grid ${
-                artistMarketplaceSite && previousWorks
-                  ? "lg:grid-cols-2"
-                  : "grid-cols-1"
-              } mt-4 gap-4`}
+              // className={`grid ${
+              //   artistMarketplaceSite && previousWorks
+              //     ? "lg:grid-cols-2"
+              //     : "grid-cols-1"
+              // } mt-4 gap-4`}
+              className={`grid mt-4 gap-4`}
             >
               {artistMarketplaceSite && (
                 <a
@@ -116,7 +117,7 @@ function ArtistFeatureItem({ artistFeature, allAristFeatures }) {
                   </div>
                 </a>
               )}
-              {previousWorks && (
+              {/* {previousWorks && (
                 <a
                   className="relative block p-4 border border-gray-100 shadow-xl rounded-xl hover:scale-105 duration-200"
                   href={previousWorks}
@@ -140,7 +141,7 @@ function ArtistFeatureItem({ artistFeature, allAristFeatures }) {
                     <h3 className="mt-4 text-xl font-bold">Previous Works</h3>
                   </div>
                 </a>
-              )}
+              )} */}
             </div>
           </div>
         </EntryView>

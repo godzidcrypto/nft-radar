@@ -136,9 +136,10 @@ function ProjectItem({ project, allProjects }) {
               </dl>
             </div>
             <div
-              className={`grid ${
-                marketplaceLink && mintSite ? "grid-cols-2" : "grid-cols-1"
-              } mt-4 gap-4`}
+              // className={`grid ${
+              //   marketplaceLink && mintSite ? "grid-cols-2" : "grid-cols-1"
+              // } mt-4 gap-4`}
+              className={`grid mt-4 gap-4`}
             >
               {marketplaceLink && (
                 <a
@@ -173,7 +174,7 @@ function ProjectItem({ project, allProjects }) {
                   </div>
                 </a>
               )}
-              {mintSite && (
+              {/* {mintSite && (
                 <a
                   className="relative block p-4 px-8 border border-gray-100 shadow-xl rounded-xl hover:scale-105 duration-200"
                   href={mintSite}
@@ -197,7 +198,7 @@ function ProjectItem({ project, allProjects }) {
                     <h3 className="mt-4 text-xl font-bold">Mint Site</h3>
                   </div>
                 </a>
-              )}
+              )} */}
             </div>
           </div>
         </EntryView>
