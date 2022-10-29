@@ -477,7 +477,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
                         <div className="pl-4">
                           <div className="flex items-center">
                             <h3>
-                              <Link href={`/projects/${featuredArtist.slug}`}>
+                              <Link href={`/artists/${featuredArtist.slug}`}>
                                 <a className="text-md hover:text-[#8C50EE] duration-200 hover:cursor-pointer font-semibold">
                                   {featuredArtist.title}
                                 </a>
