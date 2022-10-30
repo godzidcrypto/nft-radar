@@ -363,20 +363,20 @@ function Index({ allContent, featuredItems, selectedDate }) {
                           height={`${index === 0 ? "450" : "300"}`}
                         />
                         <div
-                          className="absolute bottom-0 text-white bg-black w-full p-4 pt-0 rounded-xl"
+                          className="absolute bottom-0 text-white bg-black w-full p-4 pt-0 rounded-xl h-28"
                           style={{
                             background:
                               "linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0,0,0,.35))",
                           }}
                         >
-                          <h3 className="my-2">
+                          <h3 className="my-2 line-clamp-2">
                             <Link href={`/${route}/${slug}`}>
                               <a className="text-xl hover:text-purple-400 duration-200 hover:cursor-pointer font-semibold">
                                 {title}
                               </a>
                             </Link>
                           </h3>
-                          <p className="text-sm my-2">{caption}</p>
+                          <p className="text-sm my-2 truncate">{caption}</p>
                         </div>
                       </div>
                     );
