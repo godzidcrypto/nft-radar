@@ -41,15 +41,13 @@ const Carousel = ({ items }) => {
           caption,
           projectTwitter,
           projectDiscord,
-          carouselImage,
         } = item;
-
         return (
           <SwiperSlide key={index}>
             <div className="relative">
               <CoverImage
                 title={title}
-                url={carouselImage?.url ?? featuredImage.url}
+                url={featuredImage.url}
                 slug={slug}
                 route={"projects"}
                 height={"200"}

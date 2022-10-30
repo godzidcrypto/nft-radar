@@ -388,8 +388,15 @@ function Index({ allContent, featuredItems, selectedDate }) {
                 <div className="grid gap-4">
                   {filteredMerged.slice(0, 7).map((item, index) => {
                     const route = checkRoute(item);
-                    const { title, featuredImage, slug, sys, author, caption } =
-                      item;
+                    const {
+                      title,
+                      featuredImage,
+                      slug,
+                      sys,
+                      author,
+                      caption,
+                      carouselImage,
+                    } = item;
                     return (
                       <div
                         key={index}
@@ -398,7 +405,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
                         <div>
                           <CoverImage
                             title={title}
-                            url={featuredImage.url}
+                            url={carouselImage?.url ?? featuredImage.url}
                             slug={slug}
                             route={route}
                             height={"150"}
@@ -556,6 +563,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
                             const {
                               title,
                               featuredImage,
+                              carouselImage,
                               slug,
                               caption,
                               author,
@@ -568,7 +576,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
                               >
                                 <CoverImage
                                   title={title}
-                                  url={featuredImage.url}
+                                  url={carouselImage?.url ?? featuredImage.url}
                                   slug={slug}
                                   route={route}
                                   height={`150`}
@@ -602,6 +610,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
                             const {
                               title,
                               featuredImage,
+                              carouselImage,
                               slug,
                               caption,
                               author,
@@ -611,7 +620,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
                               <div key={index}>
                                 <CoverImage
                                   title={title}
-                                  url={featuredImage.url}
+                                  url={carouselImage?.url ?? featuredImage.url}
                                   slug={slug}
                                   route={route}
                                   height={`450`}
@@ -649,6 +658,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
                             const {
                               title,
                               featuredImage,
+                              carouselImage,
                               slug,
                               caption,
                               author,
@@ -661,7 +671,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
                               >
                                 <CoverImage
                                   title={title}
-                                  url={featuredImage.url}
+                                  url={carouselImage?.url ?? featuredImage.url}
                                   slug={slug}
                                   route={route}
                                   height={`150`}
