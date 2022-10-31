@@ -395,7 +395,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
                       sys,
                       author,
                       caption,
-                      carouselImage,
+                      alternativeHomeImage,
                     } = item;
                     return (
                       <div
@@ -405,7 +405,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
                         <div>
                           <CoverImage
                             title={title}
-                            url={carouselImage?.url ?? featuredImage.url}
+                            url={alternativeHomeImage?.url ?? featuredImage.url}
                             slug={slug}
                             route={route}
                             height={"150"}
@@ -563,7 +563,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
                             const {
                               title,
                               featuredImage,
-                              carouselImage,
+                              alternativeHomeImage,
                               slug,
                               caption,
                               author,
@@ -576,7 +576,10 @@ function Index({ allContent, featuredItems, selectedDate }) {
                               >
                                 <CoverImage
                                   title={title}
-                                  url={carouselImage?.url ?? featuredImage.url}
+                                  url={
+                                    alternativeHomeImage?.url ??
+                                    featuredImage.url
+                                  }
                                   slug={slug}
                                   route={route}
                                   height={`150`}
@@ -610,7 +613,6 @@ function Index({ allContent, featuredItems, selectedDate }) {
                             const {
                               title,
                               featuredImage,
-                              carouselImage,
                               slug,
                               caption,
                               author,
@@ -620,7 +622,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
                               <div key={index}>
                                 <CoverImage
                                   title={title}
-                                  url={carouselImage?.url ?? featuredImage.url}
+                                  url={featuredImage.url}
                                   slug={slug}
                                   route={route}
                                   height={`450`}
@@ -658,7 +660,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
                             const {
                               title,
                               featuredImage,
-                              carouselImage,
+                              alternativeHomeImage,
                               slug,
                               caption,
                               author,
@@ -671,7 +673,10 @@ function Index({ allContent, featuredItems, selectedDate }) {
                               >
                                 <CoverImage
                                   title={title}
-                                  url={carouselImage?.url ?? featuredImage.url}
+                                  url={
+                                    alternativeHomeImage?.url ??
+                                    featuredImage.url
+                                  }
                                   slug={slug}
                                   route={route}
                                   height={`150`}

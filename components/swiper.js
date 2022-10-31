@@ -37,6 +37,7 @@ const Carousel = ({ items }) => {
         const {
           title,
           featuredImage,
+          carouselImage,
           slug,
           caption,
           projectTwitter,
@@ -47,7 +48,7 @@ const Carousel = ({ items }) => {
             <div className="relative">
               <CoverImage
                 title={title}
-                url={featuredImage.url}
+                url={carouselImage?.url ?? featuredImage.url}
                 slug={slug}
                 route={"projects"}
                 height={"200"}
