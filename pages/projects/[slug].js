@@ -45,6 +45,7 @@ function ProjectItem({ project, allProjects }) {
       <Container>
         <EntryView
           title={title}
+          caption={caption}
           featuredImage={featuredImage}
           author={author}
           chain={chain}

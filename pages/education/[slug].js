@@ -39,6 +39,7 @@ function EducationalContentItem({ educationalContent, allEducationalContent }) {
       <Container>
         <EntryView
           title={title}
+          caption={caption}
           featuredImage={featuredImage}
           author={author}
           chain={chain}

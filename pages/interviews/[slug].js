@@ -46,6 +46,7 @@ function InterviewItem({ interview, allInterviews }) {
       <Container>
         <EntryView
           title={title}
+          caption={caption}
           featuredImage={featuredImage}
           author={author}
           chain={chain}

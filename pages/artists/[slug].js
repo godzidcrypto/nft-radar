@@ -38,6 +38,7 @@ function ArtistFeatureItem({ artistFeature, allAristFeatures }) {
       <Container>
         <EntryView
           title={title}
+          caption={caption}
           featuredImage={featuredImage}
           author={author}
           chain={chain}

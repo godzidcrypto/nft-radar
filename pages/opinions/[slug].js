@@ -31,6 +31,7 @@ function OpinionPieceItem({ opinionPiece, allOpinionPieces }) {
       <Container>
         <EntryView
           title={title}
+          caption={caption}
           featuredImage={featuredImage}
           author={author}
           chain={chain}

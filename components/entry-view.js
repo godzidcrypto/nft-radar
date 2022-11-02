@@ -4,6 +4,7 @@ import OtherEntries from "./other-entries";
 
 function EntryView({
   title,
+  caption,
   featuredImage,
   author,
   chain,
@@ -16,7 +17,10 @@ function EntryView({
 }) {
   return (
     <>
-      <h1 className="text-center py-12 text-4xl font-bold">{title}</h1>
+      <div className="py-12 grid gap-4 text-center">
+        <h1 className="text-4xl font-bold">{title}</h1>
+        <p>{caption}</p>
+      </div>
       <div className="relative">
         <CoverImage title={title} url={featuredImage.url} height={"550"} />
         <div className="mx-2 sm:mx-12 md:mx-24 lg:mx-48 py-24 -mt-48 relative z-10">

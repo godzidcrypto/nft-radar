@@ -34,6 +34,7 @@ function NewsItem({ cryptoNews, allCryptoNews }) {
       <Container>
         <EntryView
           title={title}
+          caption={caption}
           featuredImage={featuredImage}
           author={author}
           chain={chain}
