@@ -627,6 +627,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
                             const {
                               title,
                               featuredImage,
+                              alternativeHomeImage,
                               slug,
                               caption,
                               author,
@@ -636,10 +637,13 @@ function Index({ allContent, featuredItems, selectedDate }) {
                               <div key={index}>
                                 <CoverImage
                                   title={title}
-                                  url={featuredImage.url}
+                                  url={
+                                    alternativeHomeImage?.url ??
+                                    featuredImage.url
+                                  }
                                   slug={slug}
                                   route={route}
-                                  height={`450`}
+                                  height={`500`}
                                 />
                                 <div>
                                   <h3 className="mt-4">
