@@ -68,6 +68,12 @@ function Index({ allContent, featuredItems, selectedDate }) {
     opinionPieceCollection,
     interviewCollection,
   } = allContent;
+  const newAllContent = {
+    cryptoNewsCollection,
+    projectWriteUpCollection,
+    artistFeatureCollection,
+    educationalContentCollection,
+  };
   const merged = [
     ...cryptoNewsCollection.items,
     ...projectWriteUpCollection.items,
@@ -80,6 +86,14 @@ function Index({ allContent, featuredItems, selectedDate }) {
 
   // converts allContent object variable into multiple arrays segmented by category
   const result = Object.keys(allContent).map((key) => [key, allContent[key]]);
+
+  // created a new result variable that does not include the
+  // ANALYSIS, OPINION, and INTERVIEW categories
+  // uses the newAllContent variable
+  const newResult = Object.keys(newAllContent).map((key) => [
+    key,
+    newAllContent[key],
+  ]);
 
   // filters out all objects that have mintdates
   const upcomingProjects = projectWriteUpCollection.items.filter((project) => {
@@ -510,7 +524,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
             </div>
           </div>
           <div>
-            {result.map((categories, index) => {
+            {newResult.map((categories, index) => {
               let categoryTitle;
               let route;
               switch (index) {
