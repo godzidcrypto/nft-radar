@@ -68,9 +68,14 @@ export default function Layout({
           property="twitter:image"
           content={image ? image.url : HOME_OG_IMAGE_URL}
         ></meta>
-        <Script
+        {/* <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8160193017744513"
+          crossorigin="anonymous"
+        ></Script> */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1106163729737476"
           crossorigin="anonymous"
         ></Script>
       </Head>
