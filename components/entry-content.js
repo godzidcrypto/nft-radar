@@ -20,7 +20,9 @@ function EntryContent({
   return (
     <div className="bg-[#16181C] py-6 px-6 lg:px-12 rounded-xl">
       <div className="mt-4 flex justify-between md:items-center flex-col md:flex-row">
-        {author && <Avatar name={author.name} picture={author.picture} />}
+        <div className="pb-4 md:pb-0">
+          {author && <Avatar name={author.name} picture={author.picture} />}
+        </div>
         <div>
           {chain?.length > 0 && (
             <div>
