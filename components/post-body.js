@@ -20,7 +20,8 @@ const customMarkdownOptions = (content) => ({
       </section>
     ),
     [INLINES.HYPERLINK]: (node) => {
-      if (node.data.uri.indexOf("status") !== -1) {
+      if (node.data.uri.indexOf("/status/") !== -1) {
+        console.log(node.data.uri);
         // Tweets
         const tweetId = node.data.uri.split("/").slice(-1)[0];
         return (
@@ -37,7 +38,8 @@ const customMarkdownOptions = (content) => ({
             </span>
           </div>
         );
-      } else if (node.data.uri.indexOf("watch") !== -1) {
+      } else if (node.data.uri.indexOf("/watch?") !== -1) {
+        console.log(node.data.uri);
         // YouTube Links
         const youtubeId = node.data.uri.split("=").slice(-1)[0];
         return (
@@ -45,9 +47,9 @@ const customMarkdownOptions = (content) => ({
             <YoutubeEmbed videoId={youtubeId} videoLink={node.data.uri} />
           </div>
         );
-      } else if (node.data.uri.indexOf("track") !== -1) {
+      } else if (node.data.uri.indexOf("/track/") !== -1) {
+        console.log(node.data.uri);
         // Audius Links
-        console.log("NODE", node);
         const audiusLink = node.data.uri.split("/").slice(-1)[0];
         const audiusEmbed = audiusLink.split("?")[0];
         return (
