@@ -360,8 +360,15 @@ function Index({ allContent, featuredItems, selectedDate }) {
                 <div className="grid lg:grid-cols-2 gap-4">
                   {featuredArticles.map((item, index) => {
                     const route = checkRoute(item);
-                    const { title, featuredImage, slug, sys, author, caption } =
-                      item;
+                    const {
+                      title,
+                      featuredImage,
+                      slug,
+                      sys,
+                      author,
+                      alternativeHomeImage,
+                      caption,
+                    } = item;
                     return (
                       <div
                         key={index}
@@ -371,7 +378,7 @@ function Index({ allContent, featuredItems, selectedDate }) {
                       >
                         <CoverImage
                           title={title}
-                          url={featuredImage.url}
+                          url={alternativeHomeImage?.url ?? featuredImage.url}
                           slug={slug}
                           route={route}
                           height={`${index === 0 ? "450" : "300"}`}
