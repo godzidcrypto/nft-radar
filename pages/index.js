@@ -167,15 +167,17 @@ function Index({ allContent, featuredItems, selectedDate }) {
           />
           <div className="grid lg:grid-cols-[1fr_2fr_1fr] gap-8 py-12 relative">
             <div className="h-fit lg:sticky top-32 rounded-xl order-last lg:order-first">
-              <h2 className="uppercase font-extralight">
-                Mints for{" "}
-                <DateComponent dateString={selectedDate[0].selectedDate} />
-              </h2>
-              <Link href={"/polls"}>
-                <a className="font-thin uppercase text-xs hover:cursor-pointer hover:text-[#8C50EE]">
-                  To vote, click here
-                </a>
-              </Link>
+              <div className="grid gap-2 items-center justify-between">
+                <h2 className="uppercase font-extralight">
+                  Mints for{" "}
+                  <DateComponent dateString={selectedDate[0].selectedDate} />
+                </h2>
+                <Link href={"/polls"}>
+                  <div className="max-w-max hover:cursor-pointer bg-gray-800 rounded-full px-4 py-2 text-center hover:bg-white hover:text-[#8C50EE]">
+                    Vote Now
+                  </div>
+                </Link>
+              </div>
               <div className="grid gap-2 mt-4">
                 {mintsToday.map((item, index) => {
                   const {
