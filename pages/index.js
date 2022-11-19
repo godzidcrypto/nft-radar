@@ -499,7 +499,10 @@ function Index({ allContent, featuredItems, selectedDate }) {
                       <div className="grid grid-cols-2 items-center">
                         <CoverImage
                           title={featuredArtist.title}
-                          url={featuredArtist.featuredImage.url}
+                          url={
+                            featuredArtist.alternativeHomeImage?.url ??
+                            featuredArtist.featuredImage.url
+                          }
                           slug={featuredArtist.slug}
                           route={"artists"}
                           height={"200"}
