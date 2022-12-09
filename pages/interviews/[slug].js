@@ -56,33 +56,37 @@ function InterviewItem({ interview, allInterviews }) {
           otherEntries={otherInterviews}
           route={"interviews"}
         >
-          {isVideo ? (
-            <div className="mt-6 bg-gray-800 p-6 rounded-md">
-              <span className="text-2xl font-bold uppercase">
-                Video Summary
-              </span>
-              <YoutubeEmbed videoId={mediaId} videoLink={videoLink} />
-            </div>
-          ) : (
-            <div className="mt-6 bg-gray-800 p-6 rounded-md">
-              <span className="text-2xl font-bold uppercase">
-                Audio Summary
-              </span>
-              <div className="w-full flex justify-center mt-4 flex-col">
-                <iframe
-                  src={`https://audius.co/embed/track/${mediaId}?flavor=compact`}
-                  className="w-full"
-                />
-                <span>
-                  <a
-                    href={videoLink}
-                    target="_blank"
-                    className="font-light uppercase hover:text-[#8C50EE] duration-200 text-xs"
-                  >
-                    View Audio &#8594;
-                  </a>
-                </span>
-              </div>
+          {videoLink && (
+            <div>
+              {isVideo ? (
+                <div className="mt-6 bg-gray-800 p-6 rounded-md">
+                  <span className="text-2xl font-bold uppercase">
+                    Video Summary
+                  </span>
+                  <YoutubeEmbed videoId={mediaId} videoLink={videoLink} />
+                </div>
+              ) : (
+                <div className="mt-6 bg-gray-800 p-6 rounded-md">
+                  <span className="text-2xl font-bold uppercase">
+                    Audio Summary
+                  </span>
+                  <div className="w-full flex justify-center mt-4 flex-col">
+                    <iframe
+                      src={`https://audius.co/embed/track/${mediaId}?flavor=compact`}
+                      className="w-full"
+                    />
+                    <span>
+                      <a
+                        href={videoLink}
+                        target="_blank"
+                        className="font-light uppercase hover:text-[#8C50EE] duration-200 text-xs"
+                      >
+                        View Audio &#8594;
+                      </a>
+                    </span>
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </EntryView>
