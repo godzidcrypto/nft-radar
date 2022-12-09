@@ -70,12 +70,12 @@ export default function Layout({
         ></meta>
         {/* <Script
           async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8160193017744513"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5516132867417806"
           crossorigin="anonymous"
         ></Script> */}
         <Script
           async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1106163729737476"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5516132867417806"
           crossorigin="anonymous"
         ></Script>
       </Head>
