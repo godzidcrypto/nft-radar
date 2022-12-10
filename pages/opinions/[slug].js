@@ -27,7 +27,7 @@ function OpinionPieceItem({ opinionPiece, allOpinionPieces }) {
   });
 
   return (
-    <Layout title={title}>
+    <Layout title={title} description={caption} image={featuredImage}>
       <Container>
         <EntryView
           title={title}

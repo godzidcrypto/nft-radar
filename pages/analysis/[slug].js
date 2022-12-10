@@ -73,7 +73,7 @@ function AnalysisItem({ analysis, allAnalysis }) {
   };
 
   return (
-    <Layout title={title}>
+    <Layout title={title} description={caption} image={featuredImage}>
       <Container>
         <EntryView
           title={title}
