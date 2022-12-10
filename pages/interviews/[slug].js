@@ -19,13 +19,15 @@ function InterviewItem({ interview, allInterviews }) {
   let mediaId;
   let isVideo;
 
-  if (videoLink?.indexOf("youtube.com") !== -1) {
-    isVideo = true;
-    mediaId = videoLink.split("=").slice(-1)[0];
-  } else if (videoLink?.indexOf("audius.co") !== -1) {
-    isVideo = false;
-    const audiusLink = videoLink.split("/").slice(-1)[0];
-    mediaId = audiusLink.split("?")[0];
+  if (videoLink) {
+    if (videoLink?.indexOf("youtube.com") !== -1) {
+      isVideo = true;
+      mediaId = videoLink.split("=").slice(-1)[0];
+    } else if (videoLink?.indexOf("audius.co") !== -1) {
+      isVideo = false;
+      const audiusLink = videoLink.split("/").slice(-1)[0];
+      mediaId = audiusLink.split("?")[0];
+    }
   }
 
   const otherInterviews = allInterviews.filter((otherInterview) => {
@@ -38,8 +40,6 @@ function InterviewItem({ interview, allInterviews }) {
   const headings = content.filter((content) => {
     return content.nodeType.includes("heading");
   });
-
-  console.log("MEDIA", mediaId);
 
   return (
     <Layout title={title}>
